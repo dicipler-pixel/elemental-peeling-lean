@@ -29,7 +29,7 @@ Jeromie Beasley
 | Subject | File | Theorems |
 | :--- | :--- | :-: |
 | **Elemental foundations**: the original PR #17 layer (later-transmission gaps, the inverse chord identity and penalty, why averaging before inverting underestimates) plus joint records, robustness margins, the impossibility of a common-record predictor, and the scalar boundary ledger | [`ElementalFoundations`](ElementalFoundations.lean) | 30 |
-| **Force recovery**: exact three-force recovery, unknown-offset four-reading recovery, deterministic error-combination bounds | [`ElementalForceRecovery`](ElementalForceRecovery.lean) | 13 |
+| **Force recovery**: exact three-force recovery, unknown-offset four-reading recovery, deterministic error-combination bounds | [`ElementalForceRecovery`](ElementalForceRecovery.lean) | 14 |
 | **Boundary ledger**: resolved versus common-floor comparisons for any finite family, and their quadratic-form version | [`ElementalBoundaryLedger`](ElementalBoundaryLedger.lean) | 5 |
 | **Exclusion and a common retained coordinate**: the two-orbital Gram determinant is the squared antisymmetric amplitude; same-spin coincidence is forbidden while distinct samples are not; one retained coordinate drives two readouts; equal first-observer records do not fix the next filter record; the zero-time force-memory coefficient | [`PauliMemory`](PauliMemory.lean) | 17 |
 | | **Total** | **66** |
