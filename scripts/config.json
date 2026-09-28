@@ -15,14 +15,27 @@
     {
       "module": "PauliMemory",
       "path": "PauliMemory.lean"
+    },
+    {
+      "module": "Hypersurface.Boundary",
+      "path": "Hypersurface/Boundary.lean"
+    },
+    {
+      "module": "Hypersurface.Hall",
+      "path": "Hypersurface/Hall.lean"
+    },
+    {
+      "module": "Hypersurface.ScopeControls",
+      "path": "Hypersurface/ScopeControls.lean"
     }
   ],
-  "expected_theorems": 66,
-  "expected_false_controls": 3,
+  "expected_theorems": 88,
+  "expected_false_controls": 5,
   "root_imports": [
     "ElementalFoundations",
     "ElementalForceRecovery",
     "ElementalBoundaryLedger",
-    "PauliMemory"
+    "PauliMemory",
+    "Hypersurface"
   ]
 }

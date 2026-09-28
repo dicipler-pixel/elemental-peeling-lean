@@ -9,7 +9,8 @@ Lean proves exactly the statements written, under exactly the hypotheses written
   memory law; the synthetic four-bin observer's coefficients are not CIE calibrations.
 * The paper's material tests, numerical experiments, and the periodic-table analyses of the
   VOTKP editions are outside these proofs.
-* The earlier hypersurface layer written for Lean 4.19 (`Hypersurface/Boundary`, `Hall`,
-  `ScopeControls`) is not included here; it targets a different toolchain.
+* The hypersurface layer proves finite block identities and a declared constitutive model. It
+  does not derive a material Hall coefficient, the existence of waveguide roots, Berry integrals,
+  or any gravity identification; the second-order source `N` is an input, not derived.
 
 Formalization is evidence for the mathematics, not for the physical interpretation.

@@ -1,6 +1,6 @@
 name = "elemental-peeling-lean"
 version = "1.0.0"
-defaultTargets = ["ElementalFoundations", "PauliMemory"]
+defaultTargets = ["ElementalFoundations", "PauliMemory", "Hypersurface"]
 
 [[require]]
 name = "mathlib"
@@ -14,3 +14,8 @@ roots = ["ElementalFoundations", "ElementalForceRecovery", "ElementalBoundaryLed
 
 [[lean_lib]]
 name = "PauliMemory"
+
+[[lean_lib]]
+name = "Hypersurface"
+roots = ["Hypersurface"]
+globs = ["Hypersurface.+"]

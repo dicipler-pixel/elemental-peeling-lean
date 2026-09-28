@@ -6,7 +6,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/elemental-peeling-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/elemental-peeling-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.33.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-66-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-88-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -33,7 +33,8 @@ Jeromie Beasley
 | **Force recovery**: exact three-force recovery, unknown-offset four-reading recovery, deterministic error-combination bounds | [`ElementalForceRecovery`](ElementalForceRecovery.lean) | 14 |
 | **Boundary ledger**: resolved versus common-floor comparisons for any finite family, and their quadratic-form version | [`ElementalBoundaryLedger`](ElementalBoundaryLedger.lean) | 5 |
 | **Exclusion and a common retained coordinate**: the two-orbital Gram determinant is the squared antisymmetric amplitude; same-spin coincidence is forbidden while distinct samples are not; one retained coordinate drives two readouts; equal first-observer records do not fix the next filter record; the zero-time force-memory coefficient | [`PauliMemory`](PauliMemory.lean) | 17 |
-| | **Total** | **66** |
+| **The hypersurface layer**: two-sided boundary reduction with rectangular blocks and frame covariance; a declared quasistatic Hall model whose power is `σ(x² + y²)`, its incremental form diagonalized, with the exact negative witness when `2σ < c`; scalar boundary numerators and scope controls | [`Hypersurface/`](Hypersurface/) (`Boundary`, `Hall`, `ScopeControls`) | 22 |
+| | **Total** | **88** |
 
 ## How it is checked
 
