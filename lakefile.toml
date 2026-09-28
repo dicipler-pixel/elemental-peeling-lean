@@ -18,4 +18,3 @@ name = "PauliMemory"
 [[lean_lib]]
 name = "Hypersurface"
 roots = ["Hypersurface"]
-globs = ["Hypersurface.+"]
