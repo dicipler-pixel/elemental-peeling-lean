@@ -30,11 +30,11 @@ written to `verification/report.json` on each run.
 
 Later additions written here, each in a parallel formalization round and reviewed before
 acceptance: `LoopWall/Clock.lean`; the second-round modules `SumRule`, `LedgerDescent`, `Jensen`,
-`AngularRate`, `A2`, `TwoProbes`, `Quaternions` and `Positivity`. For those, only the namespace
+`AngularRate`, `A2`, `TwoProbes`, `Quaternions`, `Positivity`, and (third round, for the framework's own statements) `SpacingLaw`, `ScalarLedger`, `Oscillator`, `RestFrame`, `Hamiltonian`, `LocalRuler`, `QuantumGeometricTensor`. For those, only the namespace
 wrapper, the header, the `lemma` → `theorem` rename and the removal of trailing `#print axioms`
 lines differ from the member's file; each file's header says what it proves and which of my
 transcriptions it refutes.
 
-`ElementalFoundations`'s 88 theorems and the loop-wall layer's 604 are audited together: the
+`ElementalFoundations`'s 88 theorems and the loop-wall layer's 706 are audited together: the
 inventory in `scripts/config.json` fixes the count, and `scripts/verify.py` asks the kernel for
 the axioms of every named theorem.

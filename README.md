@@ -7,7 +7,7 @@ later records can recover, and which side of the loop wall a removal ladder fall
 
 [![Lean proof check](https://github.com/dicipler-pixel/elemental-peeling-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/elemental-peeling-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.35.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-692-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-794-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC%20BY%204.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -58,7 +58,10 @@ Jeromie Beasley
 | **Two probes on a two-qubit phase state**: both marginals `(1/2)·1`, the probe pair `(cos Φ, sin Φ)`, `Φ` versus `π−Φ`, and that the marginals determine neither the phase nor the state | [`LoopWall/TwoProbes`](LoopWall/TwoProbes.lean) | 29 |
 | **The 48 norm-five quaternions**: the complete count, norm multiplicativity, the 8 Hamilton units as a group, and that 48 splits both `6 × 8` and `3 × 16` so no count decides a partition | [`LoopWall/Quaternions`](LoopWall/Quaternions.lean) | 25 |
 | **The positivity domain of a 2×2 Hermitian form**: `0 ≤ a ∧ 0 ≤ c ∧ ω² ≤ 4(ac − b²)`, its strict form, the boundary `Γa² + Γb² = 1` at `a = c = 1`, the equal-face point `Γ = 1/√2`, and the conditioning monotonicity | [`LoopWall/Positivity`](LoopWall/Positivity.lean) | 29 |
-| | **Total** | **692** |
+| **The framework's own statements, round three**: the forced spacing law (Cauchy with continuity or monotonicity, plus a Hamel-basis witness that additivity alone fails); the scalar ledger `log((I+J)/2√(IJ)) = log cosh(t/2) = −½log(1−Γ²)` with the reversal split; the oscillator's Legendre transform and the non-null witness; the two-null-momentum rest-frame identity with its converse; the conservative Hamiltonian block, its energy conservation, and the proof that Rayleigh damping cannot come out of it | [`LoopWall/SpacingLaw`](LoopWall/SpacingLaw.lean), [`ScalarLedger`](LoopWall/ScalarLedger.lean), [`Oscillator`](LoopWall/Oscillator.lean), [`RestFrame`](LoopWall/RestFrame.lean), [`Hamiltonian`](LoopWall/Hamiltonian.lean) | 60 |
+| **The local ruler does not fix the ledger**: `ruler a t = ruler 1 (a t)/a`, finite readings strictly decreasing in the scale, and the same infinitesimal slope `1/(2√2)` for every scale, from the density squeeze `2/(x²+4) ≤ log cosh x/x² ≤ 1/2` | [`LoopWall/LocalRuler`](LoopWall/LocalRuler.lean) | 19 |
+| **The intrinsic quantum geometric tensor**: `Q = g − iΩ/2` with `g` the metric and `Ω` the 2-form, positivity, Cauchy–Schwarz, the Wirtinger bound `g(V,W)² + Ω(V,W)²/4 ≤ g(V,V)g(W,W)`, unitary covariance, and the peel-rate bound with its maximum at the wall | [`LoopWall/QuantumGeometricTensor`](LoopWall/QuantumGeometricTensor.lean) | 23 |
+| | **Total** | **794** |
 
 ## How it is checked
 

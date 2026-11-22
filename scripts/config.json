@@ -119,9 +119,37 @@
     {
       "module": "LoopWall.Positivity",
       "path": "LoopWall/Positivity.lean"
+    },
+    {
+      "module": "LoopWall.ScalarLedger",
+      "path": "LoopWall/ScalarLedger.lean"
+    },
+    {
+      "module": "LoopWall.Oscillator",
+      "path": "LoopWall/Oscillator.lean"
+    },
+    {
+      "module": "LoopWall.RestFrame",
+      "path": "LoopWall/RestFrame.lean"
+    },
+    {
+      "module": "LoopWall.Hamiltonian",
+      "path": "LoopWall/Hamiltonian.lean"
+    },
+    {
+      "module": "LoopWall.SpacingLaw",
+      "path": "LoopWall/SpacingLaw.lean"
+    },
+    {
+      "module": "LoopWall.LocalRuler",
+      "path": "LoopWall/LocalRuler.lean"
+    },
+    {
+      "module": "LoopWall.QuantumGeometricTensor",
+      "path": "LoopWall/QuantumGeometricTensor.lean"
     }
   ],
-  "expected_theorems": 692,
+  "expected_theorems": 794,
   "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",

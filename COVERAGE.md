@@ -113,6 +113,23 @@ physics the paper reads into them.
 | The phase state `(|01⟩ + e^{iΦ}|10⟩)/√2` has both marginals `I/2`, and the probes read `cos Φ`, `sin Φ` | proved: `TwoProbes.left_marginal`, `right_marginal`, `observations_eq`; the literal sign I wrote for the second probe is **refuted** (`requested_probeB_formula_is_false`) |
 | `Φ` and `π−Φ` share the marginals but differ under the probes; the marginals determine nothing | proved: `TwoProbes.supplement_observations_ne`, `marginals_do_not_determine_phase`, `marginals_do_not_determine_state` |
 
+## The framework's own statements (third round)
+
+| Claim | Status |
+| :--- | :--- |
+| If the spacing depends only on the ratio and is additive over composition, it is `c * log` (continuous or monotone) | proved: `SpacingLaw.continuous_additive_eq_mul`, `continuousOn_multiplicative_eq_log`, `monotone_additive_eq_mul` |
+| Two such laws are proportional, i.e. the law matches up to a unit | proved with the necessary nondegeneracy hypothesis: `SpacingLaw.multiplicative_laws_proportional_of_nondegenerate`; without it `SpacingLaw.proportionality_fails_without_nondegeneracy` |
+| Additivity alone forces nothing more | proved by construction: `SpacingLaw.additivity_alone_does_not_suffice` (an additive map with `1 ↦ 0`, `√2 ↦ 1`) |
+| `S = log((I+J)/(2√(IJ))) = log cosh(t/2) = −½log(1−Γ²)`, `S ≥ 0`, `S = ½log 2` at `Γ² = ½` | proved: `ScalarLedger.S_eq_log_cosh_half_t`, `S_eq_neg_half_log_one_sub_G_sq`, `S_nonneg`, `S_at_half_wall` |
+| The peel keeps which way, the scalar keeps how much | proved: `ScalarLedger.G_swap`, `S_swap`, `strictMonoOn_S_abs` |
+| An oscillator Lagrangian has Legendre transform `p²/2m + U` and conserves energy | proved: `Oscillator.legendre_hamiltonian_eq`, `energy_conservation`, `euler_lagrange_of_acceleration` |
+| An oscillator Lagrangian imposes no null condition | proved: `Oscillator.free_lagrangian_has_nonnull_linear_solution`; the literal hypothesis `v ≠ c` is refuted in `nonnull_claim_as_written_false` (take `v = −c`) |
+| Two lightlike momenta carry `E² − c²p² = 4E₊E₋`, and every positive timelike momentum splits into two null pieces | proved: `RestFrame.twoLightlike_invariant`, `exists_lightlike_decomposition`, `twoLightlike_invariant_vector`, `momentumVector_norm_le` |
+| The conservative Hamiltonian block conserves energy but cannot produce Rayleigh dissipation | proved: `Hamiltonian.deriv_hamiltonian_conservative`, `deriv_hamiltonian_rayleigh_nonpos`, `conservative_cannot_produce_rayleigh_at_nonzero_momentum`, `rayleigh_forcing_not_configuration_gradient` |
+| The local ruler alone does not fix the ledger | proved: `LocalRuler.ruler_scaling`, `ruler_one_strictAntiOn`, `ruler_right_slope`, `local_ruler_does_not_fix_ledger` |
+| The two-field variation gives the coupled Klein–Gordon equations, with the coupling sign pinned down | in the third round, not yet integrated |
+| The IQGT splits into a metric and a 2-form, with the Wirtinger bound and the peel rate bound | proved: `QuantumGeometricTensor.Q_eq_metric_sub_curvature_mul_I`, `metric_symmetric`, `curvature_antisymmetric`, `wirtinger_inequality`, `Q_unitary_covariant`, `peel_rate_bound`, `wall_factor_eq_quarter_iff`; the real-part identity needs the complementary block (`crossBlock_only_counterexample`) and the rate bound needs `g ≥ 0` (`peel_rate_counterexample_without_nonnegative_metric`) |
+
 ## Not formalized here
 
 * The physical interpretation of any of it: no Hamiltonian, surface, spectrum, optical constant,
