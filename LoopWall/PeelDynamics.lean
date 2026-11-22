@@ -57,27 +57,27 @@ variable {m ω : ℝ} {X : ℝ → ℝ}
   (hden : ∀ s, 1 + X s ≠ 0)
 
 include hden in
-lemma one_sub_peel (s : ℝ) : 1 - peel X s = 2 / (1 + X s) := by
+theorem one_sub_peel (s : ℝ) : 1 - peel X s = 2 / (1 + X s) := by
   have hx : X s + 1 ≠ 0 := by simpa [add_comm] using hden s
   simp only [peel, G]
   field_simp [hden s, hx]
   ring
 
 include hden in
-lemma one_add_peel (s : ℝ) : 1 + peel X s = 2 * X s / (1 + X s) := by
+theorem one_add_peel (s : ℝ) : 1 + peel X s = 2 * X s / (1 + X s) := by
   have hx : X s + 1 ≠ 0 := by simpa [add_comm] using hden s
   simp only [peel, G]
   field_simp [hden s, hx]
   ring
 
 include hden in
-lemma one_sub_peel_ne (s : ℝ) : 1 - peel X s ≠ 0 := by
+theorem one_sub_peel_ne (s : ℝ) : 1 - peel X s ≠ 0 := by
   rw [one_sub_peel hden]
   exact div_ne_zero (by norm_num) (hden s)
 
 include hden in
 /-- The inverse rational coordinate really undoes `G` away from its pole. -/
-lemma inverse_peel (s : ℝ) : (1 + peel X s) / (1 - peel X s) = X s := by
+theorem inverse_peel (s : ℝ) : (1 + peel X s) / (1 - peel X s) = X s := by
   have hx : X s + 1 ≠ 0 := by simpa [add_comm] using hden s
   simp only [peel, G]
   field_simp [hden s, hx]
@@ -85,24 +85,24 @@ lemma inverse_peel (s : ℝ) : (1 + peel X s) / (1 - peel X s) = X s := by
 
 include hden in
 /-- The pullback potential along the path is the oscillator's original potential. -/
-lemma inducedPotential_peel (m ω : ℝ) (s : ℝ) :
+theorem inducedPotential_peel (m ω : ℝ) (s : ℝ) :
     inducedPotential m ω (peel X s) = V m ω (X s) := by
   rw [inducedPotential, inverse_peel hden]
 
 include hX hden in
-lemma hasDerivAt_peel (s : ℝ) :
+theorem hasDerivAt_peel (s : ℝ) :
     HasDerivAt (peel X) (2 / (1 + X s) ^ 2 * deriv X s) s := by
   change HasDerivAt (fun u => G (X u))
     (2 / (1 + X s) ^ 2 * deriv X s) s
   exact (hasDerivAt_G (X s) (hden s)).comp s (hX s).hasDerivAt
 
 include hX hden in
-lemma deriv_peel (s : ℝ) :
+theorem deriv_peel (s : ℝ) :
     deriv (peel X) s = 2 / (1 + X s) ^ 2 * deriv X s :=
   (hasDerivAt_peel hX hden s).deriv
 
 include hX hden in
-lemma deriv_peel_function : deriv (peel X) =
+theorem deriv_peel_function : deriv (peel X) =
     fun s => 2 * deriv X s / (1 + X s) ^ 2 := by
   funext s
   rw [deriv_peel hX hden]
@@ -110,7 +110,7 @@ lemma deriv_peel_function : deriv (peel X) =
 
 include hX hX2 hden in
 /-- A closed derivative formula for the induced peel velocity. -/
-lemma hasDerivAt_deriv_peel (s : ℝ) :
+theorem hasDerivAt_deriv_peel (s : ℝ) :
     HasDerivAt (deriv (peel X))
       (2 * deriv (deriv X) s / (1 + X s) ^ 2
         - 4 * (deriv X s) ^ 2 / (1 + X s) ^ 3) s := by
@@ -148,7 +148,7 @@ theorem peel_closure_ode
 
 include hX hX2 in
 /-- The original mechanical energy is conserved by the harmonic equation. -/
-lemma hasDerivAt_mechanicalEnergy
+theorem hasDerivAt_mechanicalEnergy
     (hosc : ∀ s, deriv (deriv X) s + ω ^ 2 * X s = 0) (s : ℝ) :
     HasDerivAt (mechanicalEnergy m ω X) 0 s := by
   have hacc : deriv (deriv X) s = -ω ^ 2 * X s := by
@@ -168,7 +168,7 @@ lemma hasDerivAt_mechanicalEnergy
 
 include hX hden in
 /-- The peel expression is exactly the original harmonic energy. -/
-lemma peelEnergy_eq_mechanicalEnergy (s : ℝ) :
+theorem peelEnergy_eq_mechanicalEnergy (s : ℝ) :
     peelEnergy m ω (peel X s) (deriv (peel X) s) = mechanicalEnergy m ω X s := by
   simp only [peelEnergy, mechanicalEnergy]
   rw [deriv_peel hX hden, one_sub_peel hden, one_add_peel hden]
@@ -206,7 +206,7 @@ end HarmonicPath
 
 
 /-- Derivative of the inverse peel coordinate. -/
-lemma hasDerivAt_inverseCoordinate {γ : ℝ} (hγ : 1 - γ ≠ 0) :
+theorem hasDerivAt_inverseCoordinate {γ : ℝ} (hγ : 1 - γ ≠ 0) :
     HasDerivAt (fun u : ℝ => (1 + u) / (1 - u)) (2 / (1 - γ) ^ 2) γ := by
   have h := ((hasDerivAt_id γ).const_add (1 : ℝ)).div
     ((hasDerivAt_const γ (1 : ℝ)).sub (hasDerivAt_id γ)) hγ
@@ -217,7 +217,7 @@ lemma hasDerivAt_inverseCoordinate {γ : ℝ} (hγ : 1 - γ ≠ 0) :
     ring
 
 /-- The pullback harmonic potential has the expected rational force coefficient. -/
-lemma hasDerivAt_inducedPotential (m ω : ℝ) {γ : ℝ} (hγ : 1 - γ ≠ 0) :
+theorem hasDerivAt_inducedPotential (m ω : ℝ) {γ : ℝ} (hγ : 1 - γ ≠ 0) :
     HasDerivAt (inducedPotential m ω)
       (m * ω ^ 2 * ((1 + γ) / (1 - γ)) * (2 / (1 - γ) ^ 2)) γ := by
   change HasDerivAt (fun u : ℝ => V m ω ((1 + u) / (1 - u))) _ γ
@@ -225,15 +225,15 @@ lemma hasDerivAt_inducedPotential (m ω : ℝ) {γ : ℝ} (hγ : 1 - γ ≠ 0) :
     (hasDerivAt_V m ω ((1 + γ) / (1 - γ))) (hasDerivAt_inverseCoordinate hγ)
 
 /-- The induced potential is precisely the stated rational pullback of `V`. -/
-lemma inducedPotential_eq (m ω γ : ℝ) :
+theorem inducedPotential_eq (m ω γ : ℝ) :
     inducedPotential m ω γ = (1 / 2 : ℝ) * m * ω ^ 2 * ((1 + γ) / (1 - γ)) ^ 2 := by
   rfl
 
-lemma inducedPotential_zero (m ω : ℝ) :
+theorem inducedPotential_zero (m ω : ℝ) :
     inducedPotential m ω 0 = (1 / 2 : ℝ) * m * ω ^ 2 := by
   norm_num [inducedPotential, V]
 
-lemma φled_zero : φled 0 = 0 := by
+theorem φled_zero : φled 0 = 0 := by
   norm_num [φled]
 
 /-- At the symmetric point, the unnormalised pullback is not the ledger. -/
@@ -242,18 +242,18 @@ theorem inducedPotential_zero_ne_ledger {m ω : ℝ} (hm : 0 < m) (hω : ω ≠ 
   rw [inducedPotential_zero, φled_zero]
   exact mul_ne_zero (mul_ne_zero (by norm_num) (ne_of_gt hm)) (pow_ne_zero 2 hω)
 
-lemma normalizedInducedPotential_zero (m ω : ℝ) :
+theorem normalizedInducedPotential_zero (m ω : ℝ) :
     normalizedInducedPotential m ω 0 = 0 := by
   simp [normalizedInducedPotential]
 
-lemma deriv_inducedPotential_zero (m ω : ℝ) :
+theorem deriv_inducedPotential_zero (m ω : ℝ) :
     deriv (inducedPotential m ω) 0 = 2 * m * ω ^ 2 := by
   have h := (hasDerivAt_inducedPotential m ω (γ := 0) (by norm_num)).deriv
   norm_num at h
   rw [h]
   ring
 
-lemma deriv_normalizedInducedPotential_zero (m ω : ℝ) :
+theorem deriv_normalizedInducedPotential_zero (m ω : ℝ) :
     deriv (normalizedInducedPotential m ω) 0 = 2 * m * ω ^ 2 := by
   have h := (hasDerivAt_inducedPotential m ω (γ := 0) (by norm_num)).sub_const
     (inducedPotential m ω 0)
@@ -262,7 +262,7 @@ lemma deriv_normalizedInducedPotential_zero (m ω : ℝ) :
   norm_num
   ring
 
-lemma deriv_φled_zero : deriv φled 0 = 0 := by
+theorem deriv_φled_zero : deriv φled 0 = 0 := by
   rw [deriv_φled (by norm_num : |(0 : ℝ)| < 1)]
   norm_num
 
@@ -274,7 +274,7 @@ theorem normalizedPotential_deriv_zero_ne_ledger {m ω : ℝ}
   exact mul_ne_zero (mul_ne_zero (by norm_num) (ne_of_gt hm)) (pow_ne_zero 2 hω)
 
 /-- The ratio corresponding to the wall is exactly `(1 + sqrt 2)^2`. -/
-lemma inverse_wall : (1 + wall) / (1 - wall) = 3 + 2 * Real.sqrt 2 := by
+theorem inverse_wall : (1 + wall) / (1 - wall) = 3 + 2 * Real.sqrt 2 := by
   have hr : Real.sqrt (2 : ℝ) ≠ 0 := ne_of_gt (Real.sqrt_pos.2 (by norm_num))
   have hr2 : Real.sqrt (2 : ℝ) ^ 2 = 2 := Real.sq_sqrt (by norm_num)
   have hrgt : (1 : ℝ) < Real.sqrt 2 := by
@@ -286,11 +286,11 @@ lemma inverse_wall : (1 + wall) / (1 - wall) = 3 + 2 * Real.sqrt 2 := by
   field_simp [hr, hrsub, hradd]
   nlinarith
 
-lemma inducedPotential_wall (m ω : ℝ) :
+theorem inducedPotential_wall (m ω : ℝ) :
     inducedPotential m ω wall = (1 / 2 : ℝ) * m * ω ^ 2 * (3 + 2 * Real.sqrt 2) ^ 2 := by
   rw [inducedPotential, inverse_wall, V]
 
-lemma normalizedInducedPotential_wall_one_one :
+theorem normalizedInducedPotential_wall_one_one :
     normalizedInducedPotential 1 1 wall = 8 + 6 * Real.sqrt 2 := by
   rw [normalizedInducedPotential, inducedPotential_wall, inducedPotential_zero]
   have hr2 : Real.sqrt (2 : ℝ) ^ 2 = 2 := Real.sq_sqrt (by norm_num)
