@@ -4,6 +4,8 @@ The open step in the framework is stated as: *an equation showing how the null o
 determines `V_k`, and why its readout must be the ledger.* This file records what is now proved
 about that step, what is a choice, and what would count as deriving it.
 
+The equation of motion for `Γ` now exists: `LoopWall/PhaseBridge.lean` (62 theorems, fifth round).
+
 ## What a bridge equation has to contain
 
 A bridge is two things, not one:
@@ -24,63 +26,112 @@ force = -φ'(Γ) · 2/(1+X)^2 · X'        (potentialForce_eq)
 with the ledger potential `φled Γ = -(1/2) log (1 - Γ^2)` giving `φled' Γ = Γ/(1-Γ^2)`
 (`deriv_φled`).
 
-## What is forced
+## The equation of motion for `Γ` (new)
 
-**The wall values.** `φled (1/√2) = (1/2) log 2` and `φled' (1/√2) = √2`
-(`φled_wall`, `deriv_φled_wall`). The wall is not a singular point of the ledger potential: it is
-differentiable and continuous there (`abs_wall_lt_one`, `wall_log_argument_pos`,
-`differentiableAt_φled_wall`, `continuousAt_φled_wall`). The only singularity is at `|Γ| → 1`.
+Two phase motions are already theorems about the same object: the log-ratio spacing
+`t = log (I/J)` with `Γ = tanh (t/2) = G (exp t)` (`LoopWall/Ledger.lean`), and the chromatic
+angle with `Γ = -cos φ` (`LoopWall/ChromaticAngle.lean`, `peel_eq_neg_cos`). Each one, made
+uniform, is an equation of motion for `Γ` — and the first is *equivalent* to one:
 
-**The local constant.** The ledger's square root has slope `1/(2√2)` at `t = 0`, and every member of
-the ruler family `sqrt (log (cosh (a t / 2)))/a` has the same slope while its finite readings differ
-(`LoopWall/LocalRuler.lean`, `ruler_right_slope`, `ruler_one_strictAntiOn`).
+| Phase motion | `Γ` obeys | Theorem |
+| :--- | :--- | :--- |
+| `z' = ω z` (uniform log-ratio, `z = exp t`) | `Γ' = (ω/2)(1 - Γ²)` | `peel_ode_of_phase_ode` |
+| `Γ' = (ω/2)(1 - Γ²)`, conversely | `((1+Γ)/(1-Γ))' = ω · (1+Γ)/(1-Γ)` | `phase_ode_of_peel_ode` |
+| `φ' = ω` (uniform angle) | `Γ' = ω sin φ`, `Γ'' = -ω² Γ`, `(Γ')² = ω²(1-Γ²)` | `angle_peel_ode`, `angle_peel_harmonic`, `angle_speed_sq` |
 
-**Additivity, when it holds.** The scalar ledger is *not* additive in the spacing — `t₁ = t₂ = 2` is
-a witness (`LoopWall/MatrixLedger.lean`, `scalarLedger_not_additive`) — while the log-determinant
-ledger is additive over channels and over direct sums
-(`Sm_eq_sum_scalar`, `Sm_append`, `channel_additive_ledger`). So if a bridge is required to compose
-across independent channels, the object it produces is the matrix ledger, and the scalar ledger is
-its one-channel summand. For a single two-channel colour the two are not merely related but equal up
-to a factor: `matrixLedger = 2 * scalarLedgerPotential` (`LoopWall/FisherMatrix.lean`), with
-`det = (1 - Γ²)/4` and the wall at `det = 1/8`. That is why the same local constant appears in the
-scalar and the determinant readings.
+The first two rows are the important structural fact: the peel equation of motion is **not a new
+postulate**. It is the uniform-log-ratio phase statement written in the peel variable, and each
+direction reconstructs the other. The angle motion is a different motion of the same coordinate:
+the peel becomes a harmonic oscillator of frequency `ω`.
 
-## What is not forced
+## What the equation of motion forces
 
-**The choice of `φ` from local data.** Two potentials with the same value, first and second
-derivative at `Γ = 0` — `(1/2)Γ^2` and the ledger — have different forces at the wall
-(`LoopWall/BridgeUnderdetermination.lean`, `equal_two_jets_but_different_wall_forces`). The universal
-form is proved: no function of the 2-jet at `0` computes the wall force
-(`no_function_of_two_jet_computes_wall_force`). Locality of order two therefore cannot select the
-bridge, and neither can the local ruler, for the same reason.
+Along the peel equation of motion the ledger has rate `S' = (ω/2) Γ` (`ledger_rate`): it is the
+readout whose rate of change is *proportional to the peel itself*, not to a function of it. That
+is the precise sense in which the readout "must be the ledger", and it already fixes the potential
+up to an affine map, since `φ'(Γ)(1-Γ²) = Γ` has only that one solution family.
 
-## What would count as deriving the bridge
+The potential then obeys a closed second-order equation in the ledger variable — this is the
+bridge equation for `V_k`:
 
-One of the following, and nothing weaker:
+```
+S'' = (ω²/4) exp (-2 S)          (ledger_second_order)
+(S')² = (ω²/4) (1 - exp (-2 S))  (ledger_speed_sq)
+½ (S')² + (ω²/8) exp (-2 S) = ω²/8   (ledger_energy_eq)
+```
 
-* **A composition principle.** A requirement that the potential compose across independent
-  channels, or across a subdivision of one channel, together with the normalisation at `Γ = 0`.
-  `LoopWall/MatrixLedger.lean` shows the composition principle selects the log-determinant form; the
-  scalar form is then the summand.
-* **A dynamical postulate with a witness.** A stated equation of motion for `Γ` (not for `X`
-  alone), from which `φ` is recovered as a first integral or as a Lyapunov function. The library has
-  the pieces — `LoopWall/Hamiltonian.lean` for the conservative and damped cases,
-  `LoopWall/PeelPotential.lean` for the frozen and phase-dependent oscillator — but the equation for
-  `Γ` itself is not in it, because it has not been specified.
-* **A measurement model** that fixes which two readings are compared and how they are combined. This
-  is where the colour side bears: for two channels the peel *is* minus the cosine of the chromatic
-  angle (`LoopWall/ChromaticAngle.lean`, `peel_eq_neg_cos`), so a bridge that reads the colour angle
-  has its `Γ` fixed by the angle, and only `φ` remains to be chosen.
+and `ledger_is_euler_lagrange` identifies it as the Euler–Lagrange equation of
+`½ S'² - (ω²/8) exp (-2 S)`. The angle phase gives the other one,
+`S'' = ω² exp (2 S)` (`angle_ledger_second_order`), with rate `S' = -ω cot φ`
+(`angle_ledger_rate`).
+
+## What the equation of motion does not force
+
+The phase motion determines *a* potential on `Γ`, and it is not the ledger. If the oscillator's
+coordinate is read through the peel, `X = (1+Γ)/(1-Γ)`, its potential is
+
+```
+harmPotInPeel m ω Γ = (m ω²/2) ((1+Γ)/(1-Γ))²      (harmPotInPeel_G: it is ½mω²z² at Γ = G z)
+```
+
+which is `m ω²/2` at `Γ = 0` and `(m ω²/2)(17 + 12√2)` at the wall (`harmPotInPeel_zero`,
+`harmPotInPeel_wall`). The ledger is `0` and `½ log 2` there (`φled_zero`, `φled_wall`). For
+`m = ω = 1` that is `16.9853…` against `0.34657…` — a factor of `49.0`, at the wall. Their forces at
+zero reflection are `2 m ω²` and `0` (`deriv_harmPotInPeel_zero`, `deriv_φled_zero`), so the two
+are separated by a first-derivative measurement and not only by a global one.
+
+That is compatible with, and sharper than, the previous round's theorem that no function of the
+2-jet at `Γ = 0` computes the wall force
+(`LoopWall/BridgeUnderdetermination.lean`, `no_function_of_two_jet_computes_wall_force`): locality
+of order two cannot select the bridge, and neither phase motion is preferred by the peel calculus
+alone.
+
+## What does select the ledger
+
+The composition principle, as before, and now exactly. For a two-channel colour with shares
+`p₀ + p₁ = 1` and `Γ = p₀ - p₁`,
+
+```
+φled Γ = -(1/2) log (p₀ p₁) - log 2          (φled_eq_log_det_shares)
+2 φled Γ = -log (1 - Γ²)                     (two_φled_eq_neg_log_volume)
+```
+
+so the ledger **is** the log-determinant reading of the shares. `LoopWall/MatrixLedger.lean` shows
+that the log-determinant ledger is additive over channels (`Sm_append`, `channel_additive_ledger`)
+while the scalar spacing form is not (`scalarLedger_not_additive`), and
+`LoopWall/FisherMatrix.lean` identifies the two-channel matrix ledger with `2 φled`
+(`matrixLedger_eq_two_scalarLedgerPotential`). A readout required to compose across independent
+channels is therefore the ledger; a readout required to come from the oscillator's own motion is
+not.
+
+## The wall has a clock (a discriminating prediction)
+
+Both phase motions date the wall exactly, and they disagree:
+
+| | log-ratio phase | angle phase |
+| :--- | :--- | :--- |
+| time to the wall from `Γ = 0` | `2 log (1+√2)/ω ≈ 1.7627/ω` (`wall_clock`, `log_wall_ratio`) | `φ = π/4`, i.e. `π/(4ω) ≈ 0.7854/ω` (`angle_wall_clock`) |
+| phase ratio at the wall | `z = 3 + 2√2` (`G_at_wall_ratio`, `wall_ratio_sq`) | — |
+| peel rate at `Γ = 0` | `ω/2` (`peel_rate_at_zero_log_ratio`) | `ω` (`peel_speed_sq_at_zero_angle`) |
+| peel rate at the wall `Γ² = 1/2` | `ω/4` (`peel_rate_at_wall_log_ratio`) | `ω/√2`, i.e. `2√2` times that (`angle_speed_sq`) |
+
+The two bridges differ in the *first* derivative of the motion at `Γ = 0`, so a measurement of the
+peel rate at zero reflection, divided by the frequency, decides between them: `1/2` or `1`. That is
+the cheapest experiment the framework has.
 
 ## Status of the alternatives
 
 | Candidate | What it fixes | Where it stands |
 | :--- | :--- | :--- |
 | The quadratic `(1/2)Γ^2` | nothing beyond the 2-jet | provable, gives force `Γ` (`deriv_phi1_wall`) |
-| The ledger `-(1/2)log(1-Γ^2)` | the `√S` metric (Sra 2016) and the log-det composition | provable, force `Γ/(1-Γ^2)` |
+| The ledger `-(1/2)log(1-Γ^2)` | the `√S` metric (Sra 2016) and the log-det composition | provable, force `Γ/(1-Γ^2)`, selected by composition |
 | A ruler member `sqrt(log cosh(aΓ/2))/a` | the local slope only | provable, finite readings differ by `a` |
-| An equation for `Γ` from the dynamics | everything, if supplied | not formalized: no such equation has been stated |
+| The oscillator's own potential in `Γ` | the phase motion, if the oscillator is the source | provable (`harmPotInPeel_G`), and it is not the ledger |
+| An equation for `Γ` from the dynamics | everything, given the phase motion | **now formalized**: the two motions above, with the two bridge equations |
 
-The honest summary: the *consequences* of a bridge are now theorems, and the *selection* of a bridge
-is not, and provably cannot be from local data. What the mathematics asks for is a composition
-principle or an equation for the phase coordinate; either would settle it.
+The honest summary: the *consequences* of a bridge are theorems, the *equation of motion* for the
+phase coordinate is now a theorem, and the *selection* of the bridge is not a consequence of the
+peel calculus — it is decided by whether the composition principle or the oscillator is taken as
+primary. The two choices are now separated by exact numbers: `2 m ω²` against `0` in the force at
+`Γ = 0`, `(m ω²/2)(17+12√2)` against `½ log 2` at the wall, `1.7627/ω` against `0.7854/ω` in the
+time to the wall, and `ω/2` against `ω` in the peel rate at zero reflection.

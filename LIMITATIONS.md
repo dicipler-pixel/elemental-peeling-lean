@@ -72,4 +72,29 @@ the corrected statement:
   not 24. The 24 is the unit group of the Hurwitz order, with half-integer coordinates, which is
   not formalized here.
 
+## The phase bridge
+
+`LoopWall/PhaseBridge.lean` derives an equation of motion for the peel coordinate from a phase
+motion, and nothing more than that.
+
+* **The phase motion is an input.** The two motions are both formalized — uniform log-ratio
+  (`t' = ω`, i.e. `z' = ωz`) and uniform chromatic angle (`φ' = ω`) — and they give different
+  `Γ` dynamics (`Γ' = (ω/2)(1-Γ²)` against `Γ'' = -ω²Γ`). Which phase advances uniformly is not
+  derived here, and the two are not equivalent as motions of `Γ`.
+* **The bridge equations are derivative identities along a hypothesized flow.** `S'' = (ω²/4)e^{-2S}`
+  and `S'' = ω²e^{2S}` are proved for functions satisfying the stated ODE hypotheses. Global
+  existence and uniqueness of solutions, and the behaviour of `S` as `|Γ| → 1`, are not
+  formalized; the closed forms are not proved to exhaust the solutions.
+* **The ledger is selected by composition, not by the dynamics.** `φled_eq_log_det_shares` is an
+  exact identity, and `LoopWall/MatrixLedger.lean` proves the log-determinant form is additive over
+  channels. The further step — that an additive, normalised, channel-composing readout must be *a
+  multiple of a logarithm* — is not formalized as a functional-equation uniqueness theorem. What is
+  proved is that the ledger is that multiple of the log-determinant, with the constant `1`, and that
+  the oscillator's own potential is not the ledger.
+* **The wall clock is a witness, not a crossing theorem.** `wall_clock` evaluates the explicit
+  solution `z = exp (ω s)` at `s = 2log(1+√2)/ω` and proves the result is the wall. That the motion
+  crosses the wall exactly once, and nothing about what happens at `|Γ| = 1`, is not formalized.
+* **No empirical claim is made.** The numbers `2log(1+√2)`, `17+12√2` and the rates above are
+  predictions of the two constructions, not measurements; nothing in this repository tests them.
+
 Formalization is evidence for the mathematics, not for the physical interpretation.

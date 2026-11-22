@@ -151,6 +151,16 @@ physics the paper reads into them.
 | A potential of the peel coordinate: force `−φ'(Γ)·2/(1+X)²·X'` | proved: `PeelPotential.potentialForce_eq`, `deriv_φled` |
 | The ledger potential at the wall: value `½log2`, force `√2`, differentiable there | proved: `PeelPotential.φled_wall`, `deriv_φled_wall`, `differentiableAt_φled_wall`; the value twice that which I first wrote is **refuted** (`ledger_force_coefficient_at_wall_ne_two_mul_sqrt_two`) |
 | The 2-jet at `Γ = 0` determines the bridge | **refuted**: `BridgeUnderdetermination.equal_two_jets_but_different_wall_forces`, `no_function_of_two_jet_computes_wall_force` |
+| The phase motion gives `Γ` an equation of motion | proved: `PhaseBridge.peel_ode_of_phase_ode` (`Γ' = (ω/2)(1−Γ²)` from `z' = ωz`), and conversely `phase_ode_of_peel_ode` — the peel ODE *is* the uniform-log-ratio phase statement |
+| A uniform chromatic angle makes the peel a harmonic oscillator | proved: `PhaseBridge.angle_peel_ode`, `angle_peel_harmonic` (`Γ'' = −ω²Γ`), `angle_speed_sq` (`(Γ')² = ω²(1−Γ²)`) |
+| The ledger's rate along the peel motion is proportional to the peel | proved: `PhaseBridge.ledger_rate` (`S' = (ω/2)Γ`) |
+| The bridge equation for the ledger, `S'' = (ω²/4)e^{−2S}` | proved: `PhaseBridge.ledger_second_order`, `ledger_speed_sq`, and it is the Euler–Lagrange equation of `½S'² − (ω²/8)e^{−2S}` (`ledger_is_euler_lagrange`) with conserved value `ω²/8` (`ledger_energy_eq`) |
+| The angle phase gives the other bridge equation, `S'' = ω²e^{2S}` | proved: `PhaseBridge.angle_ledger_second_order`, with `angle_ledger_rate` (`S' = −ω cot φ`) |
+| The equation of motion selects the ledger | **refuted**: the phase motion's potential in the peel coordinate is `(mω²/2)((1+Γ)/(1−Γ))²` (`PhaseBridge.harmPotInPeel_G`), which is not the ledger at `Γ = 0` (`potentials_differ_at_zero`) nor at the wall, `(mω²/2)(17+12√2)` against `½log2` (`harmPotInPeel_wall`, `potentials_differ_at_wall`) |
+| The ledger is the log-determinant of the two shares | proved exactly: `PhaseBridge.φled_eq_log_det_shares` (`φled Γ = −½log(p₀p₁) − log2` when `Γ = p₀−p₁`, `p₀+p₁ = 1`), `two_φled_eq_neg_log_volume` |
+| The wall has a clock | proved: `PhaseBridge.wall_clock` (log-ratio phase reaches it at `2log(1+√2)/ω`), `G_at_wall_ratio`, `G_at_conjugate_ratio`, `wall_ratio_sq` (the ratios there are `3 ± 2√2`), `angle_wall_clock` (`φ = π/4`) |
+| Damping `t'' = −γt'` keeps the phase and dates the wall | proved: `DampedLedgerBridge.hasDerivAt_dampedPeel` (`Γ' = (ω/2)e^{−γτ}(1−Γ²)`), `hasDerivAt_dampedLedger` (`S' = (ω/2)e^{−γτ}Γ`), `strictMonoOn_dampedLedger`, `ledger_strict_increase_across_wall` (strict passage through `½log2`), `tendsto_dampedLedger` (finite endpoint `log cosh((t₀+ω/γ)/2)`) |
+| The two phase motions predict different peel rates | proved: `PhaseBridge.peel_rate_at_zero_log_ratio` (`ω/2`), `peel_speed_sq_at_zero_angle` (`ω²`), `peel_rate_at_wall_log_ratio` (`ω/4`) |
 
 ## Not formalized here
 

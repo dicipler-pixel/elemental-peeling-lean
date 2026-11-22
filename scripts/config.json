@@ -183,9 +183,17 @@
     {
       "module": "LoopWall.FisherMatrix",
       "path": "LoopWall/FisherMatrix.lean"
+    },
+    {
+      "module": "LoopWall.PhaseBridge",
+      "path": "LoopWall/PhaseBridge.lean"
+    },
+    {
+      "module": "LoopWall.DampedLedgerBridge",
+      "path": "LoopWall/DampedLedgerBridge.lean"
     }
   ],
-  "expected_theorems": 963,
+  "expected_theorems": 1043,
   "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",

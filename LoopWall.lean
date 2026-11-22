@@ -23,6 +23,11 @@ error rectangles, the C/N margin), `OpeningMap` (the noble-core opening map).
 Linear algebra and optics: `Observer`, `CompressionVariance`, `Junction`, `TwoLevel`, `Positivity`,
 `A2`, `Quaternions`, `TwoProbes`, `Optical`.
 
+The phase bridge: `PhaseBridge` (an equation of motion for the peel coordinate from each of the two
+phase motions, the bridge equations for the ledger that follow, the oscillator's own potential in
+the peel coordinate, and the clock the wall runs on) and `DampedLedgerBridge` (the damped phase,
+where the ledger is monotone and converges to a finite endpoint).
+
 `README.md` gives the counts, `COVERAGE.md` maps each paper claim to its theorem, and
 `LIMITATIONS.md` says what none of this establishes.
 -/
@@ -65,3 +70,5 @@ import LoopWall.MatrixLedger
 import LoopWall.PeelPotential
 import LoopWall.ColourWheel
 import LoopWall.FisherMatrix
+import LoopWall.PhaseBridge
+import LoopWall.DampedLedgerBridge
