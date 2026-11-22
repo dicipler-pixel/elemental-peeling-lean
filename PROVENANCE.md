@@ -31,13 +31,13 @@ written to `verification/report.json` on each run.
 Later additions written here, each in a parallel formalization round and reviewed before
 acceptance: `LoopWall/Clock.lean`; the second-round modules `SumRule`, `LedgerDescent`, `Jensen`,
 `AngularRate`, `A2`, `TwoProbes`, `Quaternions`, `Positivity`, and (third round, for the framework's own statements) `SpacingLaw`, `ScalarLedger`, `Oscillator`, `RestFrame`, `Hamiltonian`, `LocalRuler`, `QuantumGeometricTensor`, `TwoFieldAction`; and for the colour side and the bridge, `Schrodinger`, `ChromaticAngle`, `PolarizerPorts`, `MatrixLedger`, `FisherMatrix`, `ColourWheel`, `PeelPotential`, `BridgeUnderdetermination`; and, for the phase bridge,
-`PhaseBridge` (written here after that round, in the same way), and `DampedLedgerBridge`
+`PhaseBridge` (written here after that round, in the same way), `DampedLedgerBridge`, and the seven fifth-round directions `PeelDynamics`, `UniformAngularBridge`, `WallClock`, `CompositionBridge`, `ReadoutUniqueness`, `UniformLogRatio`, `PhaseEnergyBalance`
 (fifth round, swarm `smws70oju`, direction m8: the one module in this layer that imports other
 project modules, `PeelPotential` and `ScalarLedger`, rather than Mathlib alone). For those, only the namespace
 wrapper, the header, the `lemma` → `theorem` rename and the removal of trailing `#print axioms`
 lines differ from the member's file; each file's header says what it proves and which of my
 transcriptions it refutes.
 
-`ElementalFoundations`'s 88 theorems and the loop-wall layer's 955 are audited together: the
+`ElementalFoundations`'s 88 theorems and the loop-wall layer's 1121 are audited together: the
 inventory in `scripts/config.json` fixes the count, and `scripts/verify.py` asks the kernel for
 the axioms of every named theorem.

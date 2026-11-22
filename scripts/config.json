@@ -191,9 +191,37 @@
     {
       "module": "LoopWall.DampedLedgerBridge",
       "path": "LoopWall/DampedLedgerBridge.lean"
+    },
+    {
+      "module": "LoopWall.PeelDynamics",
+      "path": "LoopWall/PeelDynamics.lean"
+    },
+    {
+      "module": "LoopWall.UniformAngularBridge",
+      "path": "LoopWall/UniformAngularBridge.lean"
+    },
+    {
+      "module": "LoopWall.WallClock",
+      "path": "LoopWall/WallClock.lean"
+    },
+    {
+      "module": "LoopWall.CompositionBridge",
+      "path": "LoopWall/CompositionBridge.lean"
+    },
+    {
+      "module": "LoopWall.ReadoutUniqueness",
+      "path": "LoopWall/ReadoutUniqueness.lean"
+    },
+    {
+      "module": "LoopWall.UniformLogRatio",
+      "path": "LoopWall/UniformLogRatio.lean"
+    },
+    {
+      "module": "LoopWall.PhaseEnergyBalance",
+      "path": "LoopWall/PhaseEnergyBalance.lean"
     }
   ],
-  "expected_theorems": 1043,
+  "expected_theorems": 1209,
   "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",

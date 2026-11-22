@@ -84,17 +84,29 @@ motion, and nothing more than that.
 * **The bridge equations are derivative identities along a hypothesized flow.** `S'' = (ω²/4)e^{-2S}`
   and `S'' = ω²e^{2S}` are proved for functions satisfying the stated ODE hypotheses. Global
   existence and uniqueness of solutions, and the behaviour of `S` as `|Γ| → 1`, are not
-  formalized; the closed forms are not proved to exhaust the solutions.
+  formalized. `UniformLogRatio.phase_eq_affine` and `peel_closed_form` do give the closed form for any
+  differentiable phase with constant derivative, and `WallClock.peelFlow_eq_iff` inverts it, so the flow
+  forms are exhausted; what is not formalized is existence theory for the second-order equations
+  themselves.
 * **The ledger is selected by composition, not by the dynamics.** `φled_eq_log_det_shares` is an
   exact identity, and `LoopWall/MatrixLedger.lean` proves the log-determinant form is additive over
   channels. The further step — that an additive, normalised, channel-composing readout must be *a
   multiple of a logarithm* — is not formalized as a functional-equation uniqueness theorem. What is
   proved is that the ledger is that multiple of the log-determinant, with the constant `1`, and that
   the oscillator's own potential is not the ledger.
-* **The wall clock is a witness, not a crossing theorem.** `wall_clock` evaluates the explicit
-  solution `z = exp (ω s)` at `s = 2log(1+√2)/ω` and proves the result is the wall. That the motion
-  crosses the wall exactly once, and nothing about what happens at `|Γ| = 1`, is not formalized.
+* **The wall clock is a crossing theorem for the flow it is stated for.** `WallClock` proves that
+  `Γ = tanh (ωτ/2)` is strictly increasing for `ω > 0` and crosses `Γ² = 1/2` exactly once in forward
+  time, at `2log(1+√2)/ω`, at rate `ω/4`. It does not say what happens at `|Γ| = 1`, and it does not
+  identify the crossings of any motion other than that one.
 * **No empirical claim is made.** The numbers `2log(1+√2)`, `17+12√2` and the rates above are
   predictions of the two constructions, not measurements; nothing in this repository tests them.
+
+* `LoopWall/UniformLogRatio.lean`: the Euler–Lagrange density whose stationarity gives
+  `S'' = (ω²/4)e^{−2S}` is `T − U` with `U = +(ω²/8)e^{−2S}`, not `T + U`. I wrote the plus sign in the
+  round's task statement; the module proves the corrected density and refutes the sign.
+* `LoopWall/WallClock.lean`: the time to the wall is `2 log (1+√2)/ω`, not `log (1+√2)/ω`. I wrote both
+  forms as if they were equal in the task statement; `short_wall_clock_is_false` separates them.
+* `LoopWall/ReadoutUniqueness.lean`: the proportional-rate readout is `(2λ/ω) φled + R₀`, with a plus
+  sign, not the minus sign I wrote in the task statement. The module proves the plus sign.
 
 Formalization is evidence for the mathematics, not for the physical interpretation.
