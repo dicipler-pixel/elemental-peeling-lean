@@ -7,7 +7,7 @@ later records can recover, and which side of the loop wall a removal ladder fall
 
 [![Lean proof check](https://github.com/dicipler-pixel/elemental-peeling-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/elemental-peeling-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.35.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-825-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-963-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC%20BY%204.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -27,6 +27,7 @@ Jeromie Beasley
 | Check where every file came from | [`PROVENANCE.md`](PROVENANCE.md) |
 | See the statements that must be rejected | [`FalseControls/`](FalseControls/) |
 | Read the loop-wall layer | [`LoopWall.lean`](LoopWall.lean) |
+| Read the bridge from phase motion to the potential | [`BRIDGE.md`](BRIDGE.md) |
 
 ## What the library contains
 
@@ -62,7 +63,8 @@ Jeromie Beasley
 | **The local ruler does not fix the ledger**: `ruler a t = ruler 1 (a t)/a`, finite readings strictly decreasing in the scale, and the same infinitesimal slope `1/(2√2)` for every scale, from the density squeeze `2/(x²+4) ≤ log cosh x/x² ≤ 1/2` | [`LoopWall/LocalRuler`](LoopWall/LocalRuler.lean) | 19 |
 | **The intrinsic quantum geometric tensor**: `Q = g − iΩ/2` with `g` the metric and `Ω` the 2-form, positivity, Cauchy–Schwarz, the Wirtinger bound `g(V,W)² + Ω(V,W)²/4 ≤ g(V,V)g(W,W)`, unitary covariance, and the peel-rate bound with its maximum at the wall | [`LoopWall/QuantumGeometricTensor`](LoopWall/QuantumGeometricTensor.lean) | 23 |
 | **The two-field action**: the Gateaux derivative, the integration-by-parts identity, the Euler–Lagrange pair for `+g Φ K(ψ)` and for `−g Φ K(ψ)`, and the two controls — a constant density changes nothing, a total derivative contributes nothing with compact support | [`LoopWall/TwoFieldAction`](LoopWall/TwoFieldAction.lean) | 31 |
-| | **Total** | **825** |
+| **The colour side and the bridge (fourth round)**: the Schrödinger brightness/chromatic split as an exact identity; the peel as minus the cosine of the chromatic angle, with the wall at 45°; the Hilbert-projective distance as the peel distance; polarizer ports and the wall at δ = π/4; the determinant ledger (sum of scalar ledgers, additive over blocks, and equal to twice the scalar potential for two channels); EJ's colour wheel (units-orbits = divisor classes, the W = 10 structure, Φ₁₀ = Φ₅(−X), and the true list W ∈ {5,8,10,12}); and the bridge: the chain rule for a potential of Γ, the wall values √2 and ½log2, non-singularity at the wall, and the theorem that no 2-jet at Γ = 0 can select the bridge | [`LoopWall/`](LoopWall/): `Schrodinger`, `ChromaticAngle`, `PolarizerPorts`, `MatrixLedger`, `FisherMatrix`, `ColourWheel`, `PeelPotential`, `BridgeUnderdetermination` | 138 |
+| | **Total** | **963** |
 
 ## How it is checked
 

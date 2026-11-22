@@ -130,6 +130,28 @@ physics the paper reads into them.
 | The two-field variation gives the coupled equations, and the printed signs fix the coupling | proved: `TwoFieldAction.firstVariation_eq_neg_elResidual_add_deriv`, `integral_firstVariation_eq_neg_integral_elResidual`, `elPair_eq_zero_iff` (density with `+g Φ K(ψ)`: right-hand sides `+g Φ K'`, `+g K`) and `elPair_neg_eq_zero_iff` (density with `−g Φ K(ψ)`: the printed `−g Φ K'`, `−g K`). A constant density changes nothing (`gateauxVariation_Ld_add_one`) and a total derivative contributes nothing (`integral_gateaux_totalDerivativeDensity_eq_zero`) |
 | The IQGT splits into a metric and a 2-form, with the Wirtinger bound and the peel rate bound | proved: `QuantumGeometricTensor.Q_eq_metric_sub_curvature_mul_I`, `metric_symmetric`, `curvature_antisymmetric`, `wirtinger_inequality`, `Q_unitary_covariant`, `peel_rate_bound`, `wall_factor_eq_quarter_iff`; the real-part identity needs the complementary block (`crossBlock_only_counterexample`) and the rate bound needs `g ≥ 0` (`peel_rate_counterexample_without_nonnegative_metric`) |
 
+## The colour side and the bridge (fourth round)
+
+| Claim | Status |
+| :--- | :--- |
+| The Schrödinger split `(1/h) Σ dx_i²/x_i = (d log h)² + Σ dp_i²/p_i` | proved as an exact identity for every displacement: `Schrodinger.schrodinger_split` |
+| The Fisher form on two channels is the round metric `dφ²` | proved away from the coordinate singularity: `Schrodinger.round_fisher`; the `φ = 0` form is **refuted** (`round_fisher_at_zero_ne_one`) because the first share vanishes there |
+| The peel is minus the cosine of the chromatic angle | proved: `ChromaticAngle.share_balance_eq_peel`, `peel_eq_neg_cos` |
+| The wall `Γ² = 1/2` is the chromatic angle 45° (and 135°) | proved on `[0, π]`: `ChromaticAngle.peel_sq_one_half_iff_wall` |
+| The Hilbert-projective distance between two two-channel colours is the peel distance | proved: `ChromaticAngle.peelDistance_eq_abs_log_div`, `peelDistance_ratios` |
+| Polarizer ports, balance `cos δ`, and the wall at `δ = π/4` | proved: `PolarizerPorts.crossed_add_parallel`, `parallel_sub_crossed`, `portPeel_eq_cos`, `wall_angles`, `secondary_balance_angle` |
+| The determinant ledger is the sum of the per-channel scalar ledgers and is additive over blocks | proved: `MatrixLedger.Sm_eq_sum_scalar`, `Sm_eq_sum_log_cosh`, `Sm_append`, `channel_additive_ledger` |
+| The scalar ledger is additive in the spacing | **refuted**: `MatrixLedger.scalarLedger_not_additive` (`t₁ = t₂ = 2`) |
+| For two channels the determinant ledger is twice the scalar potential; `det = (1 − Γ²)/4`; the wall is `det = 1/8` | proved: `FisherMatrix.matrixLedger_eq_two_scalarLedgerPotential`, `shareMatrix_det_balance`, `shareMatrix_det_wall_iff`, `matrixLedger_at_wall` (= log 2) |
+| The Fisher matrix is the inverse of the share matrix and is positive definite; covariance is its pseudoinverse on zero-sum tangents | proved: `FisherMatrix.fisherMatrix_mul_shareMatrix`, `fisherMatrix_posDef`, `fisherForm_eq_covariance` |
+| Units-orbit structure of the colour wheel = divisor classes | proved for every `W > 0`: `ColourWheel.units_orbit_eq_setOf_gcd` |
+| At `W = 10`: primaries `{1,3,7,9}`, secondaries `{2,4,6,8}`, grey `5`, base `0`; `Φ₁₀(x) = Φ₅(−x)` | proved: `ColourWheel.card_units_zmod10`, `orbit_two_zmod10`, `orbit_five_zmod10`, `cyclotomic_ten_eq_cyclotomic_five_comp_neg` |
+| Grey is the kernel of doubling | **refuted as stated**: the kernel is `{0, 5}` (`doubling_kernel_zmod10_not_singleton`) |
+| A wheel is viable iff `W = 2p` with `p` an odd prime | **refuted both ways** (`fourteen_counterexample_to_two_mul_odd_prime`, `five_counterexample_to_two_mul_odd_prime`); the true list below 30 is `W ∈ {5, 8, 10, 12}` (`card_units_eq_four_iff_of_le_thirty`) |
+| A potential of the peel coordinate: force `−φ'(Γ)·2/(1+X)²·X'` | proved: `PeelPotential.potentialForce_eq`, `deriv_φled` |
+| The ledger potential at the wall: value `½log2`, force `√2`, differentiable there | proved: `PeelPotential.φled_wall`, `deriv_φled_wall`, `differentiableAt_φled_wall`; the value twice that which I first wrote is **refuted** (`ledger_force_coefficient_at_wall_ne_two_mul_sqrt_two`) |
+| The 2-jet at `Γ = 0` determines the bridge | **refuted**: `BridgeUnderdetermination.equal_two_jets_but_different_wall_forces`, `no_function_of_two_jet_computes_wall_force` |
+
 ## Not formalized here
 
 * The physical interpretation of any of it: no Hamiltonian, surface, spectrum, optical constant,

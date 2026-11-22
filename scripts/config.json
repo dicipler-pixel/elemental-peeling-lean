@@ -151,9 +151,41 @@
     {
       "module": "LoopWall.TwoFieldAction",
       "path": "LoopWall/TwoFieldAction.lean"
+    },
+    {
+      "module": "LoopWall.PolarizerPorts",
+      "path": "LoopWall/PolarizerPorts.lean"
+    },
+    {
+      "module": "LoopWall.Schrodinger",
+      "path": "LoopWall/Schrodinger.lean"
+    },
+    {
+      "module": "LoopWall.ChromaticAngle",
+      "path": "LoopWall/ChromaticAngle.lean"
+    },
+    {
+      "module": "LoopWall.BridgeUnderdetermination",
+      "path": "LoopWall/BridgeUnderdetermination.lean"
+    },
+    {
+      "module": "LoopWall.MatrixLedger",
+      "path": "LoopWall/MatrixLedger.lean"
+    },
+    {
+      "module": "LoopWall.PeelPotential",
+      "path": "LoopWall/PeelPotential.lean"
+    },
+    {
+      "module": "LoopWall.ColourWheel",
+      "path": "LoopWall/ColourWheel.lean"
+    },
+    {
+      "module": "LoopWall.FisherMatrix",
+      "path": "LoopWall/FisherMatrix.lean"
     }
   ],
-  "expected_theorems": 825,
+  "expected_theorems": 963,
   "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",
