@@ -5,12 +5,20 @@ import LoopWall.MatrixLedger
 import LoopWall.ScalarLedger
 
 /-!
-Direction B5 of the fifth round (swarm `smws70oju`, member m4). This is the selection theorem the
-bridge needed: a normalised readout of a two-channel colour that is additive under appending
-channels satisfies `A (x y) = A x + A y` on `(0,1]`, hence — with interior differentiability and a
-left derivative at `1` — `A = c · log`. Matching the wall reading `log 2` then forces `c = -1`, so the
-log-determinant ledger is the *only* additive readout of that normalisation. Composition selects the
-ledger; the equation of motion does not.
+Direction B5 of the fifth round (swarm `smws70oju`, member m4). Composition selects the logarithmic
+determinant readout, and this module says exactly how far that goes.
+
+For a readout `A` of the *normalised determinant* of a two-channel colour — equivalently of the
+volume `4 det` of the share matrix, i.e. of `1 - Γ²` — additivity over independently appended channel
+blocks forces `A (x y) = A x + A y` on `(0,1]`, and interior differentiability with a left derivative
+at `1` then forces `A = c · log`. The wall reading `log 2` then forces `c = -1`, so `A` is the matrix
+ledger exactly, not merely some logarithm.
+
+The module also pins down what does *not* select the ledger: evenness, vanishing at zero balance and
+append-additivity of a channel sum leave the ledger and `Γ²` both admissible
+(`append_additivity_alone_does_not_select_ledger`). Dependence on the determinant (or an equivalent
+premise) and regularity are therefore essential, and the module states that rather than hiding it.
+Composition selects the ledger; the equation of motion does not.
 
 Written in the fifth parallel formalization round and recompiled here before acceptance;
 imports hoisted, namespace prefixed to `ElementalPeeling.LoopWall`, nothing else changed.

@@ -88,6 +88,12 @@ motion, and nothing more than that.
   differentiable phase with constant derivative, and `WallClock.peelFlow_eq_iff` inverts it, so the flow
   forms are exhausted; what is not formalized is existence theory for the second-order equations
   themselves.
+* **The composition principle has a stated premise.** `LoopWall/CompositionBridge.lean` selects the
+  ledger among readouts of the *normalised determinant* that are additive over channel blocks and
+  regular, and it proves that the premise cannot be dropped: evenness, vanishing at zero balance and
+  append-additivity of a channel sum leave the ledger and `Γ²` both admissible
+  (`append_additivity_alone_does_not_select_ledger`). Composition therefore selects the ledger *for a
+  determinant readout*; it does not select it among all even additive channel sums.
 * **The ledger is selected by composition, not by the dynamics.** `φled_eq_log_det_shares` is an
   exact identity, and `LoopWall/MatrixLedger.lean` proves the log-determinant form is additive over
   channels. The further step — that an additive, normalised, channel-composing readout must be *a

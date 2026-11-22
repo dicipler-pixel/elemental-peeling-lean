@@ -100,9 +100,23 @@ so the ledger **is** the log-determinant reading of the shares. `LoopWall/Matrix
 that the log-determinant ledger is additive over channels (`Sm_append`, `channel_additive_ledger`)
 while the scalar spacing form is not (`scalarLedger_not_additive`), and
 `LoopWall/FisherMatrix.lean` identifies the two-channel matrix ledger with `2 φled`
-(`matrixLedger_eq_two_scalarLedgerPotential`). A readout required to compose across independent
-channels is therefore the ledger; a readout required to come from the oscillator's own motion is
-not.
+(`matrixLedger_eq_two_scalarLedgerPotential`).
+
+`LoopWall/CompositionBridge.lean` turns that into a classification, and states its own scope. For a
+readout `A` of the **normalised determinant** — the volume `4 det p = 1 - Γ²` — additivity over
+independently appended channel blocks forces `A (x y) = A x + A y` on `(0,1]`
+(`determinantReadout_append`, `mul_add_of_append_additive`); interior differentiability with a left
+derivative at `1` then forces `A = c · log` (`eq_const_mul_log_of_append_additive`); and the wall
+reading `log 2` forces `c = -1` (`coefficient_eq_neg_one_of_wall_normalization`,
+`determinantReadout_eq_matrixLedger_of_wall_normalization`). So a determinant readout required to
+compose across independent channels **is** the ledger, with no free constant left.
+
+The scope matters and the module proves the boundary: evenness, vanishing at zero balance and
+append-additivity of a *channel sum* do not select the ledger — `append_additivity_alone_does_not_select_ledger`
+exhibits the ledger and `Γ²` as two even, zero-normalised, append-additive channel sums that differ
+at the wall. Determinant dependence (or an equivalent premise) and regularity are the essential
+hypotheses. A readout required to compose is the ledger; a readout required only to be an additive
+sum of channel functions need not be.
 
 ## The wall has a clock (a discriminating prediction)
 
