@@ -30,12 +30,17 @@ import hashlib
 import json
 import pathlib
 import re
+import os
+import shlex
 import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "verification"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
+# `lake env lean` in CI.  A machine with a prebuilt Mathlib and the modules' .olean files on
+# LEAN_PATH can set LEAN_CMD=lean and skip lake (see the note in README.md).
+LEAN = shlex.split(os.environ.get("LEAN_CMD", "lake env lean"))
 CONFIG = json.loads((pathlib.Path(__file__).resolve().parent / "config.json").read_text())
 MODULES = [(m["module"], m["path"]) for m in CONFIG["modules"]]
 EXPECTED_THEOREMS = CONFIG["expected_theorems"]
@@ -72,16 +77,43 @@ def strip_comments(text: str) -> str:
 
 
 def theorems_in(path: pathlib.Path) -> list[str]:
+    """Every named theorem in `path`, with its full name.
+
+    A file has one top-level namespace; nested namespaces are allowed (a file may define its own
+    small hierarchy), so the names are built from a stack of `namespace`/`section` blocks rather
+    than from a single prefix.  `end A B` closes both, and a bare `end` closes the innermost
+    block, which is counted even when it is a `section` (a section contributes no name).
+    """
     text = strip_comments(path.read_text())
-    spaces = sorted(set(NAMESPACE_RE.findall(text)))
-    if len(spaces) != 1:
-        raise SystemExit(f"{path}: expected exactly one namespace, found {spaces}")
-    return [f"{spaces[0]}.{name}" for name in THEOREM_RE.findall(text)]
+    stack: list[tuple[str, str]] = []
+    names: list[str] = []
+    top: list[str] = []
+    for line in text.split("\n"):
+        s = line.strip()
+        if s.startswith("namespace "):
+            name = s.split()[1]
+            if not any(kind == "ns" for kind, _ in stack):
+                top.append(name)
+            stack.append(("ns", name))
+        elif s == "section" or s.startswith("section ") or s.split()[-1:] == ["section"]:
+            stack.append(("sec", ""))
+        elif s == "end" or s.startswith("end "):
+            for _ in (s.split()[1:] or [""]):
+                if stack:
+                    stack.pop()
+        else:
+            m = THEOREM_RE.match(line)
+            if m:
+                prefix = [name for kind, name in stack if kind == "ns"]
+                names.append(".".join(prefix + [m.group(1)]))
+    if len(set(top)) != 1:
+        raise SystemExit(f"{path}: expected exactly one top-level namespace, found {sorted(set(top))}")
+    return names
 
 
 def main() -> int:
     OUT.mkdir(exist_ok=True)
-    report: dict = {"lean": run(["lean", "--version"]).stdout.strip(), "modules": {}}
+    report: dict = {"lean": run(LEAN + ["--version"]).stdout.strip(), "modules": {}}
 
     # Inventory and hashes.
     names: list[str] = []
@@ -106,7 +138,7 @@ def main() -> int:
     lines = [f"import {m}" for m in ROOT_IMPORTS] + [""]
     lines += [f"#print axioms {name}" for name in names]
     audit.write_text("\n".join(lines) + "\n")
-    proc = run(["lake", "env", "lean", str(audit.relative_to(ROOT))])
+    proc = run(LEAN + [str(audit.relative_to(ROOT))])
     log = proc.stdout + proc.stderr
     (OUT / "axioms.log").write_text(log)
     if proc.returncode != 0:
@@ -132,7 +164,7 @@ def main() -> int:
     # False controls.
     controls = {}
     for path in sorted((ROOT / "FalseControls").glob("*.lean")):
-        proc = run(["lake", "env", "lean", str(path.relative_to(ROOT))])
+        proc = run(LEAN + [str(path.relative_to(ROOT))])
         text = proc.stdout + proc.stderr
         (OUT / f"{path.stem}.log").write_text(text)
         if proc.returncode == 0:

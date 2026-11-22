@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: "If you use these Lean proofs, please cite them as below."
-title: "Elemental Peeling and What the Boundary Retains: Lean proofs"
+title: "Elemental Peeling, What the Boundary Retains, and the Loop Wall: Lean proofs"
 authors:
   - family-names: "Beasley"
     given-names: "Jeromie"
-version: 1.0.0
-date-released: 2026-09-26
+version: 1.1.0
+date-released: 2026-11-22
 license:
   - MIT
   - CC-BY-4.0
@@ -17,3 +17,6 @@ keywords:
   - retained records
   - boundary ledger
   - exclusion
+  - loop wall
+  - ionisation ladder
+  - peel reflection

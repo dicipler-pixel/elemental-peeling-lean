@@ -27,15 +27,108 @@
     {
       "module": "Hypersurface.ScopeControls",
       "path": "Hypersurface/ScopeControls.lean"
+    },
+    {
+      "module": "LoopWall.Elements",
+      "path": "LoopWall/Elements.lean"
+    },
+    {
+      "module": "LoopWall.Wall",
+      "path": "LoopWall/Wall.lean"
+    },
+    {
+      "module": "LoopWall.TwoFace",
+      "path": "LoopWall/TwoFace.lean"
+    },
+    {
+      "module": "LoopWall.BoundaryAgreement",
+      "path": "LoopWall/BoundaryAgreement.lean"
+    },
+    {
+      "module": "LoopWall.Archive",
+      "path": "LoopWall/Archive.lean"
+    },
+    {
+      "module": "LoopWall.OpeningMap",
+      "path": "LoopWall/OpeningMap.lean"
+    },
+    {
+      "module": "LoopWall.Observer",
+      "path": "LoopWall/Observer.lean"
+    },
+    {
+      "module": "LoopWall.TwoLevel",
+      "path": "LoopWall/TwoLevel.lean"
+    },
+    {
+      "module": "LoopWall.CutoffWindow",
+      "path": "LoopWall/CutoffWindow.lean"
+    },
+    {
+      "module": "LoopWall.CompressionVariance",
+      "path": "LoopWall/CompressionVariance.lean"
+    },
+    {
+      "module": "LoopWall.Ledger",
+      "path": "LoopWall/Ledger.lean"
+    },
+    {
+      "module": "LoopWall.Clock",
+      "path": "LoopWall/Clock.lean"
+    },
+    {
+      "module": "LoopWall.Optical",
+      "path": "LoopWall/Optical.lean"
+    },
+    {
+      "module": "LoopWall.Rung",
+      "path": "LoopWall/Rung.lean"
+    },
+    {
+      "module": "LoopWall.Junction",
+      "path": "LoopWall/Junction.lean"
+    },
+    {
+      "module": "LoopWall.SumRule",
+      "path": "LoopWall/SumRule.lean"
+    },
+    {
+      "module": "LoopWall.LedgerDescent",
+      "path": "LoopWall/LedgerDescent.lean"
+    },
+    {
+      "module": "LoopWall.Jensen",
+      "path": "LoopWall/Jensen.lean"
+    },
+    {
+      "module": "LoopWall.AngularRate",
+      "path": "LoopWall/AngularRate.lean"
+    },
+    {
+      "module": "LoopWall.A2",
+      "path": "LoopWall/A2.lean"
+    },
+    {
+      "module": "LoopWall.TwoProbes",
+      "path": "LoopWall/TwoProbes.lean"
+    },
+    {
+      "module": "LoopWall.Quaternions",
+      "path": "LoopWall/Quaternions.lean"
+    },
+    {
+      "module": "LoopWall.Positivity",
+      "path": "LoopWall/Positivity.lean"
     }
   ],
-  "expected_theorems": 88,
-  "expected_false_controls": 5,
+  "expected_theorems": 692,
+  "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",
     "ElementalForceRecovery",
     "ElementalBoundaryLedger",
     "PauliMemory",
-    "Hypersurface"
+    "Hypersurface",
+    "LoopWall"
   ]
 }

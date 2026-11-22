@@ -1,0 +1,130 @@
+# Coverage: every claim against its Lean name
+
+The papers' prose is the source; this register says, claim by claim, whether the statement is
+machine-checked here and where. Names are namespaced by module: `LoopWall.Archive.ordinary_count`
+is the theorem `ordinary_count` in [`LoopWall/Archive.lean`](LoopWall/Archive.lean).
+
+**Status key.** *proved* — a theorem in this repository, checked by the kernel with only the three
+standard axioms. *refuted* — false as I first transcribed it; the refutation and the corrected
+statement are both in the library, and the correction is described. *not here* — not formalized,
+with the reason. *carried* — formalized only as the arithmetic of the archive's numbers, not as the
+physics the paper reads into them.
+
+## Rule, reflection, wall
+
+| Claim | Status |
+| :--- | :--- |
+| A peel step is `z = IE(k+1)/IE(k) > 1` | proved: `Archive.ordinary_one_lt`, `Archive.anion_one_lt` |
+| `Γ(z) = (z−1)/(z+1) = tanh(½ log z)` | proved: `Ledger.gam_eq_tanh_half_log` |
+| `Γ² > 1/2 ⟺ z² − 6z + 1 > 0` | proved: `Elements.wall_quadratic` |
+| `Γ² = 1/2 ⟺ z = 3 ± 2√2`, and the two ratios are reciprocal | proved: `Wall.wall_eq_iff`, `Wall.wall_ratios_reciprocal` |
+| Both branches: outside is `z < 3−2√2` or `z > 3+2√2` | proved: `Elements.wall_two_branches`, `CutoffWindow.quadratic_pos_iff_two_branches` |
+| The √2-free test `2(b−a)² > (b+a)²` for a step `b/a` | proved: `CutoffWindow.peel_threshold_two_branches` |
+| Reversal sends `Γ ↦ −Γ` and fixes `Γ²` | proved: `Elements.gam_reverse`, `Elements.power_even`, `Ledger.gam_reverse`, `Ledger.gam_sq_reverse` |
+| `z = (1+Γ)/(1−Γ)` | proved: `Ledger.inverse_gam`, `Elements.gam_inverse` |
+| Face apex `a = tanh(r/4)`; `Γ = 2a/(1+a²)`; `z = ((1+a)/(1−a))²` | proved: `Clock.tanh_double`, `Clock.gam_eq_two_apex`, `Clock.apex_inverse` |
+| `z = 3` gives `a = 2−√3`, `Γ = 1/2` | proved: `Clock.apex_three`, `Clock.gam_three` |
+| Four aligned steps of ratio 3 give ratio 81 and `Γ = 40/41` | proved: `Clock.four_steps_three` |
+| Hydrogenic shell floors `((n+1)/n)²` are inside the wall | proved: `Elements.shell_floors_inside` |
+| Equal clocks at a junction are transparent (`Γ(1) = 0`) | proved: `Elements.matched_junction` |
+
+## The ledger
+
+| Claim | Status |
+| :--- | :--- |
+| `∏ z_k = I_last/I_first` | proved: `Ledger.prod_range_ratios`, `Ledger.fin_prod_ratios` |
+| `∑ log z_k = log(I_last/I_first)` | proved: `Ledger.sum_range_log_ratios`, `Ledger.fin_sum_log_ratios` |
+| Losing absolute scale is exact: `Γ` is unchanged by `I ↦ c·I` | proved: `Ledger.gam_scale` |
+| One threshold plus the ratios reconstructs the ladder | proved: `Ledger.reconstruct_range` |
+| `ν = I_k/(I_k + I_{k+1})` gives `Γ = 1−2ν`, `ν(1−ν) = (1−Γ²)/4`, `S = 4/(1−Γ²)` | proved: `Ledger.reciprocal_variance`, `Ledger.gam_of_nu` |
+| Equal faces give `S = 8` | proved: `Ledger.reciprocal_scale_at_wall` |
+| Log steps `a,b` and `b,a` share an endpoint while `a,−a` and `0,0` differ in path | proved for the telescoping endpoint (`Ledger.sum_range_log_ratios`); the "interior shape stays free" reading is a consequence of `Ledger.reconstruct_range`, not a separate theorem |
+| A loop-vanishing, additive, reversal-antisymmetric ledger is an endpoint potential | proved: `LedgerDescent.endpointPotential_iff_vanishesOnLoops`, with the explicit potential in `LedgerDescent.walkSum_eq_radialPotential_sub` |
+| Skew weights alone make a walk sum a potential difference | **refuted**: `LedgerDescent.chiralWeight_triangle_sum` (= 3) and `chiralWeight_has_no_potential`; the corrected hypothesis is the cocycle identity, `LedgerDescent.walkSum_eq_weight_of_cocycle` |
+
+## Two faces
+
+| Claim | Status |
+| :--- | :--- |
+| `sinh² h = Γ²/(1−Γ²)` | proved: `Elements.sinh_sq_form` over ℚ, `Clock.sinh_sq_eq_gam_sq` over ℝ |
+| `sinh h_a · sinh h_b < 1` is the sum form `Γ_a² + Γ_b² < 1` | proved: `TwoFace.two_face_forms_agree`, `Rung.two_face_product_iff_of_nonneg`, `Rung.sinh_product_lt_one_iff` (needs `0 ≤ sinh h`, stated) |
+| The two forms agree at every interior pair only at the diagonal `t = 1/2` | proved: `BoundaryAgreement.uniqueInteriorBoundary`, `Rung.uniqueInteriorBoundary` |
+| Every other `t` admits an interior pair on which the forms disagree | proved: `BoundaryAgreement.strictCounterexample`, `BoundaryAgreement.two_face_forms_split_at_midpoint` |
+| Two-boost trace `2 − 4 sinh²h_a sinh²h_b = −2` exactly when the product of squared sines is 1 | proved: `Clock.twoBoostTrace_eq_neg_two_iff` |
+| In squared reflections that condition is `u + v = 1`; equal faces give `u = v = 1/2` | proved: `Clock.wall_condition_iff`, `Clock.equal_faces` |
+| The C/N mixed pair has margin `≈ 0.00309334`, positive across both input rectangles | proved: `Archive.twoFace_margin_C_N` (every ratio in both propagated intervals), `Archive.twoFace_margin_C_N_central` (the bracketed central value) |
+
+## The anion rung
+
+| Claim | Status |
+| :--- | :--- |
+| `Γ₀ = (I−E)/(I+E) = η/χ` | proved: `Elements.gam_anion_rung`, `Rung.anion_rung_eq_hardness_div_electronegativity` |
+| `ω = η` on the wall | proved: `Elements.omega_eta_wall` (the quadratic identity `(I+A)² − 2(I−A)² = −(I² − 6IA + A²)`) |
+| `ω > η` exactly when `Γ₀² > 1/2` | **refuted**: `Rung.electrophilicity_wall_as_written_false` (I = 3, E = 1 gives ω > η and `Γ₀² = 1/4`); correct direction proved in `Rung.electrophilicity_gt_hardness_iff` |
+| The Roman numeral octave reading and the S/Se/Te/Po pattern | not here: a reading of tabulated affinities, not a theorem |
+
+## The archive
+
+| Claim | Status |
+| :--- | :--- |
+| 3,570 ordinary steps, 8 outside | proved: `Archive.ordinary_count` (kernel recount from the exact decimals in `data/`) |
+| 67 anion rungs, 55 outside, 12 inside | proved: `Archive.anion_outside_count`, `Archive.anion_inside_count` |
+| The ordinary window `[5.639665400281, 5.947100834227)`, the rung window `[5.80790205984, 5.866538776091)` | proved: `Archive.ordinary_cutoff_window`, `Archive.anion_cutoff_window`, `Archive.ordinary_cutoff_count`, `Archive.anion_cutoff_count` |
+| Every rational cutoff in a window sorts the table identically, so the table cannot single out `3+2√2` | proved: the same four theorems (equality of filters for any `c` in the window) |
+| `3 + 2√2` lies inside the data window | proved: `CutoffWindow.loop_wall_ratio_bounds` |
+| 3,614 error rectangles, none crossing the wall | proved: `Archive.ratioBoxes_no_crossing`, `Archive.ratioBoxes_ok`, `Archive.ratioBoxes_length` |
+| The two propagated endpoints are rebuilt from the raw widths | **not here**: the certificate reads `z_lower`/`z_upper` from the CSV; rebuilding them from `(b∓δb)/(a±δa)` and modelling correlation between the two inputs is not formalized |
+| The eight outside steps are core openings of Li, Be, B, C, Na, K, Rb, Cs | *carried*: the eight values are enumerated (`Archive.ordinaryOutside`) and each element's opening is a separate certificate (`OpeningMap`, `Elements`); the identification "this ratio is the first opening of a core" is a reading of the configuration, not proved |
+| The noble-core opening map element by element | proved: `OpeningMap.*` (117 theorems), including the francium straddle and the frozen Rb/Sr call |
+
+## Linear algebra and optics
+
+| Claim | Status |
+| :--- | :--- |
+| A compressed linear observer exists iff `R` vanishes on `ker R` | proved: `Observer.observer_iff` |
+| `N_∞ = ker O_d` stabilizes at `finrank − 1` | **refuted as first stated**: `Observer.rawKer_not_antitone`, `rawKer_map_direction_false`, `rawKer_intersection_false`; corrected for the cumulative kernels in `Observer.iInf_rawKer_eq` and `Observer.iInf_obsKer_eq` |
+| `J†A²J − (J†AJ)² = (QAJ)†(QAJ)`, positive, vanishing iff `QAJ = 0` | proved: `CompressionVariance.compression_variance_identity`, `compressionVariance_isPositive`, `compressionVariance_eq_zero_iff` |
+| The two-state falsifier (compressed `σ₁` is 0, compressed `σ₁²` is 1) | proved: `CompressionVariance.real_pauliX_variance_eq_one`, `real_pauliX_variance_ne_zero` |
+| `[H,H†] = −2[D,A]` for `H = D + A`, `D` Hermitian, `A` skew-adjoint | proved: `Junction.junction_commutator` |
+| `(1/8)‖[H,H†]‖²_F = ‖D₀ − A D₁ A†‖²_F` for a unitary edge block | proved for the paper's anti-Hermitian convention: `Junction.corrected_junction_energy`, `corrected_junction_energy_sum`. The transcription with lower-left block `A†` is **refuted** (`original_block_energy_identity_false`) because that matrix is Hermitian |
+| `(aσ₁+bσ₂)² = (a²+b²)`, spectrum `±√(a²+b²)`, projector `(1+cos φ σ₁+sin φ σ₂)/2` | proved: `TwoLevel.pauli_sq`, `pauli_charpoly`, `pauli_spectrum`, `projector_idempotent`, `projector_hermitian`, `projector_commutes` |
+| `‖ḋ‖² = ρ̇² + Δ²g` and `ρ²χ̇² ≤ Δ²g` | proved: `TwoLevel.velocity_norm_sq_decomposition`, `chi_derivative_bound` |
+| The 2×2 Hermitian form is positive semidefinite exactly on `0 ≤ a ∧ 0 ≤ c ∧ ω² ≤ 4(ac − b²)` | proved: `Positivity.H_posSemidef_iff`; the strict form `Positivity.H_posDef_iff` |
+| Positive definiteness needs `0 < a` in addition to semidefiniteness | **refuted as I wrote it**: `Positivity.psd_and_positive_a_do_not_imply_posDef` and `positive_reduced_determinant_alone_does_not_imply_posDef`; the correct criterion is `H_posDef_iff` |
+| At `a = c = 1`, `b = Γa`, `ω = 2Γb` the boundary is `Γa² + Γb² = 1`, with `Γ = 1/√2` on it | proved: `Positivity.unit_boundary_iff`, `equal_face_point`, `equal_face_point_is_boundary` |
+| The conditioning `1/(1−Γa²−Γb²)` is at least one and increases towards the wall | proved: `Positivity.conditioning_ge_one`, `conditioning_strict_of_sum_lt` |
+| The `Γ²` rate envelope peaks at `Γ² = 1/2` | proved: `Clock.hasDerivAt_sin_sq`, `Clock.envelope` |
+| The angular rate is `(xẏ − yẋ)/(x² + y²)` and its numerator can vanish on a moving path | proved in a declared chart: `AngularRate.hasDerivAt_angle`, `progressing_path_with_zero_angular_numerator_and_no_origin`, `affinePath_isStuck_iff` |
+| Reflectance `R > 1/2 ⟺ (n−3)² + κ² > 8` | proved: `Optical.reflectance_gt_half_iff`, `reflectance_lt_half_iff`, `reflectance_eq_half_iff` |
+| Rice–Mele: `t₁²+t₂²+v² = 6t₁t₂`, and `t₂ = (3±2√2)t₁` at `v = 0` | proved: `Optical.rice_mele_energy_iff`, `rice_mele_zero_v_roots` |
+| `(3+2√2)² = 17 + 12√2` | proved: `Optical.loop_ratio_squared` |
+| `T/L ≤ ε_s` and `T/L > 3+2√2` give `ε_s > 17+12√2` | **refuted**: `Optical.squared_bound_as_written_false`; the valid consequence `ε_s > 3+2√2` is `threshold_bound_valid_consequence`, and the squared form needs `(T/L)² ≤ ε_s` (`squared_threshold_bound_corrected`) |
+| `T > L` for `f x = x/(1+x)` | proved: `SumRule.f_lt_self`, `sum_f_lt_sum`, `lintegral_fENN_lt` (with `∫⁻ a ≠ ∞`, which `counting_measure_counterexample` shows is needed) |
+| `L ≤ S/(1+S) < 1` and `1 < S/L` | proved: `Jensen.weighted_jensen`, `sum_rule_bounds`, `weighted_jensen_eq_iff` |
+
+## The representation passage and the two-probe witness
+
+| Claim | Status |
+| :--- | :--- |
+| The six weights `±P e_i` in three opposite pairs (the `3 ⊕ 3̄` weight multiset); the six roots are `e_i − e_j`; the adjoint's weights are those six plus two zeros | proved as statements about explicit finite vector sets: `A2.weightList_nodup`/`_length`, `A2.w_ne_neg_w`, `A2.rootList_nodup`/`_length`, `A2.rootList_opposite_pairs`, `A2.linear_relation_iff`, `A2.cartan_directions_independent`, `A2.adjointWeights_length` (= 8), `A2.adjointWeights_sum` (= 0). No representation or Lie algebra is defined, so `3 ⊕ 3̄` itself is not proved |
+| The 48 integral quaternions of norm 5 | proved: `Quaternions.normSq_five_card`, with the coordinate bound `Quaternions.bounds_of_sq_le_five` making the enumeration complete |
+| Those 48 "form six packets of eight", and 48 can also be read as three packets of sixteen | proved as a partition statement: `Quaternions.exists_equalPartition`, `normSq_five_six_block_partition`, `normSq_five_three_block_partition` — so the counts alone decide nothing |
+| The norm-1 integral quaternions are 24 | **refuted**: the Hamilton units in `ℤ⁴` are 8 (`Quaternions.sol1_card`, `normSq_one_card`), and they do form a group (`qUnitsGroup`); the 24 needs the Hurwitz order with half-integer coordinates, which is not formalized |
+| The phase state `(|01⟩ + e^{iΦ}|10⟩)/√2` has both marginals `I/2`, and the probes read `cos Φ`, `sin Φ` | proved: `TwoProbes.left_marginal`, `right_marginal`, `observations_eq`; the literal sign I wrote for the second probe is **refuted** (`requested_probeB_formula_is_false`) |
+| `Φ` and `π−Φ` share the marginals but differ under the probes; the marginals determine nothing | proved: `TwoProbes.supplement_observations_ne`, `marginals_do_not_determine_phase`, `marginals_do_not_determine_state` |
+
+## Not formalized here
+
+* The physical interpretation of any of it: no Hamiltonian, surface, spectrum, optical constant,
+  nuclear mass or measured width is derived.
+* The grades, sources and revisions of the archive entries, and the display-rounding audit.
+* The holmium–dysprosium calibration margin (`0.664383%`, first exhausted at charge 56): the two
+  ladders, their widths and the neutral anchor are not in this repository.
+* The full-spectrum moment analysis: `T = ∫ a`, `L = ∫ f(a)` with `1 < T/L ≤ ε_s`, the oscillator
+  saturation and the ellipsoid bound `M_{N₁}/M_{N₂} ≤ √(N₂/N₁)`. `SumRule` and `Jensen` prove the
+  finite and integral inequalities these rest on, not the dispersion-theoretic derivation.
+* The knot section: `8_19 = T(3,4)`, the longitude `β = 1/2 − 6α`, the Levine–Tristram signatures
+  of `13a_3542` and the mirror of `13a_4018`, and the arc-count formula. These need a knot theory
+  library; the numbers can be looked up in KnotInfo but not proved there.
+* The finite-block numerics (traces of 12 units, energy residuals of order `1e-14`, link weights)
+  and the Russell octave tabulation.

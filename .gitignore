@@ -2,3 +2,7 @@
 build.log
 verification/
 __pycache__/
+*.olean
+*.ilean
+.scratch/
+.ultramath/
