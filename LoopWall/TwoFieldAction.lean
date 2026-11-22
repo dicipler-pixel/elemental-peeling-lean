@@ -1,0 +1,527 @@
+import Mathlib
+
+/-!
+# The two-field action: first variation, both coupling signs, and the two boundary lemmas
+
+Direction D6 of the third round, in one spatial dimension.  For the density
+`½ ψ'^2 - ½ m^2 ψ^2 - (λ/4) ψ^4 + ½ Φ'^2 - ½ μ^2 Φ^2 + g Φ K ψ` the module proves the Gateaux
+derivative (`hasDerivAt_variedLd`), the integration-by-parts identity
+`firstVariation = -(EL residual)·δ + d/dτ (boundary current)` and its integral form under compactly
+supported variations.  `elPair_eq_zero_iff` then gives the Euler–Lagrange pair
+
+  `ψ'' + m^2 ψ + λ ψ^3 = g Φ K' ψ`,   `Φ'' + μ^2 Φ = g K ψ`,
+
+while `elPair_neg_eq_zero_iff` gives the printed pair with both right-hand sides negated, for the
+density whose coupling is `-g Φ K ψ`.  So the sign of the coupling in the density is what fixes the
+direction of energy transfer between the fields, and both conventions are now theorems.
+
+The two controls complete D6: a constant density changes no Euler–Lagrange equation
+(`gateauxVariation_Ld_add_one`), and a total τ-derivative contributes nothing with compact support
+(`integral_gateaux_totalDerivativeDensity_eq_zero`), so a `∂_τ(CN^2)` term is a boundary term and
+not a derivation of damping.
+
+Written in the third parallel formalization round (swarm `smws58h9u`, direction m1), recompiled and
+reviewed here; namespace and header added, `#print axioms` lines removed.
+-/
+
+namespace ElementalPeeling.LoopWall.TwoFieldAction
+
+noncomputable section
+
+open MeasureTheory
+open scoped ContDiff
+
+/-- Values of `(ψ, ψ', Φ, Φ')` at one value of `τ`. -/
+@[ext] structure Jet where
+  ψ : ℝ
+  ψ' : ℝ
+  Φ : ℝ
+  Φ' : ℝ
+
+namespace Jet
+
+/-- The affine one-parameter variation of a jet. -/
+def vary (j δ : Jet) (ε : ℝ) : Jet where
+  ψ := j.ψ + ε * δ.ψ
+  ψ' := j.ψ' + ε * δ.ψ'
+  Φ := j.Φ + ε * δ.Φ
+  Φ' := j.Φ' + ε * δ.Φ'
+
+@[simp] theorem vary_zero (j δ : Jet) : j.vary δ 0 = j := by
+  ext <;> simp [vary]
+
+end Jet
+
+/-- The signed-coupling density.  Taking `g` positive gives the printed
+coupling `+g Φ K(ψ)`; taking `-g` gives the opposite-sign convention. -/
+def Ld (m μ lam g : ℝ) (K : ℝ → ℝ) (j : Jet) : ℝ :=
+  (1/2 : ℝ) * j.ψ'^2 - (1/2 : ℝ) * m^2 * j.ψ^2 - (lam/4) * j.ψ^4 +
+    (1/2 : ℝ) * j.Φ'^2 - (1/2 : ℝ) * μ^2 * j.Φ^2 + g * j.Φ * K j.ψ
+
+/-- The Gateaux derivative of the density in the direction `δ`. -/
+def firstVariation (m μ lam g : ℝ) (K : ℝ → ℝ) (j δ : Jet) : ℝ :=
+  deriv (fun ε => Ld m μ lam g K (j.vary δ ε)) 0
+
+/-- The `ψ` Euler--Lagrange expression, with the overall sign convention
+used in the question. -/
+def elψ (m lam g : ℝ) (K : ℝ → ℝ) (ψ ψ'' Φ : ℝ) : ℝ :=
+  ψ'' + m^2 * ψ + lam * ψ^3 - g * Φ * deriv K ψ
+
+/-- The `Φ` Euler--Lagrange expression. -/
+def elΦ (μ g : ℝ) (K : ℝ → ℝ) (ψ Φ Φ'' : ℝ) : ℝ :=
+  Φ'' + μ^2 * Φ - g * K ψ
+
+/-- The explicit Gateaux derivative of the polynomial-and-coupling density. -/
+theorem hasDerivAt_variedLd (m μ lam g : ℝ) (K : ℝ → ℝ) (j δ : Jet)
+    (hK : DifferentiableAt ℝ K j.ψ) :
+    HasDerivAt (fun ε => Ld m μ lam g K (j.vary δ ε))
+      (j.ψ' * δ.ψ' - m^2 * j.ψ * δ.ψ - lam * j.ψ^3 * δ.ψ +
+        j.Φ' * δ.Φ' - μ^2 * j.Φ * δ.Φ +
+        g * δ.Φ * K j.ψ + g * j.Φ * deriv K j.ψ * δ.ψ) 0 := by
+  have hψ : HasDerivAt (fun ε : ℝ => j.ψ + ε * δ.ψ) δ.ψ 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.ψ).const_add j.ψ
+  have hvψ : HasDerivAt (fun ε : ℝ => j.ψ' + ε * δ.ψ') δ.ψ' 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.ψ').const_add j.ψ'
+  have hΦ : HasDerivAt (fun ε : ℝ => j.Φ + ε * δ.Φ) δ.Φ 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.Φ).const_add j.Φ
+  have hvΦ : HasDerivAt (fun ε : ℝ => j.Φ' + ε * δ.Φ') δ.Φ' 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.Φ').const_add j.Φ'
+  have hKcomp : HasDerivAt (fun ε : ℝ => K (j.ψ + ε * δ.ψ))
+      (deriv K j.ψ * δ.ψ) 0 := by
+    convert hK.hasDerivAt.comp_of_eq 0 hψ (by simp) using 1 <;> rfl
+  have h := (((((hvψ.pow 2).const_mul (1/2 : ℝ)).sub
+      (((hψ.pow 2).const_mul (m^2)).const_mul (1/2 : ℝ))).sub
+      ((hψ.pow 4).const_mul (lam/4))).add
+      ((hvΦ.pow 2).const_mul (1/2 : ℝ))).sub
+      (((hΦ.pow 2).const_mul (μ^2)).const_mul (1/2 : ℝ))
+  have hc := (hΦ.mul hKcomp).const_mul g
+  have H := h.add hc
+  convert H using 1
+  · funext ε
+    simp [Ld, Jet.vary]
+    ring
+  · simp
+    ring
+
+/-- First variation formula for the plus-coupling density (and, by changing
+`g`, for either sign convention). -/
+theorem firstVariation_eq (m μ lam g : ℝ) (K : ℝ → ℝ) (j δ : Jet)
+    (hK : DifferentiableAt ℝ K j.ψ) :
+    firstVariation m μ lam g K j δ =
+      j.ψ' * δ.ψ' - m^2 * j.ψ * δ.ψ - lam * j.ψ^3 * δ.ψ +
+        j.Φ' * δ.Φ' - μ^2 * j.Φ * δ.Φ +
+        g * δ.Φ * K j.ψ + g * j.Φ * deriv K j.ψ * δ.ψ :=
+  (hasDerivAt_variedLd m μ lam g K j δ hK).deriv
+
+
+/-- The jet of a pair of trajectories at `τ`. -/
+def jetOf (ψ Φ : ℝ → ℝ) (τ : ℝ) : Jet :=
+  ⟨ψ τ, deriv ψ τ, Φ τ, deriv Φ τ⟩
+
+/-- The boundary current generated by a pair of variations. -/
+def boundaryCurrent (ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ) : ℝ :=
+  deriv ψ τ * δψ τ + deriv Φ τ * δΦ τ
+
+/-- The printed Euler--Lagrange residual, contracted with the variations. -/
+def elResidual (m μ lam g : ℝ) (K : ℝ → ℝ)
+    (ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ) : ℝ :=
+  elψ m lam g K (ψ τ) (deriv (deriv ψ) τ) (Φ τ) * δψ τ +
+    elΦ μ g K (ψ τ) (Φ τ) (deriv (deriv Φ) τ) * δΦ τ
+
+/-- **First variation plus integration by parts.**  The raw variation is the
+negative of the printed residual plus an exact derivative.  Multiplying the
+resulting equations by `-1` does not change their zero locus. -/
+theorem firstVariation_sub_residual_eq_deriv (m μ lam g : ℝ) (K : ℝ → ℝ)
+    (ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ)
+    (hK : Differentiable ℝ K)
+    (hψ : Differentiable ℝ ψ) (hψ' : Differentiable ℝ (deriv ψ))
+    (hΦ : Differentiable ℝ Φ) (hΦ' : Differentiable ℝ (deriv Φ))
+    (hδψ : Differentiable ℝ δψ) (hδΦ : Differentiable ℝ δΦ) :
+    firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ) +
+        elResidual m μ lam g K ψ Φ δψ δΦ τ =
+      deriv (boundaryCurrent ψ Φ δψ δΦ) τ := by
+  rw [firstVariation_eq m μ lam g K _ _ (hK (ψ τ))]
+  have hbψ : HasDerivAt (fun t => deriv ψ t * δψ t)
+      (deriv (deriv ψ) τ * δψ τ + deriv ψ τ * deriv δψ τ) τ :=
+    (hψ' τ).hasDerivAt.mul (hδψ τ).hasDerivAt
+  have hbΦ : HasDerivAt (fun t => deriv Φ t * δΦ t)
+      (deriv (deriv Φ) τ * δΦ τ + deriv Φ τ * deriv δΦ τ) τ :=
+    (hΦ' τ).hasDerivAt.mul (hδΦ τ).hasDerivAt
+  have hb := hbψ.add hbΦ
+  rw [show deriv (boundaryCurrent ψ Φ δψ δΦ) τ =
+      (deriv (deriv ψ) τ * δψ τ + deriv ψ τ * deriv δψ τ) +
+      (deriv (deriv Φ) τ * δΦ τ + deriv Φ τ * deriv δΦ τ) from hb.deriv]
+  simp only [jetOf, elResidual, elψ, elΦ]
+  ring
+
+/-- The integral over `ℝ` of the derivative of a compactly supported `C¹`
+function vanishes. -/
+theorem integral_deriv_eq_zero_of_hasCompactSupport {f : ℝ → ℝ}
+    (hf : ContDiff ℝ 1 f) (hcf : HasCompactSupport f) :
+    (∫ τ, deriv f τ) = 0 := by
+  have hint : Integrable (deriv f) :=
+    hf.continuous_deriv_one.integrable_of_hasCompactSupport hcf.deriv
+  rw [← intervalIntegral.integral_Iic_add_Ioi (b := 0)
+    hint.integrableOn hint.integrableOn,
+    HasCompactSupport.integral_Iic_deriv_eq hf hcf 0,
+    HasCompactSupport.integral_Ioi_deriv_eq hf hcf 0]
+  ring
+
+/-- Compact support of variations implies compact support of the boundary
+current; the base fields need not decay. -/
+theorem hasCompactSupport_boundaryCurrent (ψ Φ δψ δΦ : ℝ → ℝ)
+    (hδψ : HasCompactSupport δψ) (hδΦ : HasCompactSupport δΦ) :
+    HasCompactSupport (boundaryCurrent ψ Φ δψ δΦ) := by
+  exact (hδψ.mul_left (f := deriv ψ)).add (hδΦ.mul_left (f := deriv Φ))
+
+/-- Under the stated regularity, the boundary current is `C¹`. -/
+theorem contDiff_boundaryCurrent {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hψ : ContDiff ℝ 2 ψ) (hΦ : ContDiff ℝ 2 Φ)
+    (hδψ : ContDiff ℝ 1 δψ) (hδΦ : ContDiff ℝ 1 δΦ) :
+    ContDiff ℝ 1 (boundaryCurrent ψ Φ δψ δΦ) := by
+  exact ((hψ.deriv' (n := 1)).mul hδψ).add ((hΦ.deriv' (n := 1)).mul hδΦ)
+
+/-- Exact compact-support boundary law for the two-field problem. -/
+theorem integral_boundaryCurrent_deriv_eq_zero {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hψ : ContDiff ℝ 2 ψ) (hΦ : ContDiff ℝ 2 Φ)
+    (hδψ : ContDiff ℝ 1 δψ) (hδΦ : ContDiff ℝ 1 δΦ)
+    (hcδψ : HasCompactSupport δψ) (hcδΦ : HasCompactSupport δΦ) :
+    (∫ τ, deriv (boundaryCurrent ψ Φ δψ δΦ) τ) = 0 :=
+  integral_deriv_eq_zero_of_hasCompactSupport
+    (contDiff_boundaryCurrent hψ hΦ hδψ hδΦ)
+    (hasCompactSupport_boundaryCurrent ψ Φ δψ δΦ hcδψ hcδΦ)
+
+
+/-- Integrated first variation.  No integrability hypothesis is needed for
+this congruence form: the entire varied residual is exactly the derivative of
+the boundary current. -/
+theorem integral_firstVariation_add_elResidual (m μ lam g : ℝ) (K : ℝ → ℝ)
+    {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hK : ContDiff ℝ ∞ K) (hψ : ContDiff ℝ 2 ψ) (hΦ : ContDiff ℝ 2 Φ)
+    (hδψ : ContDiff ℝ 1 δψ) (hδΦ : ContDiff ℝ 1 δΦ)
+    (hcδψ : HasCompactSupport δψ) (hcδΦ : HasCompactSupport δΦ) :
+    (∫ τ, (firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ) +
+      elResidual m μ lam g K ψ Φ δψ δΦ τ)) = 0 := by
+  calc
+    (∫ τ, (firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ) +
+        elResidual m μ lam g K ψ Φ δψ δΦ τ)) =
+        ∫ τ, deriv (boundaryCurrent ψ Φ δψ δΦ) τ := by
+      apply integral_congr_ae
+      exact Filter.Eventually.of_forall fun τ =>
+        firstVariation_sub_residual_eq_deriv m μ lam g K ψ Φ δψ δΦ τ
+          (hK.differentiable (by simp)) (hψ.differentiable (by norm_num))
+          hψ.differentiable_deriv_two (hΦ.differentiable (by norm_num))
+          hΦ.differentiable_deriv_two (hδψ.differentiable (by norm_num))
+          (hδΦ.differentiable (by norm_num))
+    _ = 0 := integral_boundaryCurrent_deriv_eq_zero hψ hΦ hδψ hδΦ hcδψ hcδΦ
+
+/-- With coupling `+g Φ K(ψ)`, the vanishing of the `ψ` residual is exactly
+`ψ'' + m²ψ + λψ³ = g Φ K'(ψ)`. -/
+theorem elψ_eq_zero_iff (m lam g ψ ψ'' Φ : ℝ) (K : ℝ → ℝ) :
+    elψ m lam g K ψ ψ'' Φ = 0 ↔
+      ψ'' + m^2 * ψ + lam * ψ^3 = g * Φ * deriv K ψ := by
+  unfold elψ
+  constructor <;> intro h <;> linarith
+
+/-- With coupling `+g Φ K(ψ)`, the second field equation has source `+g K(ψ)`. -/
+theorem elΦ_eq_zero_iff (μ g ψ Φ Φ'' : ℝ) (K : ℝ → ℝ) :
+    elΦ μ g K ψ Φ Φ'' = 0 ↔ Φ'' + μ^2 * Φ = g * K ψ := by
+  unfold elΦ
+  constructor <;> intro h <;> linarith
+
+/-- Opposite-coupling variant: a density with `-g Φ K(ψ)` gives source
+`-g Φ K'(ψ)` in the first equation. -/
+theorem elψ_neg_eq_zero_iff (m lam g ψ ψ'' Φ : ℝ) (K : ℝ → ℝ) :
+    elψ m lam (-g) K ψ ψ'' Φ = 0 ↔
+      ψ'' + m^2 * ψ + lam * ψ^3 = -g * Φ * deriv K ψ := by
+  rw [elψ_eq_zero_iff]
+
+/-- Opposite-coupling variant for the second equation. -/
+theorem elΦ_neg_eq_zero_iff (μ g ψ Φ Φ'' : ℝ) (K : ℝ → ℝ) :
+    elΦ μ (-g) K ψ Φ Φ'' = 0 ↔ Φ'' + μ^2 * Φ = -g * K ψ := by
+  rw [elΦ_eq_zero_iff]
+
+/-- The Gateaux variation of an arbitrary density on jets. -/
+def gateauxVariation (L : Jet → ℝ) (j δ : Jet) : ℝ :=
+  deriv (fun ε => L (j.vary δ ε)) 0
+
+/-- Adding a constant to a density leaves its Gateaux variation unchanged,
+without any differentiability assumption on the original density. -/
+theorem gateauxVariation_add_const (L : Jet → ℝ) (c : ℝ) (j δ : Jet) :
+    gateauxVariation (fun q => L q + c) j δ = gateauxVariation L j δ := by
+  exact deriv_add_const c
+
+/-- In particular, a lone additive `1` in the two-field density contributes
+nothing to its first variation or to either Euler--Lagrange equation. -/
+theorem gateauxVariation_Ld_add_one (m μ lam g : ℝ) (K : ℝ → ℝ) (j δ : Jet) :
+    gateauxVariation (fun q => Ld m μ lam g K q + 1) j δ =
+      firstVariation m μ lam g K j δ := by
+  exact gateauxVariation_add_const (Ld m μ lam g K) 1 j δ
+
+
+/-- The density on jets whose trajectory value is `d/dτ F(ψ(τ))`. -/
+def totalDerivativeDensity (F : ℝ → ℝ) (j : Jet) : ℝ := deriv F j.ψ * j.ψ'
+
+/-- On a differentiable trajectory, the preceding definition really is the
+total `τ`-derivative of `F ∘ ψ`. -/
+theorem hasDerivAt_F_comp (F ψ : ℝ → ℝ) (τ : ℝ)
+    (hF : Differentiable ℝ F) (hψ : Differentiable ℝ ψ) :
+    HasDerivAt (fun t => F (ψ t)) (deriv F (ψ τ) * deriv ψ τ) τ := by
+  convert (hF (ψ τ)).hasDerivAt.comp τ (hψ τ).hasDerivAt using 1 <;> rfl
+
+/-- Gateaux derivative of a total-derivative density. -/
+theorem hasDerivAt_variedTotalDerivative (F : ℝ → ℝ) (j δ : Jet)
+    (hF' : DifferentiableAt ℝ (deriv F) j.ψ) :
+    HasDerivAt (fun ε => totalDerivativeDensity F (j.vary δ ε))
+      (deriv (deriv F) j.ψ * δ.ψ * j.ψ' + deriv F j.ψ * δ.ψ') 0 := by
+  have hψ : HasDerivAt (fun ε : ℝ => j.ψ + ε * δ.ψ) δ.ψ 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.ψ).const_add j.ψ
+  have hvψ : HasDerivAt (fun ε : ℝ => j.ψ' + ε * δ.ψ') δ.ψ' 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.ψ').const_add j.ψ'
+  have hcomp : HasDerivAt (fun ε : ℝ => deriv F (j.ψ + ε * δ.ψ))
+      (deriv (deriv F) j.ψ * δ.ψ) 0 := by
+    convert hF'.hasDerivAt.comp_of_eq 0 hψ (by simp) using 1 <;> rfl
+  have H := hcomp.mul hvψ
+  convert H using 1
+  · funext ε
+    simp [totalDerivativeDensity, Jet.vary]
+  · simp
+
+/-- Explicit first variation of `d/dτ F(ψ)` on jets. -/
+theorem gateauxVariation_totalDerivativeDensity (F : ℝ → ℝ) (j δ : Jet)
+    (hF' : DifferentiableAt ℝ (deriv F) j.ψ) :
+    gateauxVariation (totalDerivativeDensity F) j δ =
+      deriv (deriv F) j.ψ * δ.ψ * j.ψ' + deriv F j.ψ * δ.ψ' :=
+  (hasDerivAt_variedTotalDerivative F j δ hF').deriv
+
+/-- **A total derivative has zero Euler--Lagrange residual.**  Its first
+variation is precisely the derivative of `F'(ψ) δψ`, with no remaining bulk
+term. -/
+theorem gateaux_totalDerivative_eq_deriv (F ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ)
+    (hF : Differentiable ℝ F) (hF' : Differentiable ℝ (deriv F))
+    (hψ : Differentiable ℝ ψ) (hδψ : Differentiable ℝ δψ) :
+    gateauxVariation (totalDerivativeDensity F)
+        (jetOf ψ Φ τ) (jetOf δψ δΦ τ) =
+      deriv (fun t => deriv F (ψ t) * δψ t) τ := by
+  rw [gateauxVariation_totalDerivativeDensity _ _ _ (hF' (ψ τ))]
+  have hc : HasDerivAt (fun t => deriv F (ψ t))
+      (deriv (deriv F) (ψ τ) * deriv ψ τ) τ := by
+    convert (hF' (ψ τ)).hasDerivAt.comp τ (hψ τ).hasDerivAt using 1 <;> rfl
+  have hb := hc.mul (hδψ τ).hasDerivAt
+  have hbval : deriv (fun t => deriv F (ψ t) * δψ t) τ =
+      deriv (deriv F) (ψ τ) * deriv ψ τ * δψ τ + deriv F (ψ τ) * deriv δψ τ :=
+    hb.deriv
+  rw [hbval]
+  simp only [jetOf]
+  ring
+
+/-- Adding a total derivative cannot change an integrated Euler--Lagrange
+statement: all of its own first variation integrates to zero when `δψ` has
+compact support. -/
+theorem integral_gateaux_totalDerivativeDensity_eq_zero
+    (F : ℝ → ℝ) {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hF : ContDiff ℝ 2 F) (hψ : ContDiff ℝ 1 ψ)
+    (hδψ : ContDiff ℝ 1 δψ) (hcδψ : HasCompactSupport δψ) :
+    (∫ τ, gateauxVariation (totalDerivativeDensity F)
+      (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) = 0 := by
+  let B : ℝ → ℝ := fun t => deriv F (ψ t) * δψ t
+  have hψd : Differentiable ℝ ψ := hψ.differentiable (by norm_num)
+  have hδψd : Differentiable ℝ δψ := hδψ.differentiable (by norm_num)
+  have hFd : Differentiable ℝ F := hF.differentiable (by norm_num)
+  have hF'd : Differentiable ℝ (deriv F) := hF.differentiable_deriv_two
+  have hB : ContDiff ℝ 1 B := by
+    exact ((hF.deriv' (n := 1)).comp hψ).mul hδψ
+  have hcB : HasCompactSupport B := by
+    exact hcδψ.mul_left (f := fun t => deriv F (ψ t))
+  calc
+    (∫ τ, gateauxVariation (totalDerivativeDensity F)
+        (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) = ∫ τ, deriv B τ := by
+      apply integral_congr_ae
+      exact Filter.Eventually.of_forall fun τ =>
+        gateaux_totalDerivative_eq_deriv F ψ Φ δψ δΦ τ hFd hF'd hψd hδψd
+    _ = 0 := integral_deriv_eq_zero_of_hasCompactSupport hB hcB
+
+/-- Additivity of Gateaux variation when both varied densities are
+differentiable in the variation parameter. -/
+theorem gateauxVariation_add_of_hasDerivAt {L M : Jet → ℝ} {j δ : Jet} {l m : ℝ}
+    (hL : HasDerivAt (fun ε => L (j.vary δ ε)) l 0)
+    (hM : HasDerivAt (fun ε => M (j.vary δ ε)) m 0) :
+    gateauxVariation (fun q => L q + M q) j δ = l + m := by
+  have H := hL.add hM
+  exact (show HasDerivAt (fun ε => L (j.vary δ ε) + M (j.vary δ ε)) (l + m) 0 from H).deriv
+
+
+
+/-- The first-variation density has compact support whenever both variations
+have compact support. -/
+theorem hasCompactSupport_firstVariation (m μ lam g : ℝ) (K : ℝ → ℝ)
+    {ψ Φ δψ δΦ : ℝ → ℝ} (hK : Differentiable ℝ K)
+    (hcδψ : HasCompactSupport δψ) (hcδΦ : HasCompactSupport δΦ) :
+    HasCompactSupport (fun τ =>
+      firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) := by
+  have heq : (fun τ => firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) =
+      (fun τ => deriv ψ τ * deriv δψ τ - m^2 * ψ τ * δψ τ - lam * ψ τ^3 * δψ τ +
+        deriv Φ τ * deriv δΦ τ - μ^2 * Φ τ * δΦ τ +
+        g * K (ψ τ) * δΦ τ + g * Φ τ * deriv K (ψ τ) * δψ τ) := by
+    funext τ
+    rw [firstVariation_eq m μ lam g K _ _ (hK (ψ τ))]
+    simp only [jetOf]
+    ring
+  rw [heq]
+  exact ((((((hcδψ.deriv.mul_left (f := deriv ψ)).sub
+    (hcδψ.mul_left (f := fun τ => m^2 * ψ τ))).sub
+    (hcδψ.mul_left (f := fun τ => lam * ψ τ^3))).add
+    (hcδΦ.deriv.mul_left (f := deriv Φ))).sub
+    (hcδΦ.mul_left (f := fun τ => μ^2 * Φ τ))).add
+    (hcδΦ.mul_left (f := fun τ => g * K (ψ τ)))).add
+    (hcδψ.mul_left (f := fun τ => g * Φ τ * deriv K (ψ τ)))
+
+/-- Compact support of the contracted Euler--Lagrange residual. -/
+theorem hasCompactSupport_elResidual (m μ lam g : ℝ) (K : ℝ → ℝ)
+    {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hcδψ : HasCompactSupport δψ) (hcδΦ : HasCompactSupport δΦ) :
+    HasCompactSupport (elResidual m μ lam g K ψ Φ δψ δΦ) := by
+  exact (hcδψ.mul_left (f := fun τ =>
+    elψ m lam g K (ψ τ) (deriv (deriv ψ) τ) (Φ τ))).add
+    (hcδΦ.mul_left (f := fun τ =>
+      elΦ μ g K (ψ τ) (Φ τ) (deriv (deriv Φ) τ)))
+
+/-- Continuity of the first-variation density under the smoothness hypotheses
+used in the integrated variational identity. -/
+theorem continuous_firstVariation (m μ lam g : ℝ) (K : ℝ → ℝ)
+    {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hK : ContDiff ℝ ∞ K) (hψ : ContDiff ℝ 2 ψ) (hΦ : ContDiff ℝ 2 Φ)
+    (hδψ : ContDiff ℝ 1 δψ) (hδΦ : ContDiff ℝ 1 δΦ) :
+    Continuous (fun τ =>
+      firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) := by
+  have heq : (fun τ => firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) =
+      (fun τ => deriv ψ τ * deriv δψ τ - m^2 * ψ τ * δψ τ - lam * ψ τ^3 * δψ τ +
+        deriv Φ τ * deriv δΦ τ - μ^2 * Φ τ * δΦ τ +
+        g * K (ψ τ) * δΦ τ + g * Φ τ * deriv K (ψ τ) * δψ τ) := by
+    funext τ
+    rw [firstVariation_eq m μ lam g K _ _ (hK.differentiable (by simp) (ψ τ))]
+    simp only [jetOf]
+    ring
+  rw [heq]
+  have hKψ : Continuous (fun τ => K (ψ τ)) := hK.continuous.comp hψ.continuous
+  have hK'ψ : Continuous (fun τ => deriv K (ψ τ)) :=
+    (hK.continuous_deriv (by simp)).comp hψ.continuous
+  have hψ'c : Continuous (deriv ψ) := hψ.continuous_deriv (by norm_num)
+  have hΦ'c : Continuous (deriv Φ) := hΦ.continuous_deriv (by norm_num)
+  have hδψ'c : Continuous (deriv δψ) := hδψ.continuous_deriv_one
+  have hδΦ'c : Continuous (deriv δΦ) := hδΦ.continuous_deriv_one
+  fun_prop
+
+/-- Continuity of the contracted residual. -/
+theorem continuous_elResidual (m μ lam g : ℝ) (K : ℝ → ℝ)
+    {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hK : ContDiff ℝ ∞ K) (hψ : ContDiff ℝ 2 ψ) (hΦ : ContDiff ℝ 2 Φ)
+    (hδψ : ContDiff ℝ 1 δψ) (hδΦ : ContDiff ℝ 1 δΦ) :
+    Continuous (elResidual m μ lam g K ψ Φ δψ δΦ) := by
+  have hKψ : Continuous (fun τ => K (ψ τ)) := hK.continuous.comp hψ.continuous
+  have hK'ψ : Continuous (fun τ => deriv K (ψ τ)) :=
+    (hK.continuous_deriv (by simp)).comp hψ.continuous
+  have hψ''c : Continuous (deriv (deriv ψ)) :=
+    (hψ.deriv' (n := 1)).continuous_deriv_one
+  have hΦ''c : Continuous (deriv (deriv Φ)) :=
+    (hΦ.deriv' (n := 1)).continuous_deriv_one
+  unfold elResidual elψ elΦ
+  fun_prop
+
+/-- **Compactly supported first variation of the integral.**  With the raw
+Gateaux derivative convention this is minus the integral of the printed
+Euler--Lagrange residual. -/
+theorem integral_firstVariation_eq_neg_integral_elResidual
+    (m μ lam g : ℝ) (K : ℝ → ℝ) {ψ Φ δψ δΦ : ℝ → ℝ}
+    (hK : ContDiff ℝ ∞ K) (hψ : ContDiff ℝ 2 ψ) (hΦ : ContDiff ℝ 2 Φ)
+    (hδψ : ContDiff ℝ 1 δψ) (hδΦ : ContDiff ℝ 1 δΦ)
+    (hcδψ : HasCompactSupport δψ) (hcδΦ : HasCompactSupport δΦ) :
+    (∫ τ, firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) =
+      -(∫ τ, elResidual m μ lam g K ψ Φ δψ δΦ τ) := by
+  have hintV : Integrable (fun τ =>
+      firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ)) :=
+    (continuous_firstVariation m μ lam g K hK hψ hΦ hδψ hδΦ).integrable_of_hasCompactSupport
+      (hasCompactSupport_firstVariation m μ lam g K
+        (hK.differentiable (by simp)) hcδψ hcδΦ)
+  have hintE : Integrable (elResidual m μ lam g K ψ Φ δψ δΦ) :=
+    (continuous_elResidual m μ lam g K hK hψ hΦ hδψ hδΦ).integrable_of_hasCompactSupport
+      (hasCompactSupport_elResidual m μ lam g K hcδψ hcδΦ)
+  have h := integral_firstVariation_add_elResidual m μ lam g K hK hψ hΦ hδψ hδΦ hcδψ hcδΦ
+  rw [integral_add hintV hintE] at h
+  linarith
+
+/-- The usual scalar integration-by-parts identity on `ℝ`, with compact
+support carried by the second factor. -/
+theorem integrationByParts_of_hasCompactSupport_right {u v : ℝ → ℝ}
+    (hu : ContDiff ℝ 1 u) (hv : ContDiff ℝ 1 v) (hcv : HasCompactSupport v) :
+    (∫ τ, deriv u τ * v τ) = -(∫ τ, u τ * deriv v τ) := by
+  have hintL : Integrable (fun τ => deriv u τ * v τ) := by
+    exact (hu.continuous_deriv_one.mul hv.continuous).integrable_of_hasCompactSupport
+      (hcv.mul_left (f := deriv u))
+  have hintR : Integrable (fun τ => u τ * deriv v τ) := by
+    exact (hu.continuous.mul hv.continuous_deriv_one).integrable_of_hasCompactSupport
+      (hcv.deriv.mul_left (f := u))
+  have hsum : (∫ τ, deriv u τ * v τ) + (∫ τ, u τ * deriv v τ) = 0 := by
+    rw [← integral_add hintL hintR]
+    calc
+      (∫ τ, (deriv u τ * v τ + u τ * deriv v τ)) = ∫ τ, deriv (u * v) τ := by
+        apply integral_congr_ae
+        apply Filter.Eventually.of_forall
+        intro τ
+        exact ((hu.differentiable (by norm_num) τ).hasDerivAt.mul
+          (hv.differentiable (by norm_num) τ).hasDerivAt).deriv.symm
+      _ = 0 := integral_deriv_eq_zero_of_hasCompactSupport (hu.mul hv)
+        (hcv.mul_left (f := u))
+  linarith
+
+/-- Differentiating two affinely varied trajectories gives exactly the affine
+variation of their jets. -/
+theorem jetOf_add_smul (ψ Φ δψ δΦ : ℝ → ℝ) (ε τ : ℝ)
+    (hψ : Differentiable ℝ ψ) (hΦ : Differentiable ℝ Φ)
+    (hδψ : Differentiable ℝ δψ) (hδΦ : Differentiable ℝ δΦ) :
+    jetOf (fun t => ψ t + ε * δψ t) (fun t => Φ t + ε * δΦ t) τ =
+      (jetOf ψ Φ τ).vary (jetOf δψ δΦ τ) ε := by
+  have hdψ : HasDerivAt (fun t => ψ t + ε * δψ t) (deriv ψ τ + ε * deriv δψ τ) τ :=
+    (hψ τ).hasDerivAt.add ((hδψ τ).hasDerivAt.const_mul ε)
+  have hdΦ : HasDerivAt (fun t => Φ t + ε * δΦ t) (deriv Φ τ + ε * deriv δΦ τ) τ :=
+    (hΦ τ).hasDerivAt.add ((hδΦ τ).hasDerivAt.const_mul ε)
+  apply Jet.ext <;> simp only [jetOf, Jet.vary]
+  · exact hdψ.deriv
+  · exact hdΦ.deriv
+
+/-- Equivalent signed form of the bulk-plus-boundary identity. -/
+theorem firstVariation_eq_neg_elResidual_add_deriv (m μ lam g : ℝ) (K : ℝ → ℝ)
+    (ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ)
+    (hK : Differentiable ℝ K)
+    (hψ : Differentiable ℝ ψ) (hψ' : Differentiable ℝ (deriv ψ))
+    (hΦ : Differentiable ℝ Φ) (hΦ' : Differentiable ℝ (deriv Φ))
+    (hδψ : Differentiable ℝ δψ) (hδΦ : Differentiable ℝ δΦ) :
+    firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ) =
+      -elResidual m μ lam g K ψ Φ δψ δΦ τ +
+        deriv (boundaryCurrent ψ Φ δψ δΦ) τ := by
+  have h := firstVariation_sub_residual_eq_deriv m μ lam g K ψ Φ δψ δΦ τ
+    hK hψ hψ' hΦ hΦ' hδψ hδΦ
+  linarith
+
+/-- Both Euler--Lagrange equations for the original `+g Φ K(ψ)` coupling. -/
+theorem elPair_eq_zero_iff (m μ lam g : ℝ) (K : ℝ → ℝ)
+    (ψ Φ ψ'' Φ'' : ℝ) :
+    (elψ m lam g K ψ ψ'' Φ = 0 ∧ elΦ μ g K ψ Φ Φ'' = 0) ↔
+      (ψ'' + m^2 * ψ + lam * ψ^3 = g * Φ * deriv K ψ ∧
+        Φ'' + μ^2 * Φ = g * K ψ) := by
+  exact and_congr (elψ_eq_zero_iff m lam g ψ ψ'' Φ K)
+    (elΦ_eq_zero_iff μ g ψ Φ Φ'' K)
+
+/-- Both Euler--Lagrange equations when the coupling in the density is
+`-g Φ K(ψ)` instead. -/
+theorem elPair_neg_eq_zero_iff (m μ lam g : ℝ) (K : ℝ → ℝ)
+    (ψ Φ ψ'' Φ'' : ℝ) :
+    (elψ m lam (-g) K ψ ψ'' Φ = 0 ∧ elΦ μ (-g) K ψ Φ Φ'' = 0) ↔
+      (ψ'' + m^2 * ψ + lam * ψ^3 = -g * Φ * deriv K ψ ∧
+        Φ'' + μ^2 * Φ = -g * K ψ) := by
+  exact and_congr (elψ_neg_eq_zero_iff m lam g ψ ψ'' Φ K)
+    (elΦ_neg_eq_zero_iff μ g ψ Φ Φ'' K)
+
+end
+
+end ElementalPeeling.LoopWall.TwoFieldAction

@@ -147,9 +147,13 @@
     {
       "module": "LoopWall.QuantumGeometricTensor",
       "path": "LoopWall/QuantumGeometricTensor.lean"
+    },
+    {
+      "module": "LoopWall.TwoFieldAction",
+      "path": "LoopWall/TwoFieldAction.lean"
     }
   ],
-  "expected_theorems": 794,
+  "expected_theorems": 825,
   "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",
