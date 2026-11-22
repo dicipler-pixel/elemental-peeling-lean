@@ -38,6 +38,9 @@ wrapper, the header, the `lemma` → `theorem` rename and the removal of trailin
 lines differ from the member's file; each file's header says what it proves and which of my
 transcriptions it refutes.
 
-`ElementalFoundations`'s 88 theorems and the loop-wall layer's 1121 are audited together: the
+`ElementalFoundations`'s 88 theorems and the loop-wall layer's 1144 are audited together: the
 inventory in `scripts/config.json` fixes the count, and `scripts/verify.py` asks the kernel for
-the axioms of every named theorem.
+the axioms of every named theorem. `scripts/verify.py` matches both `theorem` and its Lean 4
+synonym `lemma`, so a declaration is audited whichever spelling it uses; the 23 declarations in
+`LoopWall/PeelDynamics.lean` that the fifth round wrote as `lemma` are spelled `theorem` now, and
+the count is 1232.

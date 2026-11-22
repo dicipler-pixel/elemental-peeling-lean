@@ -47,9 +47,11 @@ EXPECTED_THEOREMS = CONFIG["expected_theorems"]
 EXPECTED_FALSE_CONTROLS = CONFIG["expected_false_controls"]
 ROOT_IMPORTS = CONFIG["root_imports"]
 # Private helper lemmas cannot be named from another file, so they are not listed; their
-# axioms are audited through every public theorem that uses them.
+# axioms are audited through every public theorem that uses them.  `lemma` is a synonym of
+# `theorem` in Lean 4, so both spellings are matched here: a file that writes `lemma` would
+# otherwise be skipped by the audit while its declarations still counted as named results.
 THEOREM_RE = re.compile(
-    r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+)?theorem\s+([^\s:({\[]+)", re.M)
+    r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+)?(?:theorem|lemma)\s+([^\s:({\[]+)", re.M)
 NAMESPACE_RE = re.compile(r"^namespace\s+(\S+)", re.M)
 MATH_FAILURE = re.compile(
     r"unsolved goals|proved that the proposition.*false|tactic '.*' failed|"

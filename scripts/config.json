@@ -221,7 +221,7 @@
       "path": "LoopWall/PhaseEnergyBalance.lean"
     }
   ],
-  "expected_theorems": 1209,
+  "expected_theorems": 1232,
   "expected_false_controls": 9,
   "root_imports": [
     "ElementalFoundations",
