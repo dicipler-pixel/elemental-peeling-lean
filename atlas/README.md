@@ -83,7 +83,7 @@ is the distribution, not the number.
 ## Provenance
 
 The attachments are `Periodic Table of Elemental Peels v2.2`, `Elemental_Peels_Scale_Atlas` and
-`What_the_Peel_Keeps_v1_2_2_Zenodo_package.zip`, all by Jeromie Beasley and Elizabeth Johnson. The two JSON files are
+`What_the_Peel_Keeps_v1_2_2_Zenodo_package.zip`, all by Jeromie Beasley. The two JSON files are
 copied or extracted verbatim; nothing in them was edited. The extraction of the atlas archive is a
 brace-matched read of the `const d={...}` literal in the page's second `<script>` block; the
 embedded object also carries `decay`, `window` and `faces` sections that this directory does not use.

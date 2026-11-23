@@ -1,4 +1,4 @@
-# Reading E. Johnson, *EJ's Base Prime Model and the Twin Prime Counterflow Model*
+# Reading E. Johnson, *EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model*
 
 Zenodo 23484151, DOI 10.5281/zenodo.23484151, 18 pp., CC-BY-4.0, dataset-type record, 117 downloads.
 

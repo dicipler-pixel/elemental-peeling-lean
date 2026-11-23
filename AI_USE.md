@@ -1,7 +1,7 @@
 # AI use
 
 The research questions and the physics behind this library are Jeromie
-Beasley's and Elizabeth Johnson's. AI tools (Claude and ChatGPT) were used to search the literature,
+Beasley's. AI tools (Claude and ChatGPT) were used to search the literature,
 write and repair Lean proofs, and organise this repository. The loop-wall layer
 was formalized in a parallel round of eight independent directions, each
 reviewed and recompiled before its statements were accepted.

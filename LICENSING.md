@@ -1,6 +1,6 @@
 # Licensing
 
-Copyright (c) 2026 Jeromie Beasley and Elizabeth Johnson. This repository is dual-licensed.
+Copyright (c) 2026 Jeromie Beasley. This repository is dual-licensed.
 
 | What | Licence |
 | :--- | :--- |
@@ -9,4 +9,4 @@ Copyright (c) 2026 Jeromie Beasley and Elizabeth Johnson. This repository is dua
 
 GitHub shows the repository as MIT because `LICENSE` holds the MIT text; that covers the code
 and does not narrow the CC BY 4.0 grant on the written text. Credit for either part:
-Jeromie Beasley and Elizabeth Johnson, with a link to this repository or to the paper's DOI.
+Jeromie Beasley, with a link to this repository or to the paper's DOI.

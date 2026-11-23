@@ -1,6 +1,6 @@
 # A machine-checked account of the peel-ratio algebra, with twelve corrections
 
-*Draft, working title. Jeromie Beasley and Elizabeth Johnson.*
+*Draft, working title. Jeromie Beasley.*
 
 ## Abstract
 

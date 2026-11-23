@@ -1,7 +1,7 @@
 ---
-title: "A closure ladder with two channels: 249 machine-checked theorems and their measured constants"
+title: "A closure ladder with two channels: 273 machine-checked theorems and their measured constants"
 subtitle: "The Light Bridge — the table, the prime ladder, the fission channel, and the relations between them"
-author: "Jeromie Beasley and Elizabeth Johnson"
+author: "Jeromie Beasley"
 date: "Draft — 2026-11-23"
 ---
 
@@ -38,7 +38,7 @@ reading $\rho c=3R/V_m$ exact and one data column short of being tested); a **ra
 decades); an **equation layer** (the span law $p_N-p_1=(2C_2)^{-1}\sum\log^{2}p_i$, proved as a
 cumulative identity given the measured per-handoff constant, shipped with the check that recomputes every
 number in it); and a **verification harness** (`bash scripts/verify-all.sh`) that recompiles all
-249 theorems, checks that every axiom report is within $\{\text{propext},\ \text{Classical.choice},\
+273 theorems, checks that every axiom report is within $\{\text{propext},\ \text{Classical.choice},\
 \text{Quot.sound}\}$, that no `sorry` or `native_decide` occurs, that every Lean name cited in the
 prose exists, and that the measured constants quoted here are the ones the data produce.
 
@@ -123,10 +123,14 @@ is the fixed set of $s\mapsto1-s$ (`critical_line_fixed`); the exact part of the
 Euler product $30=2\cdot3\cdot5$ with $\varphi(30)=8$ classes (`wheel_is_euler`,
 `wheel_has_eight_classes`).
 
-**(N) A theorem from the twin-prime literature.** Every twin start above 5 is $2,5$ or $8\pmod 9$
-(`twin_mod9`), with the three transitions $(2,4),(5,7),(8,1)$ (`twin_transitions_mod9`) — Theorem 10.2
-of Johnson's *Base Prime Model and the Twin Prime Counterflow* (Zenodo 23484151), machine-checked
-here, and identical to the record's own mod-3 fact (`mod9_is_mod3`).
+**(N) A theorem from the twin-prime literature, and the reduction that gives it its content.** Every
+twin start above 5 is $2,5$ or $8\pmod 9$ (`twin_mod9`), with the three transitions $(2,4),(5,7),(8,1)$
+(`twin_transitions_mod9`) — Theorem 10.2 of Johnson's Zenodo record (reference 7), machine-checked
+here. The residues carry the statement only once the 9 and the 3 are
+put together, and that is Beasley's: a prime above 3 avoids $0,3,6\pmod 9$, so the six admissible
+residues pair under $+2$ as $2\to4$, $5\to7$, $8\to1$, and $p\bmod 9\in\{2,5,8\}$ **is**
+$p\equiv2\pmod 3$ (`mod9_is_mod3`). The mod-9 form and the mod-3 form are one fact, and the mod-3 form
+is the one the wheel already carries.
 
 **(O) The count layer.** $P=B+K+2$ (`primeCount_partition`); every twin start above 3 is $5\pmod6$,
 so $N\le K+1$ (`twin_start_mod_six`, `twin_le_ladder`); every twin start above 5 is $11,17$ or
@@ -348,7 +352,7 @@ passes.
 | `specific-heat.lean` | 19 | the heat capacity, H1–H9 |
 | `one-equation.lean` | 14 | the span law, its three readings, and the ratio ladder |
 | `digit-roles.lean` | 20 | the four end digits: classes, roles, the dead class 23, class from digits |
-| **total** | **249** | |
+| **total** | **273** | |
 
 The statement-level inventory is `results/light-bridge-inventory.md`, generated.
 
@@ -366,6 +370,8 @@ The statement-level inventory is `results/light-bridge-inventory.md`, generated.
    primes*, Proc. Natl. Acad. Sci. 113 (2016) — the end-digit diagonal.
 6. P. L. Dulong and A. T. Petit (1819); A. Einstein (1907); P. Debye (1912) — $3R$ and its quantum
    deficit.
-7. E. Johnson, *Base Prime Model and the Twin Prime Counterflow Model*, Zenodo 23484151 (2025) —
-   Theorem 10.2, machine-checked here as `twin_mod9`.
+7. E. Johnson, *EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model*,
+   Zenodo 23484151 (2026), DOI 10.5281/zenodo.23484151 — Theorem 10.2, cited as a source: the
+   statement is machine-checked here as `twin_mod9`, and the mod-3 reduction that gives it its
+   content is `mod9_is_mod3`.
 8. Lean 4 and Mathlib — the proof assistant and library used throughout.

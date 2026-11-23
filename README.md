@@ -12,7 +12,7 @@ later records can recover, and which side of the loop wall a removal ladder fall
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC%20BY%204.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
 
-Jeromie Beasley and Elizabeth Johnson
+Jeromie Beasley
 
 </div>
 

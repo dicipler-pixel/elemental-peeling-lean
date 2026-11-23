@@ -37,6 +37,7 @@ Status words: **proved** (kernel-checked), **measured** (with an error or a coun
 
 | # | correlation | statement | status | where |
 |---|---|---|---|---|
+| F11 | **the layout's single coordinate** | $h$ gives the block (0 mismatches), closed/open (50 cells), the group as $18-h$ (0 mismatches on 76 p+d), and $Z=C(m)-h$ recovers the element — so the cell is injective | proved | [`light-periodic-table.md`](light-periodic-table.md) |
 | C1 | a digit is two classes | $1\leftrightarrow\{1,11\}$, $3\leftrightarrow\{13,23\}$, $7\leftrightarrow\{7,17\}$, $9\leftrightarrow\{19,29\}$; one per ladder | proved | `two_classes_per_digit`, `digit_splits_ladder` |
 | C2 | the roles | openers $\{1,7,9\}$, closers $\{1,3,9\}$; 3 never opens, 7 never closes, each once (at $p=3$, $p=5$) | proved | `three_never_opens`, `seven_never_closes` |
 | C3 | the dead class | 23 never starts a twin | proved | `no_twin_at_23` |
@@ -85,6 +86,9 @@ Status words: **proved** (kernel-checked), **measured** (with an error or a coun
 | G13 | **the heavy's digit is a closure-offset marker** | $R=(Z-Z_H)/Z_H$ with $Z_H$ read from the digit halves the pin's error: s.d. 2.70% → 1.16%, worst 6.1% → 2.1%; all 4 fourteen-MeV systems sit below 54 (Fisher $p=9.4\times10^{-5}$) | measured | [`locked-digits.md`](locked-digits.md) |
 | G14 | **gap digits: ladder yes, driver no** | digit → class → $a/(a+4)$ with 0 exceptions; share-weighted mean 0.7726 inside the fission band; but the local composition's raw $r=-0.675$ with $Z_H-54$ collapses to $+0.076$ once the $Z$ trend is removed (which explains 73% of the offset) | proved + measured | [`gap-digits.md`](gap-digits.md) |
 | A13 | **the scaled trio** | $\hat E=\text{gap}/t^2=1/(2C_2)=0.75739\pm0.000018$; $a=1/C_2=2\hat E=1.51478$; $\hat m=T/t^2=1/(2C_2)+2/t^2$ (mass is a count here, never a gram); homogeneous of degree 2, $E\rho=1$ | proved + measured | [`prime-scales.md`](prime-scales.md) |
+| A14 | **acceleration depends on the air and the flow** | $a_i=2T/t^2$: mean 1.515 but median 1.08, sd 1.44 — no handoff carries the constant; by flow kind self 1.588 / back 1.525 / forward 1.442 (10%, sign stable at every height); by air digit 1.431–1.588 | proved + measured | [`acceleration-air-flow.md`](acceleration-air-flow.md) |
+| I1 | **the ladder past 118** | $L(8)=50$, $C(8)=168$, filling $2+18+14+10+6=50$ — all rung widths; 119 at $v=1$, $h=49$, group 1, **closed**, the 8th closed alkali; the "$2$ unfilled" becomes 52 at $q=10$ | proved | [`closure-119-and-mass.md`](closure-119-and-mass.md) |
+| I2 | **mass = spacing, on the prime side only** | $T=\text{air}+2=t^2/(2C_2)+2$ exact by definition, ratios 0.983–0.994 per decade; the element side is $M=2.6193Z-9.36$ (rms 3.47 u) — linear in $Z$, wrong shape for a $\log^2$ spacing | proved + measured | [`closure-119-and-mass.md`](closure-119-and-mass.md) |
 | G6 | the ratio | $Z_L/Z_H\in[0.668,0.810]$, median 0.736, inside $[1/2,1)$ — consistency, not a test | measured | `tableV6_ratios.csv` |
 | G7 | the mode is not the force balance | $Z^2/A$ spans 34.91–39.06 (factor 1.12) while the mode spans 481; the mode is ordered by $h_{\rm sym}=54-Z/2$ (Spearman $-0.80$ to $-0.89$) | proved band + measured ordering | `fissility_band`, `strong-force-bolstered.md` |
 | G8 | the energy is not in the counts | a linear mass law prices every split at its intercept (8.72 GeV); the mass excess is needed | proved | `linear_mass_law_blind` |
@@ -94,7 +98,7 @@ Status words: **proved** (kernel-checked), **measured** (with an error or a coun
 
 | # | correlation | statement | status | where |
 |---|---|---|---|---|
-| H1 | Johnson's Theorem 10.2 | twin starts $>5$ are $2,5,8\pmod9$; it *is* the mod-3 fact | proved | `twin_mod9`, `mod9_is_mod3` |
+| H1 | Johnson's Theorem 10.2, reduced by Beasley | twin starts $>5$ are $2,5,8\pmod9$; the 9 and the 3 are one fact, so it *is* the mod-3 statement | proved | `twin_mod9`, `mod9_is_mod3` |
 | H2 | **the old layer's log-cosh prediction failed** | a log-cosh completion would need $a_2/a_1=-1/24$; measured $-4.9\times10^{-5}$ (850× smaller) | measured negative | `old-and-new.md` §3 |
 
 ## Settled — do not re-open
