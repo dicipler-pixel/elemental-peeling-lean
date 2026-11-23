@@ -29,8 +29,10 @@ It reproduces the checked-in `LoopWall/OpeningMap.lean` byte for byte
 (sha256 971be82e6f1e9ff2ef5c993ff8eee9ef472865a6ef5d0a8d002bdb2119abae7f); if it stops doing
 so, either the archive changed or the script did, and the difference is the thing to look at.
 """
-import gzip, json, sys
+import gzip, json, pathlib, re, sys
 from fractions import Fraction
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 CORES = [(2, "He"), (10, "Ne"), (18, "Ar"), (36, "Kr"), (54, "Xe"), (86, "Rn")]
 
@@ -41,7 +43,7 @@ def outside_ratio(a: str, b: str) -> bool:
     return d > 0 and d * d > 8 * B * B
 
 def main():
-    d = json.load(gzip.open("data/element_thresholds_20261011.json.gz"))
+    d = json.load(gzip.open(ROOT / "data" / "element_thresholds_20261011.json.gz"))
     ie = {}
     sym = {}
     for r in d["records"]:
@@ -129,7 +131,11 @@ def main():
     out.append("")
     out.append("end ElementalPeeling.LoopWall")
     text = "\n".join(out) + "\n"
-    open(sys.argv[1] if len(sys.argv) > 1 else ".scratch/OpeningMap.gen.lean", "w").write(text)
-    print("wrote", len(text.split(chr(10))), "lines")
+    target = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "LoopWall" / "OpeningMap.lean"
+    target.write_text(text)
+    ratios = sum(len(re.findall(r"\b(?:inside|outside) \(", l)) for l in out)
+    theorems = sum(1 for l in out if l.startswith("theorem "))
+    shown = target.relative_to(ROOT) if target.is_absolute() and ROOT in target.parents else target
+    print(f"wrote {shown}: {ratios} ratios in {theorems} theorems")
 
 main()
