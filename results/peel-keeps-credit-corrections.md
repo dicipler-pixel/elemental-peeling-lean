@@ -11,13 +11,23 @@ that the same document's §9.4 already says so in its own words.
 
 ## What stays hers, and should stay
 
-* The notebook pages, and the readings on them, credited as the owner of the pages.
-* The Mixin colour labelling system (`@Ellyrox110`), credited wherever it is used.
-* The questions she asked in conversation, credited as questions — page 37 does this correctly.
-* The blind colour readings for the preregistered test, if and when they are supplied.
+* **The one credit:** the notebook pages and the Mixin colour labelling system (`@Ellyrox110`), named
+  together, in §9, where the labels are used.
+* **Not a credit line at all:** the heading on page 37, "Questions she asked me in our conversation,
+  answered". That reports a conversation and names the questions; it asserts nothing about
+  authorship and should be left exactly as it is.
+* **A dependency, not a credit:** the blind colour readings for the preregistered test, if and when
+  they are supplied.
 
 That is a citation and a thanks. It is not an author line, and it does not extend to the algebra
 that translates her vocabulary onto the peel.
+
+**The target is one credit, not ten.** Her name appears ten times in this document, and nine of
+those times it is attached to something she did not do. The correction is not to soften ten lines
+but to delete nine of them and keep **one**, at the point where her material is actually used —
+the Mixin labels in §9, with the notebook pages named in the same sentence. Everything else about
+her comes out. A scattered name is not a fuller credit; it is ten claims, each of which she would
+have to defend.
 
 ## The ten lines
 

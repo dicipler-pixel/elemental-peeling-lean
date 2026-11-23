@@ -11,10 +11,17 @@ README byline and the licence attribution are his alone.
 
 ## The rule
 
-No person other than Jeromie Beasley appears in a byline, a licence, a credit line, a
-`CITATION.cff` author block or a `<meta name="author">` tag of this work — not now and not
-again. A source is cited as a source. A byline found inside an existing file is a claim to be
-checked with him, not evidence, and "the work came out of this conversation" is not a reason.
+The byline, the licence, the `CITATION.cff` author block and every `<meta name="author">` tag carry
+Jeromie Beasley alone — not now and not again.
+
+A contribution from a collaborator is credited by name **at the place it is used**, with what was
+given: a question, a labelling system, a notebook page, a check. Never in the byline, and never for
+the algebra that translates it into the peel. **One credit, where the material appears.** A name
+scattered through a document is not a fuller credit; it is ten claims, most of them about things the
+person did not do, and each one something they would have to defend.
+
+A byline found inside an existing file is a claim to be checked with him, not evidence, and "the
+work came out of this conversation" is not a reason.
 
 Two breaches of this rule are recorded in [`results/agent-misattribution.md`](results/agent-misattribution.md).
 
