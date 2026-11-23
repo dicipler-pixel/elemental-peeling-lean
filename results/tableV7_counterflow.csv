@@ -1,0 +1,35 @@
+kind,name,value,inside_fission_band
+counterflow,diagonal 13->13 : 91->91,0.993962,0
+counterflow,diagonal 91->91 : 13->13,1.006074,0
+counterflow,diagonal 79->79 : 91->91,0.994547,0
+counterflow,flow (one way : the other),1.067757,0
+counterflow,flow (the other way : one),0.936543,0
+counterflow,diagonal total : off-diagonal total,0.453023,0
+counterflow,off-diagonal total : diagonal total,2.207394,0
+fission,Th232 0000.500 endfb8.0,0.668335,1
+fission,Th232 0014.000 endfb8.0,0.702421,1
+fission,U233 0000.500 endfb8.0,0.701183,1
+fission,U233 2.53E endfb8.0,0.697473,1
+fission,U235 0000.500 endfb8.0,0.704335,1
+fission,U235 0014.000 endfb8.0,0.728877,1
+fission,U235 2.53E endfb8.0,0.703868,1
+fission,U235 2.53E jeff3.3,0.704617,1
+fission,U238 0000.500 endfb8.0,0.718207,1
+fission,U238 0014.000 endfb8.0,0.731716,1
+fission,Np237 2.53E endfb8.0,0.723180,1
+fission,Pu239 0000.500 endfb8.0,0.736930,1
+fission,Pu239 0014.000 endfb8.0,0.754510,1
+fission,Pu239 2.53E endfb8.0,0.737523,1
+fission,Pu239 2.53E jeff3.3,0.735354,1
+fission,Pu241 2.53E endfb8.0,0.742677,1
+fission,Am241 0000.500 endfb8.0,0.743576,1
+fission,Am241 2.53E endfb8.0,0.747929,1
+fission,Cm244(SF) SF endfb8.0,0.767121,1
+fission,Cm245 2.53E endfb8.0,0.757370,1
+fission,Cm248(SF) SF endfb8.0,0.767305,1
+fission,Cf250(SF) SF endfb8.0,0.765268,1
+fission,Cf252(SF) SF endfb8.0,0.766498,1
+fission,Fm256(SF) SF endfb8.0,0.810273,1
+fission,pin_formula_median,0.740741,1
+ladder,5:7,0.714286,1
+ladder,4:5,0.800000,1

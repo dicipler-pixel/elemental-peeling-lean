@@ -1,0 +1,36 @@
+kind,object,ratio_numerator,ratio_denominator,ratio,note
+segment_class,air=4,4,8,0.500000,on the ladder
+segment_class,air=10,10,14,0.714286,on the ladder
+segment_class,air=16,16,20,0.800000,on the ladder
+segment_class,air=22,22,26,0.846154,on the ladder
+segment_class,air=28,28,32,0.875000,on the ladder
+textbook,1:3,1,3,0.333333,excluded (air = 4r/(1-r) is not 4 mod 6, or negative)
+textbook,2:3,2,3,0.666667,excluded (air = 4r/(1-r) is not 4 mod 6, or negative)
+textbook,3:4,3,4,0.750000,excluded (air = 4r/(1-r) is not 4 mod 6, or negative)
+textbook,1:1,1,1,1.000000,excluded (air = 4r/(1-r) is not 4 mod 6, or negative)
+textbook,2:1,2,1,2.000000,excluded (air = 4r/(1-r) is not 4 mod 6, or negative)
+textbook,3:1,3,1,3.000000,excluded (air = 4r/(1-r) is not 4 mod 6, or negative)
+fission,Th232 0000.500 endfb8.0,36.05,53.94,0.668335,measured Z_light/Z_heavy
+fission,Th232 0014.000 endfb8.0,37.13,52.86,0.702421,measured Z_light/Z_heavy
+fission,U233 0000.500 endfb8.0,37.92,54.08,0.701183,measured Z_light/Z_heavy
+fission,U233 2.53E endfb8.0,37.81,54.21,0.697473,measured Z_light/Z_heavy
+fission,U235 0000.500 endfb8.0,38.02,53.98,0.704335,measured Z_light/Z_heavy
+fission,U235 0014.000 endfb8.0,38.82,53.26,0.728877,measured Z_light/Z_heavy
+fission,U235 2.53E endfb8.0,38.03,54.03,0.703868,measured Z_light/Z_heavy
+fission,U235 2.53E jeff3.3,38.00,53.93,0.704617,measured Z_light/Z_heavy
+fission,U238 0000.500 endfb8.0,38.46,53.55,0.718207,measured Z_light/Z_heavy
+fission,U238 0014.000 endfb8.0,38.92,53.19,0.731716,measured Z_light/Z_heavy
+fission,Np237 2.53E endfb8.0,39.03,53.97,0.723180,measured Z_light/Z_heavy
+fission,Pu239 0000.500 endfb8.0,39.89,54.13,0.736930,measured Z_light/Z_heavy
+fission,Pu239 0014.000 endfb8.0,40.57,53.77,0.754510,measured Z_light/Z_heavy
+fission,Pu239 2.53E endfb8.0,39.90,54.10,0.737523,measured Z_light/Z_heavy
+fission,Pu239 2.53E jeff3.3,39.79,54.11,0.735354,measured Z_light/Z_heavy
+fission,Pu241 2.53E endfb8.0,40.06,53.94,0.742677,measured Z_light/Z_heavy
+fission,Am241 0000.500 endfb8.0,40.51,54.48,0.743576,measured Z_light/Z_heavy
+fission,Am241 2.53E endfb8.0,40.62,54.31,0.747929,measured Z_light/Z_heavy
+fission,Cm244(SF) SF endfb8.0,41.67,54.32,0.767121,measured Z_light/Z_heavy
+fission,Cm245 2.53E endfb8.0,41.36,54.61,0.757370,measured Z_light/Z_heavy
+fission,Cm248(SF) SF endfb8.0,41.68,54.32,0.767305,measured Z_light/Z_heavy
+fission,Cf250(SF) SF endfb8.0,42.48,55.51,0.765268,measured Z_light/Z_heavy
+fission,Cf252(SF) SF endfb8.0,42.51,55.46,0.766498,measured Z_light/Z_heavy
+fission,Fm256(SF) SF endfb8.0,44.80,55.29,0.810273,measured Z_light/Z_heavy

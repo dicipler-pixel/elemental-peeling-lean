@@ -4,10 +4,10 @@ The written text in this repository — the README, the documentation files and 
 paper, figure or prose file — is licensed under the Creative Commons Attribution 4.0
 International License.
 
-Copyright (c) 2026 Jeromie Beasley.
+Copyright (c) 2026 Jeromie Beasley and Elizabeth Johnson.
 
 You may share and adapt this material for any purpose, including commercially, provided
-you give appropriate credit to Jeromie Beasley, link to the licence, and indicate if
+you give appropriate credit to Jeromie Beasley and Elizabeth Johnson, link to the licence, and indicate if
 changes were made.
 
 ## Authoritative text

@@ -1,0 +1,34 @@
+kind,name,value,note
+return,digit_1,1141159,0.3544
+return,digit_3,1141216,0.0000
+return,digit_7,0,never a closer
+return,digit_9,1142128,0.3548
+return_by_decade,1e4,0.3728,n=684
+return_by_decade,1e5,0.3823,n=4609
+return_by_decade,1e6,0.3697,n=33750
+return_by_decade,1e7,0.3589,n=254287
+return_by_decade,1e8,0.3537,n=1989818
+fission,Th232 0000.500 endfb8.0,0.6683,digit 4; residual with digit +0.25%
+fission,Th232 0014.000 endfb8.0,0.7024,digit 3; residual with digit +0.62%
+fission,U233 0000.500 endfb8.0,0.7012,digit 4; residual with digit -0.36%
+fission,U233 2.53E endfb8.0,0.6975,digit 4; residual with digit -0.89%
+fission,U235 0000.500 endfb8.0,0.7043,digit 4; residual with digit +0.09%
+fission,U235 0014.000 endfb8.0,0.7289,digit 3; residual with digit -0.95%
+fission,U235 2.53E endfb8.0,0.7039,digit 4; residual with digit +0.02%
+fission,U235 2.53E jeff3.3,0.7046,digit 4; residual with digit +0.13%
+fission,U238 0000.500 endfb8.0,0.7182,digit 4; residual with digit +2.06%
+fission,U238 0014.000 endfb8.0,0.7317,digit 3; residual with digit -0.56%
+fission,Np237 2.53E endfb8.0,0.7232,digit 4; residual with digit +0.13%
+fission,Pu239 0000.500 endfb8.0,0.7369,digit 4; residual with digit -0.51%
+fission,Pu239 0014.000 endfb8.0,0.7545,digit 4; residual with digit +1.86%
+fission,Pu239 2.53E endfb8.0,0.7375,digit 4; residual with digit -0.43%
+fission,Pu239 2.53E jeff3.3,0.7354,digit 4; residual with digit -0.73%
+fission,Pu241 2.53E endfb8.0,0.7427,digit 4; residual with digit +0.26%
+fission,Am241 0000.500 endfb8.0,0.7436,digit 4; residual with digit -2.07%
+fission,Am241 2.53E endfb8.0,0.7479,digit 4; residual with digit -1.49%
+fission,Cm244(SF) SF endfb8.0,0.7671,digit 4; residual with digit -1.37%
+fission,Cm245 2.53E endfb8.0,0.7574,digit 5; residual with digit +1.60%
+fission,Cm248(SF) SF endfb8.0,0.7673,digit 4; residual with digit -1.35%
+fission,Cf250(SF) SF endfb8.0,0.7653,digit 6; residual with digit +2.04%
+fission,Cf252(SF) SF endfb8.0,0.7665,digit 5; residual with digit -1.96%
+fission,Fm256(SF) SF endfb8.0,0.8103,digit 5; residual with digit -0.97%

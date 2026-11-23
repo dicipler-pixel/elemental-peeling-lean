@@ -12,21 +12,43 @@ later records can recover, and which side of the loop wall a removal ladder fall
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC%20BY%204.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
 
-Jeromie Beasley
+Jeromie Beasley and Elizabeth Johnson
 
 </div>
 
 ---
 
+## One body: this repository, *Dirac time* and *VOTKP*
+
+The loop-wall development is one of three that share their algebra, and they are now built
+together under [`unified/`](unified/README.md): **90 modules in one root**, the theorems the three
+had in common reduced to one statement each, and **24 new checked bridges** between them.
+
+| what the merge found | where |
+| :--- | :--- |
+| the predictive quotient is proved twice — *Dirac time* §2 and *VOTKP* Thm 3.1 — and the two are one subspace | [`unified/Bridge/Quotient.lean`](unified/Bridge/Quotient.lean) |
+| the wall is a quantised ledger value, `Γ² = ½ ⇔ |log z| = log(3+2√2)` | [`unified/Bridge/Reflection.lean`](unified/Bridge/Reflection.lean) |
+| the peel rate is the Dirac clock, `ω = τ̇(Eⱼ − Eₖ)`, so the wall time obeys `|δ|·τ_wall = log(3+2√2)` | [`unified/Found/CommonClock.lean`](unified/Found/CommonClock.lean) |
+| one involution lemma covers chiral pairing, θ and Γ; the wall is chirality-bearing but every `Γ²` readout is mirror-blind | [`unified/Bridge/Chirality.lean`](unified/Bridge/Chirality.lean) |
+| the peel ratio is a complete predictive state in the scalar model, where the wall is not a memory transition | [`unified/Bridge/Quotient.lean`](unified/Bridge/Quotient.lean) |
+| 91,638 of the atlas's 91,768 wall crossings have every step inside the wall; the geometric mean never crosses | [`unified/Bridge/Composition.lean`](unified/Bridge/Composition.lean), [`atlas/README.md`](atlas/README.md) |
+| each Ramanujan gamma-fraction term is a face with `Γ_n = x/√(x²+(2n−1)²)`; the wall is `2n−1 = x`, so every odd `x` has a wall face | [`unified/Bridge/Faces.lean`](unified/Bridge/Faces.lean), [`ramanujan/README.md`](ramanujan/README.md) |
+
+The statement-by-statement map, including what is **not** claimed (θ is not formalised; the 78/78
+census is evidence, not proof of Conjecture 21), is [`unified/MAP.md`](unified/MAP.md).
+
 ## Start here
 
 | If you want to… | Open |
 | :--- | :--- |
+| Know who this record is written with | [`AUTHORS.md`](AUTHORS.md) |
 | Know exactly what is **not** proved | [`LIMITATIONS.md`](LIMITATIONS.md) |
 | See each paper claim against its theorem | [`COVERAGE.md`](COVERAGE.md) |
 | Check where every file came from | [`PROVENANCE.md`](PROVENANCE.md) |
 | See the statements that must be rejected | [`FalseControls/`](FalseControls/) |
 | Read the loop-wall layer | [`LoopWall.lean`](LoopWall.lean) |
+| Read the **Light Bridge** explained end to end, with a worked example | [`results/light-bridge-explained.md`](results/light-bridge-explained.md) |
+| Read the **Light Bridge** paper (205 theorems, the measured constants, the relations register) | [`paper/light-bridge-paper.pdf`](paper/light-bridge-paper.pdf), source [`results/light-bridge-paper.md`](results/light-bridge-paper.md), register [`results/light-bridge-coverage.md`](results/light-bridge-coverage.md) |
 | Read the bridge from phase motion to the potential | [`BRIDGE.md`](BRIDGE.md) |
 
 ## What the library contains

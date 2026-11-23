@@ -1,0 +1,742 @@
+ONE BODY
+The peel, the wall, the clock, the knot, the prime, and the fraction
+
+Jeromie Beasley
+
+The title is the thesis, not the result.  What is proved is a shared coordinate and three
+compiled interfaces between separate developments; what is read into them is marked as a
+reading.  Sections 1 and 9 say where the line falls.
+
+A living draft.  Written in prose first; numbers are attached to the sentence that needs
+them, and every number carries its status -- proved, measured, or metaphor -- where it
+stands.  Section 10 is the ledger: it lists the paper's claims with their status and their
+reproducer, and a statement that is not there is not a claim.  Revised as verification lands.  Last pass: 23 November 2026 -- first referee round.  Two
+rounds of correction so far: Section 5.3 (the combined band is now computed by a named
+script; the circularity argument narrowed to what the archive actually lacks) and Sections
+1, 3, 4.2, 4.4, 6 and 8 (the claim of a six-body identity downgraded to a shared coordinate
+with three compiled interfaces; the continued-fraction and knot readings marked as
+readings; the wall-time hypotheses stated), and three more from the second half of the round
+(prior art corrected to Pierce 1943 and the DLMF identities; the ledger rewritten and two
+missing reproducers shipped; the declaration census and the audit commands made complete).
+
+The submission version is paper/ONE_BODY_SUBMISSION.txt, typeset as paper/one-body.tex (nine
+pages, built by paper/build-one-body.sh).  It differs from this file in one respect the author
+asked for: the twin-prime cousin is cut from it, so it speaks of four developments and a data
+layer.  This file keeps the cousin as a record of the whole programme; the paper does not.
+
+
+------------------------------------------------------------------------------
+1.  THE CLAIM IN ONE PAGE
+------------------------------------------------------------------------------
+
+Four developments -- the elemental peel and its loop wall, Dirac time, VOTKP, and
+Ramanujan's gamma fractions -- are written in one small algebra: a positive ratio z, the
+reflection
+
+    Gamma = (z - 1)/(z + 1) = tanh( (1/2) log z ),
+
+one distinguished value Gamma^2 = 1/2, and the rule that reflections compose by adding
+their rapidities.  A fifth body, the twin-prime key, shares only the ledger vocabulary, and
+the periodic table supplies the data these readings are tested against.  The algebra is old;
+what is new here is that part of the sharing is compiled rather than asserted, and that the
+part which is not compiled is marked as such.
+
+The paper makes three claims of three different kinds: a theorem-level synthesis, an
+algebraic consequence illustrated by archive counts, and an empirical non-selection result.
+
+First, the developments share a coordinate, and three of the interfaces between them are
+compiled.  In those three places this is not a family resemblance: the two predictive
+quotients are proved to be the same subspace, Dirac time's path-descent theorem is
+specialised to the peel ledger, and two peel steps are proved to compose by the velocity
+law.  Elsewhere the sharing is a reading -- the continued-fraction faces and the knot
+involution are the two clear cases -- and Section 4 says which is which, sentence by
+sentence.
+
+Second, the algebra has consequences the individual papers did not draw, and some of them
+are negative.  A window of peel steps can cross the wall with every one of its steps
+inside, because reflections add; the archive at the stipulated cutoff supplies 91,638 such
+windows among its 91,768 crossings.  The theorem explains how each of those crossings is
+possible; the count and the percentage are measurements of this archive, not consequences of
+addition.  For a window whose steps are all inside the wall, the geometric mean can never
+cross -- that one is a theorem about any positive ladder.  The practical point is narrower
+than it first looks: thresholding each step into inside or outside does not reveal the
+accumulated crossings, although the products of the tabulated ratios do determine them.
+
+Third, and this is the part a reader should weigh hardest: the empirical layer does not
+select the constant.  The archive's own numbers leave a band of cutoffs that classify every
+step identically, and 3 + 2*sqrt(2) sits inside that band without being picked out by it.
+The table is consistent with the wall; it does not measure it.  Any claim that the periodic
+table "confirms" the value 5.828427 is not supported by the shipped data, and Section 5.3
+gives the cutoff bands the baseline and the baseline-plus-anion data leave unresolved.
+
+Alongside the three claims the paper carries a list of its own corrections.  Twelve
+statements transcribed from earlier prose are false as written and are kept as refutation
+theorems beside their corrected forms; two structural results are negative -- composition
+does not select the ledger readout, and the predictive dimension of a peel ladder is
+model-dependent rather than intrinsic.  Section 7 is that list, and it is part of what the
+paper offers rather than an appendix to it.
+
+What the body is worth, stated plainly: as new mathematics it is small -- the algebra is
+textbook reflection and the finite-dimensional version of the main theorem is standard
+observability theory.  As a checked artifact it is real: roughly sixteen hundred named
+results in one build, a corrigenda list of statements that turned out false, and a data
+layer whose every published count reproduces from the shipped files.  As predictive power
+over chemistry it is, so far, nothing that has been demonstrated.  The paper is written to
+make that distinction impossible to blur.
+
+
+------------------------------------------------------------------------------
+2.  WHAT THIS PAPER IS, AND WHAT IT IS NOT
+------------------------------------------------------------------------------
+
+It is a synthesis with a verification standard.  Every exact statement is either checked by
+the Lean kernel or reproduced by a named script from shipped data; every other statement is
+labelled a measurement or a metaphor.  The three labels are used strictly:
+
+    PROVED     a Lean theorem, compiled, with an axiom audit showing only propext,
+               Classical.choice and Quot.sound.
+    MEASURED   a finite computation by a named script from versioned shipped inputs -- the
+               archive, the source tree, or a database snapshot -- exact as arithmetic
+               within its stated scope, and true only of those inputs.  A finite sample does
+               not establish a limit, and an unsourced comparison is not a measurement.
+    METAPHOR   a reading that organizes the work and is not a mathematical statement --
+               "tinder", "kindling", the ledger as a balance sheet, the wall as a
+               boundary between two kinds of removal.
+
+It is not a physical theory.  Nothing here derives a Hamiltonian, a force, an optical
+constant or an ionisation energy.  The one place where a rate is identified with another
+rate (Section 4.2) is an identification inside a model, not a derivation of either rate
+from a mechanism.  The repository's LIMITATIONS files say this for each leg and they are
+not weakened here.
+
+It is also not a priority claim.  The reflection identity, the Riccati flow it satisfies and
+the tangent-half-angle substitution are nineteenth- and twentieth-century material; Section
+8 names what I could find and says what I could not.
+
+
+------------------------------------------------------------------------------
+3.  THE ALGEBRA
+------------------------------------------------------------------------------
+
+3.1  The peel ratio and the reflection.
+
+Take a ladder of positive readings I_1, I_2, ... -- removal energies of one atom, or any
+other ordered positive sequence.  A step is the ratio z = I_{k+1}/I_k.  The reflection is
+
+    Gamma = (z - 1)/(z + 1).
+
+Three facts, all elementary, are the whole of the coordinate:
+
+    Gamma = tanh( (1/2) log z )          the same number in hyperbolic form (DLMF 4.37.24)
+    z = (1 + Gamma)/(1 - Gamma)          the inverse, a Mobius map
+    Gamma(1/z) = -Gamma(z)               reversal flips the sign, keeps the square
+
+The third is why every readout built from Gamma^2 is blind to reversal.  That sounds like a
+technicality and turns out to be the organizing fact of Section 7.
+
+    PROVED: LoopWall/Ledger.lean, gam_eq_tanh_half_log, gam_reverse, gam_sq_reverse;
+            unified/VOTKP/Smith.lean, smith_identity (an independent second proof of the
+            same identity); unified/Bridge/Reflection.lean, two_smith_identities re-expresses
+            that proof using LoopWall's definition of gam.  The LoopWall proof proper is
+            LoopWall/Ledger.lean, gam_eq_tanh_half_log.  Both remain in the tree; nothing is
+            deduplicated, and the word "collapsed" would be wrong.
+
+3.2  The wall.
+
+One value is distinguished: Gamma^2 = 1/2.  Over the positive ratios it is exactly
+
+    z = 3 + 2*sqrt(2) = 5.828427...   or   z = 3 - 2*sqrt(2) = 0.171573...,
+
+the two roots being reciprocal.  The value 3 + 2*sqrt(2) is (1 + sqrt(2))^2, so its
+logarithm is twice log(1 + sqrt(2)); in ledger units the wall is the quantised value
+log z = +/- 2 log(1 + sqrt(2)).
+
+    PROVED: LoopWall/Wall.lean, wall_eq_iff, wall_ratios_reciprocal;
+            unified/Bridge/Reflection.lean, wall_ledger_value.
+
+Why call it a wall?  Because the disk has two halves and the number 1/2 is where the two
+shares are equal: in the lossless two-channel normalisation the reflected and transmitted
+shares are Gamma^2 and 1 - Gamma^2, and at Gamma^2 = 1/2 they coincide.  Nothing here fixes
+whether Gamma is an amplitude or a power; if it were an amplitude reflection coefficient the
+returned power fraction would be Gamma^2 and equal shares at the wall would still hold, with
+|Gamma| = 1/sqrt(2).  The name is a definition, not a discovery; what makes the value carry
+weight is that it keeps appearing where a ladder changes the qualitative behaviour of a sum.
+
+3.3  The ledger, and why steps add.
+
+The rapidity r = log z = 2 artanh(Gamma) is additive under composition of steps: a window of
+steps has ratio the product of its ratios, so its rapidity is the sum.  In the reflection
+coordinate this is the velocity-addition law
+
+    Gamma(z1 z2) = Gamma(z1) (+) Gamma(z2),    u (+) v = (u + v)/(1 + uv),
+
+which is the addition law of relativistic velocities written in the tangent-half-angle
+variable.  So peel steps add like velocities, not like ratios.
+
+Two consequences, and they are the mathematical core of this paper:
+
+    (a) A window exceeds the upper wall 3 + 2*sqrt(2) exactly when the sum of its steps'
+        rapidities exceeds log(3 + 2*sqrt(2)).  No single step need cross.  (The lower
+        branch 3 - 2*sqrt(2) is the same statement after a sign change.)
+    (b) The geometric mean of steps that are each inside the wall is inside the wall --
+        always, for any positive ladder, because a mean is bounded by its largest term.
+
+Together they say that crossing is a property of the sum and not of the terms, and that the
+common intuition "an average of inside things is inside" is true while the corresponding
+intuition about products is false.
+
+    PROVED: unified/Bridge/Composition.lean -- log_prod_eq_sum, composite_reflection_eq,
+            composite_two_eq_oplus, crosses_iff_ledger_sum, window_at_wall_ledger,
+            two_halves_cross (two steps at z = 5/2 are each inside; their product 25/4 is
+            outside), geomean_lt_wall, composition_crosses_mean_does_not.
+
+3.4  What is definitional here.
+
+Worth saying before the applications: z, Gamma, the wall value and the composition law are
+definitions plus algebra.  Nothing in Section 3 is a discovery, and a paper that presented
+them as one would deserve the scepticism it got.  Their role is to be the common coordinate
+in which four developments and a data layer become comparable, and to make certain claims provable
+that had been asserted in prose.
+
+
+------------------------------------------------------------------------------
+4.  FOUR INSTANTIATIONS, A COUSIN, AND A DATA LAYER
+------------------------------------------------------------------------------
+
+4.1  Elemental peeling.
+
+Read an element as the ladder of its successive ionisation energies and each adjacent ratio
+as a step.  The shipped archive has 3,570 steps from hydrogen to astatine; eight of them lie
+outside the wall, and every one of the eight is the first opening of a noble-gas core
+(Li k=1, Be k=2, B k=3, C k=4 into helium; Na k=1 into neon; K k=1 into argon; Rb k=1 into
+krypton; Cs k=1 into xenon).  A further 65 "anion rungs" -- the ratio from the electron
+affinity to the first ionisation energy -- give 53 more values outside.
+
+    MEASURED: scripts/atlas_census.py; core rule k = Z - N verified 305/305 against the
+    archive's own builder.
+
+The reading is that the first opening of a core is a large step and the rest of the ladder
+is a sequence of small ones -- a "wall" between the inner shells and the valence ladder.  As
+a description this is exact arithmetic.  As an explanation it is a restatement: the eight
+steps are large because a core opening costs much more energy than the removal that follows,
+which is what "core opening" means.
+
+4.2  Dirac time.
+
+The predictive quotient of a linear system -- the state space modulo everything no future
+reading can see -- is Section 2 of "The Dirac Time of the Gigantefermion".  It is the
+finite-dimensional observability quotient of linear systems theory: N is the intersection of
+the kernels of R L^n, the quotient is V/N, and its dimension is the rank of the
+observability map.  The Dirac-time paper proves it, VOTKP proves it again as Theorem 3.1,
+and the two versions are the same subspace (unified/Bridge/Quotient.lean,
+unseen_eq_unobservable) -- the bridge being Cayley-Hamilton, which is what collapses the
+infinite intersection to a finite one.
+
+The same paper's common-clock theorem gives, for a generator with eigen-data, the gap law
+
+    mu_j - mu_k = tau_dot (E_j - E_k).
+
+Read as a peel rate this says omega = tau_dot (E_j - E_k): the frequency of the peel flow is
+the clock rate times the energy gap.  For a real gap delta and the zero-offset flow
+Gamma(tau) = tanh(delta tau / 2), the squared wall has exactly one forward solution with
+tau >= 0 precisely when delta is nonzero, namely
+
+    |delta| * tau_wall = 2 artanh(1/sqrt(2)) = log(3 + 2*sqrt(2)),
+
+and a zero gap has none.  Three hypotheses are doing work and are stated here rather than
+left in the Lean: the initial offset is zero, the gap is real, and it is compared against
+the squared wall.  With a nonzero offset the assertion is false -- Gamma(tau) = tanh(1 +
+tau/2) starts above 1/sqrt(2) and never returns.
+
+    PROVED: the gap law itself is unified/DiracTime/CommonClock.lean, common_gap_scaling;
+    its projection to a real gap is Found/CommonClock.lean, real_common_clock_gap; the peel
+    substitution is gapPeel_of_common_gap, and then hasDerivAt_gapPeel, gam_gapRatio,
+    gapPeel_eq_wall_iff, existsUnique_forward_wall_iff, forward_wall_time_mul_abs_gap.
+
+This is the closest join in the body and the one most easily over-read.  The identification
+is exact inside the model; it does not say that any physical peel has this rate, and the
+paper does not claim it.
+
+4.3  VOTKP.
+
+The same coordinate with the composition law made the centre of the theory: the Smith
+coordinate, the velocity addition law, the film echo, the exact circle that decides whether
+a thin film raises or lowers the returned power.  The predictive quotient appears here too.
+Of the four, VOTKP is the one whose own theorem -- that peel steps add like velocities -- is
+the composition law of Section 3.3 stated for the peel.
+
+4.4  Ramanujan's gamma fractions.
+
+The gamma quotient is
+
+    4 Gamma((x+3)/4)^2 / Gamma((x+1)/4)^2 = x + 1^2/(2x + 3^2/(2x + 5^2/(2x + ...))).
+
+Its n-th term, as a transfer matrix, is [[0, (2n-1)^2], [1, 2x]], with characteristic roots
+x +- s where s = sqrt(x^2 + (2n-1)^2) -- a derivation in the session record, and *not*
+formalised in this tree.  What the tree does prove is the algebra of the face that
+derivation names.  Define
+
+    z_n = (s + x)/(s - x),    Gamma_n = x / sqrt(x^2 + (2n-1)^2);
+
+then Gamma_n = (z_n - 1)/(z_n + 1) exactly, and the wall Gamma_n^2 = 1/2 is exactly
+2n - 1 = x.  The identification of these z_n and Gamma_n with the fraction's own terms is a
+reading, not a theorem here; the identities are about the definitions.  Granting the
+reading, this is the peel coordinate again, with the fraction's parameter x in the role of
+the charge, and:
+
+    for positive real x and n >= 1, a face is on the wall exactly when 2n - 1 = x; since
+    2n - 1 runs over the positive odd integers, an odd x has a wall face and an even x does
+    not (arithmetic on the theorem, not a separate declaration).
+    Brouncker's fraction (x = 1) has it at the first face, with z_1 = 3 + 2*sqrt(2).
+    x = 3 has it at the second face; x = 5 at the third; and so on.
+
+    PROVED (about the definitions above): unified/Bridge/Faces.lean -- faceRatio_eq_gam,
+    faceGamma_sq_eq_half_iff, faceGamma_sq_eq_half_iff_odd, faceGamma_lt_one,
+    brouncker_first_face.
+    NOT FORMALISED: that the continued fraction's terms are these faces, its convergents
+    are products of these matrices, or that any convergent equals a product of the z_n.
+
+The session record reports that the fraction's truncation error falls like N^(-x), that
+|error| N^x tends to 4/pi^2 at x = 1 and to 1/4 at x = 3, and that error times the product of
+the face ratios stays nearly fixed.  Neither constant is derived there or here.  What this
+repository reproduces is the finite evidence, and only that: at N = 6400 the script gives
+0.4053049 and 0.24999999 against 4/pi^2 = 0.4052847 and 1/4 -- agreement to five figures,
+which is not a proof of a limit, and the script's tolerance is not one either.  The
+attenuation rule does survive its own test: error times the face product varies by 0.3 per
+cent at x = 1 and at x = 3 while the error falls by four orders of magnitude, and by 5 per
+cent at x = 1/2.  The power law itself is *motivated* by Section 3.3: the sum of rapidities
+grows like x log N, so the product of the z's grows like N^x, and one expects the error to
+fall like N^(-x).  The step from a product of faces to the truncation error of a
+non-commuting stack is not an implication, and no theorem here derives it.
+
+    MEASURED (finite, at the stated N): scripts/ramanujan_faces.py -- the values above, the
+    attenuation spreads, and the angle table, which the session's own checker also gives.
+    OPEN: the two limits, the N^(-x) law, and the derivation of either constant.
+
+4.5  The twin-prime key.
+
+The same ledger language, applied to gaps between primes rather than energies: end digits,
+the two ladders p = 1 and p = 5 mod 6, twin starts, handoff air, merged quadruplets.  The
+arithmetic part is proved -- every prime above 3 lies on exactly one ladder, every twin
+start above 3 is on the 5-ladder, every twin start above 5 is 11, 17 or 29 mod 30, every
+handoff air is 4 mod 6, a four-prime merge can only start at 11 mod 30.
+
+    PROVED: unified/PrimeGap/ (copied byte-identically from results/), 37 declarations.
+
+The counts -- 50,847,534 primes below 10^9, 27,412,679 twin pairs below 10^10, the
+transition matrices and their decay -- are measurements and are kept apart from the
+arithmetic in results/.  This leg contributes no peel statement beyond the ledger form; it
+is in the paper because it is the same author's ledger used on a different object, and
+because pretending otherwise would be the kind of unification this paper is trying to avoid.
+
+
+------------------------------------------------------------------------------
+5.  THE DATA LAYER
+------------------------------------------------------------------------------
+
+5.1  What reproduces.
+
+The shipped archive has 118 elements and 5,714 removal steps, of which the hydrogen-to-
+astatine baseline is 85 elements and 3,570 steps.  Every published count in the periodic
+table and the scale atlas reproduces from the shipped JSON by one script:
+
+    3,570 steps, 8 outside the wall, all eight first core openings, all at k <= 4
+    65 anion rungs, 53 outside
+    83 of 83 elements Li-At whose largest step opens a core (78 helium, 2 neon, 1 each
+        argon, krypton, xenon)
+    5,714 steps in the full archive, the same eight outliers
+    183,770 contiguous windows of at least two steps
+    91,768 of them above the wall in total
+    91,638 of those with every constituent step inside
+    0 above the wall on geometric mean per step
+    largest two-step mean 4.76566745 (Li), largest three-step mean 3.15005083 (B)
+    183,081 windows with both endpoint widths usable, 689 without
+    0 usable windows above the wall on the upper endpoint mean
+
+    MEASURED: scripts/atlas_census.py, which reproduces the atlas's own computation --
+    z = ie[j]/ie[i] over the two endpoint thresholds, consecutive charge labels, and the
+    per-element uncertainty list for the endpoint rectangle.
+
+The rule that makes the window count exact is stated in the atlas's prose and easy to miss:
+every intervening charge must be present, so a window is a run of consecutive k and not a
+slice of the step list.  Dropping only that requirement, with ratios still taken from the
+endpoint energies, gives 191,817 / 98,572 / 98,442; dropping it and also switching to
+products of the rounded stored step ratios gives 191,817 / 95,569 / 95,439.  The main triple
+is the same under both ratio conventions, which is the reassuring part: it is the
+consecutive-charge rule, not the choice of ratio convention, that does the work.  This is
+worth stating because it is the kind of rule a later reader re-deriving the numbers will
+otherwise get wrong, as this one did.
+
+5.2  The composition finding.
+
+Of the 91,768 windows that exceed the wall, 91,638 do so with every constituent step inside
+it: 99.86 per cent.  The composition theorem explains how each of those is possible; it does
+not imply the number, which depends on this archive's window lengths and ratio distribution.
+That distinction is the honest one -- addition makes accumulated crossings possible, and
+this archive is full of them.  The remaining 130 windows contain an outside step and cross
+trivially.  A summary that keeps only each step's inside/outside label cannot recover the
+other 91,638; the products of the tabulated ratios can.
+
+5.3  What the table cannot select.
+
+Order the 3,570 baseline step ratios.  The largest inside the wall is 5.639665 (nitrogen,
+k=5); the smallest outside is 5.947101 (caesium, k=1).  Every cutoff in the interval
+between them classifies all 3,570 steps identically, and 3 + 2*sqrt(2) = 5.828427 lies
+inside that interval.  Adding the 65 anion rungs narrows the interval to
+[5.807902, 5.866539) -- silver's rung is the largest inside, silicon's the smallest outside
+-- which still contains the wall.
+
+So the archive is consistent with the wall and cannot distinguish it, at this resolution,
+from any value in a band of about one per cent around it.  That is the honest statement and
+it is the opposite of a confirmation.
+
+Nor do the aggregate counts rescue it.  The 91,768 and 91,638 are deterministic functions
+of the cutoff: at c = 5.85, inside the band, the per-step classification is unchanged --
+still eight outside, all core openings -- but the crossing count falls to 91,616 and the
+accumulated-only count to 91,486.  The point is not that a computed quantity is never
+evidence; it is that these counts have no independently measured target in the archive, so
+reproducing their published values cannot select the cutoff.  The raw endpoint ratios are
+cutoff-independent; which compositions count as accumulated-only is not.
+
+    MEASURED: scripts/atlas_census.py computes the ordinary-step band, the combined band
+    from the 65 anion ratios, and both censuses at c = 5.85; scripts/check_paper_numbers.py
+    checks the c = 5.85 count against this text.
+
+5.4  The shapes.
+
+The table also reports that reading each element's first eight steps on other shapes --
+triangle, square, diamond, hexagon -- groups elements by column far better than the raw
+energies do.  On the archive's 77-element comparison (scripts/shapes_recall.py) the reported
+scores are circle 53 of 77, diamond 52, cube 48, simplex 60 and raw energies 4; simplex is
+numerically the highest of the four shape scores on that comparison.  The scoring target and the evaluation
+population are fixed by that comparison, and without them the numbers say nothing more.
+
+The same sentence adds that no shape beats the circle by more than its bootstrap spread.
+That part cannot be checked: no resampling unit, replicate count, seed or spread is shipped,
+and the observed simplex-minus-circle gap is 7 of 77.  The paper reports the recomputable
+half and says the other half is unreproducible.
+
+    MEASURED: scripts/shapes_recall.py -- the four scores, both raw-energy baselines and the
+    uniform chance level.  NOT REPRODUCIBLE: the bootstrap clause.
+
+
+------------------------------------------------------------------------------
+6.  CHIRALITY, AND WHAT THE WALL CANNOT SEE
+------------------------------------------------------------------------------
+
+Reversal sends z to 1/z and Gamma to -Gamma.  So any readout that factors through Gamma^2
+is invariant under reversal: it cannot tell a ratio from its reciprocal, and it cannot tell
+the two branches of the wall apart.  Two statements, carefully separated:
+
+    a single ratio that is fixed by reversal has z = 1 and Gamma = 0, and so is at neither
+    branch of the wall;
+
+    a ladder that is fixed by reversal as a sequence -- palindromic readings -- does *not*
+    have Gamma = 0 at every step.  The readings 1, W, 1 with W = 3 + 2*sqrt(2) are unchanged
+    by reversal, and both of their steps are exactly at the wall.  Reversal reorders and
+    reciprocates the steps; it does not by itself keep a ladder off the wall.
+
+The first is a statement about one number and is proved (`mirror_fixed_iff_gam_eq_zero`).
+The second is the reason the distinction has to be made in words: conflating them is an
+error this draft made in its first version.
+
+What the wall does hide is the sign.  Each branch has nonzero Gamma, and any quantity built
+from Gamma^2 reports the same number at +Gamma and -Gamma.  That is blindness to the sign of
+one coordinate, and it is all that is proved; the signed quantity log z and Gamma itself are
+computed throughout the papers and are of course reversal-sensitive.  No further notion of
+chirality is formalised here.
+
+The same elementary argument appears twice more in the body.  In the Dirac-time paper a
+chiral pairing S T S^-1 = -T pairs the spectrum under mu -> -mu and kills every odd spectral
+moment; in the knot work theta(mirror K) = -theta(K), so an amphichiral knot has theta = 0.
+The argument in all three places is: an invariant that is odd under an involution vanishes
+on the fixed locus.
+
+It is an analogy among proofs, not a compiled three-way interface, and the tree must not be
+read as saying otherwise.  What is proved is the generic lemma, the LoopWall reversal
+identity, and an abstract theta schema in which `K`, `mirror` and `theta` are arbitrary with
+oddness and fixedness as hypotheses.  The Dirac spectral theorem is a separate argument, not
+an instance of the generic lemma in this tree, and no knot invariant is formalised.
+
+    PROVED: unified/Bridge/Chirality.lean -- odd_involution_vanishes (generic),
+    theta_vanishes_on_amphichiral (the schema), even_readout_blind, gam_mirror,
+    mirror_fixed_iff_gam_eq_zero, wall_is_chiral (which states only that the wall ratio has
+    nonzero Gamma and is not 1).
+    NOT COMPILED AS INSTANCES: the Dirac chiral pairing, and any actual knot.
+
+The lemma gives one direction only.  It does not say that theta = 0 forces a knot to be
+amphichiral, and the paper is careful about this because the knot census invites exactly
+that over-read: over all 12,965 prime knots through 13 crossings, KnotInfo release 2026.11.2 has 78
+amphicheiral -- 47 negative, 30 fully, 1 positive -- and the set is name-for-name identical
+to the 78 with theta = 0.  Both lists ship: the KnotInfo snapshot in
+knots/data/knotinfo_amphichiral_2026.11.2.csv and the VOTKP census in
+knots/data/census_through_13.csv, compared by scripts/knot_census.py.  There is no exception in either
+direction, and zero amphicheiral knots at 11 or at 13 crossings.
+
+That is a complete finite verification and it is still not a proof of the converse: the
+converse is a statement about all knots, and the census stops at 13 crossings.  A single odd
+function that vanishes away from its fixed locus -- x^3 - x at x = 1 under x -> -x -- shows
+that oddness alone can never yield the converse.
+
+    MEASURED: scripts/knot_census.py, over the two shipped lists (KnotInfo 2026.11.2).
+    PROVED: odd_does_not_imply_converse.
+    OPEN: the converse (the knot paper's Conjecture 21).
+
+
+------------------------------------------------------------------------------
+7.  THE NEGATIVE RESULTS
+------------------------------------------------------------------------------
+
+Half of what this body establishes is that certain attractive statements are false or
+undecidable from the data.  They are collected here because they are the part least likely
+to be rediscovered and most likely to be re-asserted.
+
+    7.1  Composition does not select the ledger readout.  Evenness, vanishing at zero
+         balance and append-additivity of a channel sum leave both the log ledger and the
+         Gamma^2 readout admissible.  Selection needs additivity of a determinant readout
+         plus regularity.  (LoopWall: append_additivity_alone_does_not_select_ledger,
+         CompositionBridge.eq_const_mul_log_of_append_additive.)
+
+    7.2  Twelve statements transcribed from the papers' prose are false as written and are
+         kept as refutation theorems beside their corrected forms, in code and in
+         LIMITATIONS.md and COVERAGE.md.  They include the sign of the Euler-Lagrange
+         term, the wall-clock factor, the sign of the readout coefficient, the claim that
+         the square of a scale bound suffices, and the norm-one quaternion count in Z^4.
+
+    7.3  The predictive quotient of a peel ladder is one-dimensional in the scalar model,
+         so the wall is not a memory transition there -- but this is model-dependent and
+         not intrinsic.  Other linearisations of the same ladder do separate the wall, and
+         one changes dimension at z = 1 instead.  (unified/Found/PredictivePeel.lean.)
+
+    7.4  The block determinant identity is not what it looks like: 1 - Gamma^2 = 4 det p
+         holds for one two-channel block; the blockDet of the composition bridge is a
+         product over blocks and equals (1 - Gamma^2)^n.  Two wall blocks give 1/4, not
+         1/2.  (unified/Found/WallReadout.lean.)
+
+    7.5  Perfect reflection is unattained.  det p = 0 corresponds to |Gamma| = 1, and for a
+         positive peel ratio |Gamma| < 1 strictly, so the block determinant never vanishes.
+
+These are not embarrassments to be trimmed from a submission, and they are not evidence for
+the positive statements either.  Their content is that certain attractive sentences are
+false or undecidable from the data, which is worth knowing on its own.  The assurance for
+each positive statement comes separately, from its cited kernel-checked proof or its
+reproducible measurement -- that is the standard of Section 2, and the corrigenda neither
+add to it nor substitute for it.
+
+
+------------------------------------------------------------------------------
+8.  PRIOR ART, AND WHAT IS ACTUALLY NEW
+------------------------------------------------------------------------------
+
+Riccati equations for nonuniform transmission lines were standard long before this work.
+Pierce gave the impedance Riccati equation and its uniform-line tanh solution in 1943 (Bell
+System Technical Journal 22, 263-265, which calls it a Riccati equation on p. 263 and gives
+a tanh solution on p. 264); Walker and Wax gave the voltage-reflection form in 1946 (Journal
+of Applied Physics 17, 1043-1045).  The particular solution Gamma = tanh(omega t / 2) follows
+from the derivative and identity in DLMF 4.34.3 and 4.35.12, and needs no transmission-line
+attribution at all.  The identity Gamma = tanh((1/2) log z) is the logarithmic form of
+artanh, DLMF 4.37.24: artanh u = (1/2) ln((1+u)/(1-u)).  The addition law is DLMF 4.35.3,
+which is also the relativistic velocity law in the tangent-half-angle variable.  The
+continued-fraction step matrix [[0, a_n], [1, b_n]] and its convergent recurrence are
+standard: DLMF 1.12(ii) for the recurrence, Paydon and Wall (Duke Math. J. 9, 1942) for the
+sequence-of-linear-transformations reading, and Kisil (arXiv:1412.1457, section 2) for a
+modern exposition.  The finite-dimensional predictive quotient is the observability quotient
+of linear systems theory, and the fact that a product exceeds a threshold exactly when the
+sum of logarithms does is DLMF 4.8.2 with monotonicity of the logarithm.
+
+None of that is claimed as new, and the earlier version of this section was wrong to name
+Walker and Wax as the closest source for the tanh solution: Pierce precedes them, and the
+special solution is an exercise in the DLMF identities.
+
+What this paper offers, then, is not an algebra and not a criterion:
+
+    -- a proof-level synthesis of six named works by this author, with the duplicate
+       repository proofs kept and their interfaces stated as theorems; this is an
+       integration of my own repositories, not a claim to a new algebraic object.  The six,
+       with the versions this paper was checked against, are the loop-wall development in
+       this repository, "The Dirac Time of the Gigantefermion" (DOI 10.5281/zenodo.22978630),
+       "VOTKP: The Vector of Traits Kept under Peeling" (v2.9, DOI 10.5281/zenodo.23340757),
+       the periodic table v2.2, the Ramanujan-faces session record of 13-15 November 2026, and
+       the twin-prime key in results/ -- the last of which, as Sections 4.5 and 9 say, shares
+       only the ledger vocabulary;
+    -- the application to removal-step ladders of the elementary facts that a product
+       exceeds a threshold exactly when the sum of logarithms does and that a geometric mean
+       is bounded by the largest term, together with the archive counts and their Lean
+       formalisation.  No new composition criterion is claimed;
+    -- the restatement in peel notation of the eigenvalues of the standard continued-fraction
+       step matrix: with r = x/(2n-1), z_n = exp(2 asinh r) and
+       Gamma_n = tanh(asinh r) = x/sqrt(x^2 + (2n-1)^2), whence Gamma_n^2 = 1/2 exactly when
+       2n - 1 = x.  I have not located this displayed peel formulation elsewhere and claim
+       only the formulation and the odd-x observation, not a new matrix construction;
+    -- the itemised corrigenda to my earlier statements, and the computation that this
+       shipped archive leaves an interval of cutoffs with identical per-step classifications
+       while yielding different aggregate window counts inside that interval.  Both are
+       repository- and archive-specific, and neither is claimed as a general phenomenon.
+
+The last is the most defensible contribution and the least exciting: a checked statement of
+what the evidence does not show.
+
+
+------------------------------------------------------------------------------
+9.  WHAT IS NOT CLAIMED
+------------------------------------------------------------------------------
+
+    -- no physical mechanism.  No Hamiltonian, force, optical constant or ionisation energy
+       is derived.  LIMITATIONS.md for the loop wall, and the corresponding files for Dirac
+       time and VOTKP, define the scope and are not widened here.
+    -- no predictive power over chemistry.  The body sorts ratios that were already
+       measured.  It has not predicted a ratio that was not, and the paper supplies no
+       number that a chemist could test against a new measurement.
+    -- no selection of the wall value from data.  Section 5.3.
+    -- no proof of the knot converse.  Section 6.
+    -- no claim that the twin-prime leg is part of the peel theory.  It shares the ledger
+       language and nothing else, and it is included as the same author's ledger on a
+       different object.
+    -- no claim that theta is formalised.  Only the algebraic step from oddness to vanishing
+       is.
+    -- no claim that these developments were originally one programme.  They were not; they were
+       separate papers, and the unification is retrospective.
+
+
+------------------------------------------------------------------------------
+10.  THE LEDGER
+------------------------------------------------------------------------------
+
+Every claim of the paper, with its status and the thing that reproduces it.  "proved*" means
+proved about definitions this tree introduces, not about the external object the section
+names.
+
+    claim                                       status     reproducer
+    ---------------------------------------------------------------------------
+    --- proved ---------------------------------------------------------------
+    Gamma = tanh(log z / 2)                     proved     Ledger.lean / Smith.lean
+    z = (1 + Gamma)/(1 - Gamma)                 proved     Ledger.lean, inverse_gam
+    Gamma(1/z) = -Gamma(z), squares equal       proved     gam_reverse, gam_sq_reverse
+    Gamma^2 = 1/2 iff z = 3 +- 2 sqrt 2         proved     Wall.lean, wall_eq_iff
+    wall ledger = +- 2 log(1 + sqrt 2)          proved     Bridge/Reflection
+    window exceeds W iff sum rapidity > log W    proved     Bridge/Composition
+    two steps at 5/2 cross (25/4)               proved     two_halves_cross
+    geometric mean of inside steps inside       proved     geomean_lt_wall
+    Gamma_n = x / sqrt(x^2 + (2n-1)^2)          proved*    Bridge/Faces
+    a face is on the wall iff 2n - 1 = x        proved*    faceGamma_sq_eq_half_iff_odd
+    Brouncker z_1 = 3 + 2 sqrt 2                proved*    brouncker_first_face
+    odd invariant vanishes on fixed locus       proved     Bridge/Chirality
+    oddness does not give the converse          proved     odd_does_not_imply_converse
+    mu_j - mu_k = tau_dot (E_j - E_k)           proved     DiracTime/CommonClock,
+                                                           common_gap_scaling
+    omega = mu_j - mu_k, the peel rate          --         model identification, not a theorem
+    |delta| tau_wall = log(3 + 2 sqrt 2)        proved     Found/CommonClock,
+                                                           forward_wall_time_mul_abs_gap
+    descent specialises to the peel ledger      proved     tanh_ledger_descent
+    predictive quotient, two proofs agree       proved     unseen_eq_unobservable
+    readout non-selection (7.1)                 proved     append_additivity_alone_does_not_
+                                                           select_ledger, CompositionBridge
+    peel dimension one, scalar model (7.3)      proved     Bridge/Quotient
+    ... and model-dependent elsewhere (7.3)     proved     Found/PredictivePeel
+    1 - Gamma^2 = 4 det p, one block (7.4)      proved     Bridge/Reflection
+    blockDet = (1 - Gamma^2)^n (7.4)            proved     Found/WallReadout
+    perfect reflection is unattained (7.5)      proved     Found/WallReadout
+    five ladder/twin arithmetic laws (4.5)      proved     unified/PrimeGap (37 declarations)
+    twelve prose statements false (7.2)         proved     FalseControls/, LIMITATIONS.md
+    --- measured -------------------------------------------------------------
+    3,570 steps; 8 outside; all core openings   measured   atlas_census.py
+    305/305 core records satisfy k = Z - N      measured   atlas_census.py
+    65 rungs; 53 outside                        measured   atlas_census.py
+    83 maxima = 78 He + 2 Ne + 1 + 1 + 1        measured   atlas_census.py
+    118 elements; 5,714 steps                   measured   atlas_census.py
+    183,770 / 91,768 / 91,638 / 0 mean          measured   atlas_census.py
+    main triple invariant to ratio convention   measured   atlas_census.py
+    control 191,817 / 98,572 / 98,442           measured   atlas_census.py
+    control 191,817 / 95,569 / 95,439           measured   atlas_census.py
+    130 crossing windows contain an outside step  measured atlas_census.py
+    99.86 per cent                              measured   atlas_census.py (91,638/91,768)
+    183,081 usable; 689 missing; 0 upper        measured   atlas_census.py
+    4.76566745 (Li); 3.15005083 (B)             measured   atlas_census.py
+    band [5.639665, 5.947101)                   measured   atlas_census.py
+    combined band [5.807902, 5.866539)          measured   atlas_census.py
+    91,486 windows at c = 5.85                  measured   atlas_census.py, checker
+    shapes 53/52/48/60 of 77; raw 4/77          measured   shapes_recall.py
+    simplex - circle = 7/77                     measured   shapes_recall.py
+    uniform chance 0.044429254956               measured   shapes_recall.py
+    12,965 knots; 78 = 47 + 30 + 1; 0 at 11,13  measured   knot_census.py
+    KnotInfo names == theta-zero names          measured   knot_census.py
+    Ramanujan finite values at N=6400           measured   ramanujan_faces.py
+    attenuation spread <= 5 per cent            measured   ramanujan_faces.py
+    angle table (eight fractions)               measured   ramanujan_faces.py / chk1.py
+    50,847,534 primes below 10^9                measured   results/ (sieve; digit_table.py)
+    27,412,679 twin pairs below 10^10           measured   results/; equals A007508(10)
+    1,631 declarations (1,628 build-covered)    measured   build_unified.py --count
+    95 modules built                            measured   build_unified.py
+    102 audited declarations (39 + 63)          measured   Bridge/Audit.lean, AuditAll.lean
+    ---------------------------------------------------------------------------
+    --- open, or not reproducible here ---------------------------------------
+    the limits 4/pi^2 and 1/4                   open       finite evidence only
+    the N^(-x) error law                        open       motivated, not derived
+    the fraction's terms ARE these faces        --         not formalised; a reading
+    bootstrap spread of the shape scores        --         not shipped
+    a knot invariant (theta) itself             --         not formalised
+    the Dirac pairing as an instance of the     --         not compiled; an analogy among
+      generic involution lemma                             proofs
+    the lower wall branch in the composition    open       the criterion is stated for W only
+      criterion
+
+
+------------------------------------------------------------------------------
+11.  HOW A READER CHECKS IT
+------------------------------------------------------------------------------
+
+One command builds the whole Lean body; one builds the audit; one reproduces the archive
+census; one reproduces the fraction checks.
+
+    python3 scripts/build_unified.py            # 95 modules
+    python3 scripts/build_unified.py --count    # the declaration census
+    LEAN_PATH=.:unified:$LEAN_PATH lean unified/Bridge/Audit.lean
+    LEAN_PATH=.:unified:$LEAN_PATH lean unified/AuditAll.lean
+    python3 scripts/atlas_census.py
+    python3 scripts/shapes_recall.py
+    python3 scripts/knot_census.py
+    python3 scripts/ramanujan_faces.py
+    python3 scripts/check_paper_numbers.py
+
+The build covers 95 modules and exits zero -- 96 discovered including the unified root, less
+UnitaryEntropy, which needs Physlib and is excluded.  The census counts 1,631 theorem and
+lemma declarations in the six trees, of which 1,628 are in modules the build compiles (the
+three in UnitaryEntropy are not); the figure is a parser's, and the parser is named.  Two
+audits cover the paper's PROVED citations: Bridge/Audit.lean reports 39 declarations and
+AuditAll.lean another 63 -- the common-clock set, the 37 prime-gap declarations, the Smith
+identity and the Dirac gap theorem -- every one within [propext, Classical.choice,
+Quot.sound] (several use fewer).  The Bridge audit prints 41 physical lines because one
+report wraps.  The census, shape, knot and fraction scripts print their totals and pass.  The last
+reads this file and checks fifteen selected computed values against it.  That is a tripwire,
+not a guarantee: it matches substrings, it does not parse the prose, and a figure it does not
+list can drift without it noticing.  Anything that does not reproduce is a bug and should be
+reported as one.
+
+
+------------------------------------------------------------------------------
+12.  OPEN PROBLEMS
+------------------------------------------------------------------------------
+
+    -- The wall value is not selected by the data.  What measurement would select it?  A new
+       ordinary-step ratio or anion rung strictly between 5.807902 and 5.866539 would narrow
+       the combined classification band; no shipped ratio lies in that open interval.  (The
+       older, wider step-only band is not the live one: silver's, silicon's and iridium's
+       anion rungs already sit inside it.)  This is the one place where a new measurement,
+       not a new argument, could change the paper.
+    -- The knot converse is open, and the lemma cannot reach it.
+    -- The two constants 4/pi^2 and 1/4 in the fraction error law are observed and not
+       derived.  A derivation would turn Section 4.4's measurement into a theorem.
+    -- The predictive quotient of a peel is model-dependent.  Whether any canonical choice
+       of (L, R) is forced by the peel structure is open, and the negative result in 7.3 is
+       the honest state of it.
+    -- The physical bridge, for every leg, is untouched.  Nothing in this paper moves it.
+
+
+------------------------------------------------------------------------------
+A note on how this file is kept
+
+This is the verbal spine, not the paper's final text.  When a claim is verified, its status
+changes here and in the ledger; when a claim fails, it moves to Section 7 with the corrected
+form beside it.  The repository's file names are used rather than theorem numbers so that
+the text survives refactoring.  Numbers quoted without a script are to be removed, not
+trusted.

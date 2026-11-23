@@ -1,0 +1,10 @@
+closure,form,closes,filled_by,second_reading,law
+2,2*1^2,"period 1 (H, He)",1s,a twin pair spans 2; each live digit owns 2 columns,the duet
+4,2*2,—,two orbitals,T - air = 4; w_{l+1} - w_l = 4,the step
+6,2*3,—,the p block,"air = 4 (mod 6): the gap step; rung increments 6, 10, 14",the rise
+8,2*2^2,"periods 2 and 3 (Ne, Ar)",s + p,"phi(30) = 8 columns, 7 fillable; T_min = 8",the octet
+18,2*3^2,"periods 4 and 5 (Kr, Xe)",s + p + d,—,the 18-electron rule
+30,2*3*5,—,—,"the wheel: 8 classes, 5 gap classes, capacity 7",the modulus
+32,2*4^2,"periods 6 and 7 (Rn, Og)",s + p + d + f,the top twin class T = 32,the 32-electron rule
+118,sum L(1..7),the measured end,14 + 36 + 40 + 28,"118 = 28 (mod 30), the largest gap class",where the data stops
+120,sum W(q<=8),the arithmetic end,every rung to q = 8,120 = 0 (mod 30),two cells short

@@ -186,3 +186,11 @@ physics the paper reads into them.
   library; the numbers can be looked up in KnotInfo but not proved there.
 * The finite-block numerics (traces of 12 units, energy residuals of order `1e-14`, link weights)
   and the Russell octave tabulation.
+
+## The Light Bridge layer (`results/`)
+
+The papers' layer under `results/` — the closure ladder, the prime ladder, the fission channel, the
+count formulas and the heat layer — has its own register, claim by claim, with the same status key:
+[`results/light-bridge-coverage.md`](results/light-bridge-coverage.md). Its paper is
+[`results/light-bridge-paper.md`](results/light-bridge-paper.md) (PDF in `paper/`), and its claims are
+checked against the data by `scripts/check-paper.py`, which `scripts/verify-all.sh` runs.

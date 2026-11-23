@@ -1,0 +1,7 @@
+quantity,mean,sd,min,max,note
+Z_heavy,54.140,0.625,52.86,55.51,pinned at the closure 54
+A_heavy,135.79,2.52,134,143,not pinned (1.6x wider)
+N_heavy,81.65,2.19,79.39,87.54,magic number 82
+Z_heavy+N_heavy,135.79,2.52,134.00,143.00,= the mass number
+Z_light,39.751,1.970,36.05,44.80,= Z - 54
+N_light,60.75,4.14,52.87,70.20,no magic number
