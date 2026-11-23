@@ -22,14 +22,17 @@ noncomputable def boundaryKernel (D : Matrix β β ℂ) (C : Matrix β ι ℂ)
     (G : Matrix β ο ℂ) (T : Matrix ο ο ℂ) (F : Matrix ο β ℂ) : Matrix β β ℂ :=
   D - C*R*B - G*T*F
 
+omit [Fintype β] [DecidableEq β] in
 theorem inside_lift_equation (A R : Matrix ι ι ℂ) (B : Matrix ι β ℂ)
     (hAR : A*R=1) : A * (-(R*B)) + B = 0 := by
   simp only [Matrix.mul_neg, ← Matrix.mul_assoc, hAR, Matrix.one_mul, neg_add_cancel]
 
+omit [Fintype β] [DecidableEq β] in
 theorem outside_lift_equation (E T : Matrix ο ο ℂ) (F : Matrix ο β ℂ)
     (hET : E*T=1) : E * (-(T*F)) + F = 0 := by
   simp only [Matrix.mul_neg, ← Matrix.mul_assoc, hET, Matrix.one_mul, neg_add_cancel]
 
+omit [Fintype β] [DecidableEq ι] [DecidableEq β] [DecidableEq ο] in
 theorem boundary_lift_equation (D : Matrix β β ℂ) (C : Matrix β ι ℂ)
     (R : Matrix ι ι ℂ) (B : Matrix ι β ℂ)
     (G : Matrix β ο ℂ) (T : Matrix ο ο ℂ) (F : Matrix ο β ℂ) :
@@ -38,6 +41,7 @@ theorem boundary_lift_equation (D : Matrix β β ℂ) (C : Matrix β ι ℂ)
   simp only [Matrix.mul_neg, ← Matrix.mul_assoc]
   abel
 
+omit [DecidableEq ι] [DecidableEq β] [DecidableEq ο] in
 theorem boundary_frame_covariance (D q qi : Matrix β β ℂ)
     (C : Matrix β ι ℂ) (R : Matrix ι ι ℂ) (B : Matrix ι β ℂ)
     (G : Matrix β ο ℂ) (T : Matrix ο ο ℂ) (F : Matrix ο β ℂ) :

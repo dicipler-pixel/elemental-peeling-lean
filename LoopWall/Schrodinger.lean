@@ -51,7 +51,7 @@ theorem roundShare_one : roundShare 0 1 = 1 := by
   simp [roundShare, roundP1]
 
 theorem roundShare_add (s : ℝ) : roundShare s 0 + roundShare s 1 = 1 := by
-  simpa [roundShare, roundP0, roundP1] using Real.sin_sq_add_cos_sq (s / 2)
+  simp [roundShare, roundP0, roundP1]
 
 theorem hasDerivAt_roundP0 (s : ℝ) :
     HasDerivAt roundP0 (Real.sin (s / 2) * Real.cos (s / 2)) s := by
@@ -60,7 +60,7 @@ theorem hasDerivAt_roundP0 (s : ℝ) :
     ((hasDerivAt_id s).div_const 2)).pow 2) using 1
   · ext u
     simp [Function.comp_def]
-  · simp [Function.comp_def]
+  · simp
     ring
 
 theorem hasDerivAt_roundP1 (s : ℝ) :
@@ -70,7 +70,7 @@ theorem hasDerivAt_roundP1 (s : ℝ) :
     ((hasDerivAt_id s).div_const 2)).pow 2) using 1
   · ext u
     simp [Function.comp_def]
-  · simp [Function.comp_def]
+  · simp
     ring
 
 theorem deriv_roundP0 (s : ℝ) :
@@ -107,7 +107,7 @@ theorem round_fisher (s : ℝ) (hs : Real.sin s ≠ 0) :
   have hdouble : Real.sin s =
       2 * Real.sin (s / 2) * Real.cos (s / 2) := by
     calc
-      Real.sin s = Real.sin (2 * (s / 2)) := by congr 1 <;> ring
+      Real.sin s = Real.sin (2 * (s / 2)) := by congr 1; ring
       _ = 2 * Real.sin (s / 2) * Real.cos (s / 2) := Real.sin_two_mul _
   have ha : Real.sin (s / 2) ≠ 0 := by
     intro ha

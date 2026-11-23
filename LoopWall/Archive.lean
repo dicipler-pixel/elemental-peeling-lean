@@ -1847,10 +1847,12 @@ theorem gam_sq_mono {a b : ℚ} (h1 : 1 < a) (hab : a ≤ b) : gam a ^ 2 ≤ gam
 /-- **The carbon/nitrogen mixed two-face margin is positive, across both input rectangles.**
 With the carbon helium-core opening and the nitrogen helium-core opening as the two faces
 `Γ_C`, `Γ_N`, the margin `Γ_C² + Γ_N² − 1` is approximately `0.00309334` at the central values and
-stays positive for every ratio in the two propagated intervals. -/
+stays positive for every ratio in the two propagated intervals. Only the lower endpoints are
+needed: `gam` is monotone and the margin increases in both ratios, so the two upper bounds would
+be hypotheses the proof never uses, and the theorem is stated without them. -/
 theorem twoFace_margin_C_N (zc zn : ℚ)
-    (hc1 : 6.079515661295 ≤ zc) (hc2 : zc ≤ 6.079552722739)
-    (hn1 : 5.639641538249 ≤ zn) (hn2 : zn ≤ 5.639689262507) :
+    (hc1 : 6.079515661295 ≤ zc)
+    (hn1 : 5.639641538249 ≤ zn) :
     0 < gam zc ^ 2 + gam zn ^ 2 - 1 := by
   have hcl : gam 6.079515661295 ^ 2 ≤ gam zc ^ 2 :=
     gam_sq_mono (by norm_num) hc1

@@ -157,7 +157,7 @@ def EqualPartition (α : Type*) (d k : ℕ) (block : α → Fin d) : Prop :=
 theorem exists_equalPartition (α : Type*) [Finite α] (d k : ℕ)
     (hcard : Nat.card α = d * k) :
     ∃ block : α → Fin d, EqualPartition α d k block := by
-  letI : Fintype α := Fintype.ofFinite α
+  let : Fintype α := Fintype.ofFinite α
   have hc : Fintype.card α = Fintype.card (Fin d × Fin k) := by
     rw [Nat.card_eq_fintype_card] at hcard
     simpa using hcard

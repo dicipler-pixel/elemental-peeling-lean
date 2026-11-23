@@ -179,7 +179,7 @@ theorem force_memory_is_gap_weighted_metric (g a R : ℝ) (hR : R ≠ 0) :
     forceMemoryWeight g a R = 2*(2*R)*coordinateMetric g a R := by
   unfold forceMemoryWeight coordinateMetric
   field_simp [hR]
-  <;> ring
+  ; ring
 
 theorem force_memory_weight_positive (g a R : ℝ)
     (hg : g ≠ 0) (ha : a ≠ 0) (hR : 0 < R) :

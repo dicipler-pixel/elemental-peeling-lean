@@ -102,7 +102,7 @@ theorem proportionality_fails_without_nondegeneracy :
     (fun x y hx hy => Real.log_mul (ne_of_gt hx) (ne_of_gt hy))
     (fun _ _ _ _ => by simp)
   have h := hk (Real.exp 1) (Real.exp_pos 1)
-  simpa using h
+  simp at h
 
 /-- Cauchy's additive functional equation, with monotonicity instead of
 continuity. -/
@@ -215,7 +215,7 @@ theorem additivity_alone_does_not_suffice :
     change (b.constr ℚ g) (b i_one) = 0
     rw [b.constr_basis]
     dsimp [g, i_one]
-    rw [if_neg]
+    rw [ite_eq_right]
     exact fun h => irrational_sqrt_two.ne_rat 1 (by simpa using h.symm)
   have hL_sqrt : L (Real.sqrt 2) = 1 := by
     rw [← hb_sqrt]

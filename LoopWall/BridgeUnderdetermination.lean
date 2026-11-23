@@ -42,7 +42,7 @@ theorem abs_wall_lt_one : |wall| < 1 := by
 
 theorem hasDerivAt_phi1 (x : ℝ) : HasDerivAt phi1 x x := by
   unfold phi1
-  convert (hasDerivAt_pow 2 x).const_mul (1 / 2 : ℝ) using 1 <;> norm_num <;>
+  convert (hasDerivAt_pow 2 x).const_mul (1 / 2 : ℝ) using 1; norm_num;
     ring
 
 theorem deriv_phi1 (x : ℝ) : deriv phi1 x = x :=
@@ -68,9 +68,9 @@ theorem hasDerivAt_phi2 {x : ℝ} (hx : |x| < 1) :
   have hsq : HasDerivAt (fun y : ℝ => y ^ 2) (2 * x) x := by
     simpa using hasDerivAt_pow 2 x
   have hinner : HasDerivAt (fun y : ℝ => 1 - y ^ 2) (-2 * x) x := by
-    convert hsq.const_sub 1 using 1 <;> ring
+    convert hsq.const_sub 1 using 1; ring
   unfold phi2
-  convert (hinner.log hpos.ne').const_mul (-(1 / 2 : ℝ)) using 1 <;> ring
+  convert (hinner.log hpos.ne').const_mul (-(1 / 2 : ℝ)) using 1; ring
 
 theorem deriv_phi2 {x : ℝ} (hx : |x| < 1) :
     deriv phi2 x = x / (1 - x ^ 2) :=
@@ -94,7 +94,7 @@ theorem hasDerivAt_wall_force_formula_at_zero :
   have hsq : HasDerivAt (fun x : ℝ => x ^ 2) (2 * 0) 0 := by
     simpa using hasDerivAt_pow 2 (0 : ℝ)
   have hden : HasDerivAt (fun x : ℝ => 1 - x ^ 2) 0 0 := by
-    convert hsq.const_sub 1 using 1 <;> norm_num
+    convert hsq.const_sub 1 using 1; norm_num
   have hid : HasDerivAt (fun x : ℝ => x) 1 0 := by
     simpa using hasDerivAt_pow 1 (0 : ℝ)
   simpa using hid.fun_div hden (by norm_num : (1 : ℝ) - 0 ^ 2 ≠ 0)

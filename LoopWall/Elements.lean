@@ -489,7 +489,7 @@ theorem window_silver_silicon :
 so X ≤ 2f², while the off-site budget is B = 2f(1 − f); with n neighbours the shell fraction
 nX/B is at most nf/(1 − f). For bcc (n = 8) and 0 < f ≤ 1/25 that is at most 1/3, so the
 coordination-normalised cutoff (shell fraction > 1/3) must fail, though the band is partly filled. -/
-theorem dilute_bcc_fails (f : Rat) (h0 : 0 < f) (h1 : f ≤ 1 / 25) : 8 * f / (1 - f) ≤ 1 / 3 := by
+theorem dilute_bcc_fails (f : Rat) (_h0 : 0 < f) (h1 : f ≤ 1 / 25) : 8 * f / (1 - f) ≤ 1 / 3 := by
   have hp : 0 < 1 - f := by grind
   have e : 8 * f / (1 - f) * (1 - f) = 8 * f := Rat.div_mul_cancel (by grind)
   by_cases h : 8 * f / (1 - f) ≤ 1 / 3
