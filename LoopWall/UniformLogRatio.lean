@@ -207,7 +207,9 @@ def motionLagrangian (ω S v : ℝ) : ℝ :=
 def plusLagrangian (ω S v : ℝ) : ℝ :=
   (1 / 2 : ℝ) * v ^ 2 + effectivePotential ω S
 
-/-- The interval action of a smooth readout for any curried density. -/
+/-- The interval action of a smooth readout for any curried density. It is declared for
+reference; this module proves the Euler--Lagrange residual of two densities, not that
+stationarity of this integral is equivalent to that residual vanishing. -/
 noncomputable def variationalAction (L : ℝ → ℝ → ℝ) (S : ℝ → ℝ)
     (a b : ℝ) : ℝ := ∫ τ in a..b, L (S τ) (deriv S τ)
 
@@ -317,7 +319,10 @@ theorem plus_eulerLagrangeResidual_eq (ω : ℝ) (S : ℝ → ℝ) (τ : ℝ) :
   rw [hv, deriv_plusLagrangian_position]
   ring
 
-/-- Stationarity of the corrected motion action is exactly the stated ledger ODE. -/
+/-- The Euler--Lagrange residual of the corrected motion action vanishes exactly when the ledger
+ODE holds. This is the residual identity; the passage from stationarity of `variationalAction`
+to the vanishing of this residual is the classical first-variation argument, which this module
+does not formalize. -/
 theorem motion_eulerLagrange_eq_zero_iff (ω : ℝ) (S : ℝ → ℝ) (τ : ℝ) :
     eulerLagrangeResidual (motionLagrangian ω) S τ = 0 ↔
       deriv (deriv S) τ = (ω ^ 2 / 4) * Real.exp (-(2 * S τ)) := by

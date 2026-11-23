@@ -4,7 +4,8 @@ import Mathlib
 # The linear observer: which readouts close under the dynamics
 
 Direction D1.  `observer_iff`: a compressed linear observer `M` with `M ∘ R = R ∘ L` exists iff
-`R` vanishes on `ker R`; the reverse direction constructs `M` through the quotient and
+`ker R` is invariant under `L` — equivalently, iff `R ∘ L` vanishes on `ker R`; the reverse
+direction constructs `M` through the quotient and
 `LinearMap.exists_extend`.  The module also proves that the literal family `ker (R ∘ L^n)` is NOT
 a decreasing filtration and that `⋂_n ker (R L^n) = ker (R L^(d−1))` is false (`rawKer_*`), then
 proves the correct statements for the cumulative family `obsKer n = ⋂_{k≤n} ker (R L^k)`, including

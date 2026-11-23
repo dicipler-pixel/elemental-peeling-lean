@@ -34,10 +34,13 @@ Lean proves exactly the statements written, under exactly the hypotheses written
   diagonal threshold `t = 1/2`, and gives a strict counterexample at every other `t` in `(0,1)`.
 * **The error rectangles are checked at the endpoints the CSV supplies.** `LoopWall/Archive.lean`
   proves that for each of the 3,614 comparisons that carry two widths, the wall quadratic has one
-  sign on the whole interval `[z_lower, z_upper]`, so no rectangle crosses the wall, and that
-  every central ratio lies in its own interval. The two propagated endpoints themselves are read
-  from the CSV; the module does not rebuild them from the two raw widths and their uncertainties,
-  and it does not model correlation between the two inputs.
+  sign on the whole interval `[z_lower, z_upper]`, so no rectangle crosses the wall. The further
+  fact that every central ratio lies in its own interval is *not* a theorem in the module:
+  `ratioBoxes` stores endpoint pairs only, and nothing there mentions a central value. It is
+  checked by the generator and by an exact recomputation over all 3,614 rows, and it holds for
+  this CSV. The two propagated endpoints themselves are read from the CSV; the module does not
+  rebuild them from the two raw widths and their uncertainties, and it does not model correlation
+  between the two inputs.
 * **Nothing about nuclei, optics in a material, or Russell's octaves is proved.** The optical
   module proves the sign of the normal-incidence reflectance against `1/2` for a homogeneous
   nonmagnetic half-space with a declared complex index; it does not model a surface, a
