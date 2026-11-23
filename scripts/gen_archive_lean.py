@@ -65,11 +65,17 @@ def load_cn():
 
 
 def load_boxes():
-    """The ratio rectangle of every comparison that carries two quoted widths."""
+    """The ratio rectangle of every comparison that carries two quoted widths.
+
+    Each central ratio must lie inside its own quoted interval.  This is the only place that
+    fact is checked: the Lean module stores the endpoints, so `ratioBoxes` carries no central
+    value and no theorem about one, and the claims files say so.
+    """
     boxes = []
     for row in csv.DictReader(CSV.open()):
-        lo, hi = row["z_lower"].strip(), row["z_upper"].strip()
-        if row["z"].strip() and lo and hi:
+        z, lo, hi = row["z"].strip(), row["z_lower"].strip(), row["z_upper"].strip()
+        if z and lo and hi:
+            assert F(lo) <= F(z) <= F(hi), (row["symbol"], row["k"], z, lo, hi)
             boxes.append((lo, hi))
     return boxes
 

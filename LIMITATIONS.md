@@ -37,10 +37,10 @@ Lean proves exactly the statements written, under exactly the hypotheses written
   sign on the whole interval `[z_lower, z_upper]`, so no rectangle crosses the wall. The further
   fact that every central ratio lies in its own interval is *not* a theorem in the module:
   `ratioBoxes` stores endpoint pairs only, and nothing there mentions a central value. It is
-  checked by the generator and by an exact recomputation over all 3,614 rows, and it holds for
-  this CSV. The two propagated endpoints themselves are read from the CSV; the module does not
-  rebuild them from the two raw widths and their uncertainties, and it does not model correlation
-  between the two inputs.
+  asserted by `scripts/gen_archive_lean.py`, which refuses to emit the file unless all 3,614 rows
+  pass it, and it holds for this CSV. The two propagated endpoints themselves are read
+  from the CSV; the module does not rebuild them from the two raw widths and their uncertainties,
+  and it does not model correlation between the two inputs.
 * **Nothing about nuclei, optics in a material, or Russell's octaves is proved.** The optical
   module proves the sign of the normal-incidence reflectance against `1/2` for a homogeneous
   nonmagnetic half-space with a declared complex index; it does not model a surface, a
@@ -100,9 +100,12 @@ motion, and nothing more than that.
 * **The ledger is selected by composition, not by the dynamics.** `φled_eq_log_det_shares` is an
   exact identity, and `LoopWall/MatrixLedger.lean` proves the log-determinant form is additive over
   channels. The further step — that an additive, normalised, channel-composing readout must be *a
-  multiple of a logarithm* — is not formalized as a functional-equation uniqueness theorem. What is
-  proved is that the ledger is that multiple of the log-determinant, with the constant `1`, and that
-  the oscillator's own potential is not the ledger.
+  multiple of a logarithm* — is `CompositionBridge.eq_const_mul_log_of_append_additive`: from
+  append-additivity over channel blocks and differentiability at `1`, it concludes `A x = c * log x`
+  on `(0,1]`. What is *not* proved is that `c = -1` without further input: the constant is fixed by
+  taking the wall reading to be `log 2` (`coefficient_eq_neg_one_of_wall_normalization`), which is a
+  normalisation, not a derivation. The oscillator's own potential is not the ledger
+  (`potentials_differ_at_zero`, `potentials_differ_at_wall`).
 * **The wall clock is a crossing theorem for the flow it is stated for.** `WallClock` proves that
   `Γ = tanh (ωτ/2)` is strictly increasing for `ω > 0` and crosses `Γ² = 1/2` exactly once in forward
   time, at `2log(1+√2)/ω`, at rate `ω/4`. It does not say what happens at `|Γ| = 1`, and it does not
