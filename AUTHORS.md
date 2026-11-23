@@ -9,6 +9,15 @@
 The Light Bridge paper ([`results/light-bridge-paper.md`](results/light-bridge-paper.md)), the
 README byline and the licence attribution are his alone.
 
+## The rule
+
+No person other than Jeromie Beasley appears in a byline, a licence, a credit line, a
+`CITATION.cff` author block or a `<meta name="author">` tag of this work — not now and not
+again. A source is cited as a source. A byline found inside an existing file is a claim to be
+checked with him, not evidence, and "the work came out of this conversation" is not a reason.
+
+Two breaches of this rule are recorded in [`results/agent-misattribution.md`](results/agent-misattribution.md).
+
 ## Sources cited, not authored
 
 One paper is read and cited, and it is a source, not an authorship claim:
