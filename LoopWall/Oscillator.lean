@@ -35,12 +35,12 @@ noncomputable def energy (m : ℝ) (U : ℝ → ℝ) (ψ : ℝ → ℝ) : ℝ �
   fun t => (1 / 2) * m * (deriv ψ t) ^ 2 + U (ψ t)
 
 /-- D5(i): the Legendre transform is `p²/(2m) + U(ψ)`. -/
-theorem legendre_hamiltonian_eq {m p v : ℝ} (hm : 0 < m)
+theorem legendre_hamiltonian_eq {m p v : ℝ} (_hm : 0 < m)
     (U : ℝ → ℝ) (ψ : ℝ) (hp : p = m * v) :
     legendreHamiltonian m U ψ p v = p ^ 2 / (2 * m) + U ψ := by
   rw [legendreHamiltonian, lagrangian, hp]
-  field_simp [ne_of_gt hm]
-  <;> ring
+  field_simp
+  ; ring
 
 /-- D5(ii): the acceleration equation implies the Euler--Lagrange equation. -/
 theorem euler_lagrange_of_acceleration {m : ℝ} (hm : 0 < m)
@@ -109,7 +109,7 @@ theorem energy_conservation {m : ℝ} (hm : 0 < m)
   rw [he.deriv]
   norm_num [hacc]
   field_simp [ne_of_gt hm]
-  <;> ring
+  ; ring
 
 /-- Velocity of the free linear path `ψ(t) = v t`. -/
 theorem deriv_linear_motion (v s : ℝ) :

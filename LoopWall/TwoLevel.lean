@@ -42,7 +42,7 @@ theorem pauli_apply (a b : ℝ) :
     pauli a b = !![0, (a : ℂ) - (b : ℂ) * Complex.I;
                     (a : ℂ) + (b : ℂ) * Complex.I, 0] := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [pauli, sigmaX, sigmaY] <;> ring
+  fin_cases i <;> fin_cases j <;> simp [pauli, sigmaX, sigmaY]; ring
 
 theorem pauli_sq (a b : ℝ) :
     pauli a b * pauli a b = (((a ^ 2 + b ^ 2 : ℝ) : ℂ) • (1 : Matrix (Fin 2) (Fin 2) ℂ)) := by
@@ -110,7 +110,7 @@ theorem projector_idempotent (φ : ℝ) : projector φ * projector φ = projecto
   rw [add_mul, mul_add, mul_add, one_mul, mul_one, one_mul, directional_pauli_sq]
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp_all [pauli_apply, sigmaX, sigmaY, Matrix.mul_apply, Fin.sum_univ_succ] <;>
+    simp_all [pauli_apply] <;>
     norm_num <;> ring
 
 theorem sigmaX_hermitian : sigmaXᴴ = sigmaX := by
@@ -120,7 +120,7 @@ theorem sigmaX_hermitian : sigmaXᴴ = sigmaX := by
 theorem sigmaY_hermitian : sigmaYᴴ = sigmaY := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [sigmaY, Matrix.conjTranspose_apply, Complex.star_def, Complex.conj_I]
+    simp [sigmaY, Matrix.conjTranspose_apply, Complex.conj_I]
 
 theorem pauli_hermitian (a b : ℝ) : (pauli a b)ᴴ = pauli a b := by
   simp only [pauli, Matrix.conjTranspose_add, Matrix.conjTranspose_smul,
@@ -137,7 +137,7 @@ theorem pauli_radial (r φ : ℝ) :
       (r : ℂ) • pauli (Real.cos φ) (Real.sin φ) := by
   rw [pauli_apply, pauli_apply]
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [Matrix.smul_apply] <;> push_cast <;> ring
+  fin_cases i <;> fin_cases j <;> simp [Matrix.smul_apply] <;> ring
 
 theorem projector_commutes (r φ : ℝ) :
     projector φ * pauli (r * Real.cos φ) (r * Real.sin φ) =
@@ -238,6 +238,6 @@ theorem chi_derivative_bound (d v : Vec3) :
     nlinarith [sq_nonneg (normalizedDerivative d v 0), sq_nonneg (normalizedDerivative d v 1)]
   have hmul := mul_le_mul_of_nonneg_left hcoord (sq_nonneg (radius d))
   unfold gap normalizedMetric
-  convert hmul using 1 <;> ring
+  convert hmul using 1; ring
 
 end ElementalPeeling.LoopWall.TwoLevel

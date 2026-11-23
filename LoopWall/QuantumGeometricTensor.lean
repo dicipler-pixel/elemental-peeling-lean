@@ -47,7 +47,7 @@ theorem Q_hermitian_symmetric {P V W : Matrix (Fin n) (Fin n) ℂ}
     Q P V W = star (Q P W V) := by
   unfold Q
   rw [← Matrix.trace_conjTranspose]
-  simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, hPh, hV, hW]
+  simp only [Matrix.conjTranspose_mul, hPh, hV, hW]
   simpa only [Matrix.mul_assoc] using (Matrix.trace_mul_cycle V W P).symm
 
 /-- The diagonal of `Q` is real. -/
@@ -66,7 +66,7 @@ theorem Q_self_eq_frobenius {P V : Matrix (Fin n) (Fin n) ℂ}
   calc
     ((P * V)ᴴ * (P * V)).trace = (V * P * (P * V)).trace := by
       rw [Matrix.conjTranspose_mul, hV, hPh]
-    _ = (V * (P * P) * V).trace := by congr 1 <;> noncomm_ring
+    _ = (V * (P * P) * V).trace := by congr 1; noncomm_ring
     _ = (V * P * V).trace := by rw [hP]
     _ = (P * V * V).trace := (Matrix.trace_mul_cycle P V V).symm
 
@@ -90,7 +90,7 @@ theorem curvature_antisymmetric {P V W : Matrix (Fin n) (Fin n) ℂ}
     curvature P V W = -curvature P W V := by
   unfold curvature
   rw [Q_hermitian_symmetric hPh hW hV]
-  simp [Complex.star_def]
+  simp
 
 /-- The curvature of a tangent with itself vanishes. -/
 theorem curvature_self {P V : Matrix (Fin n) (Fin n) ℂ}
@@ -134,7 +134,7 @@ theorem Q_eq_metric_sub_curvature_mul_I {P V W : Matrix (Fin n) (Fin n) ℂ}
     (hVP : P * V * P = 0) (hVR : (1 - P) * V * (1 - P) = 0) :
     Q P V W = (metric V W : ℂ) - (curvature P V W : ℂ) * Complex.I / 2 := by
   have hre := Q_re_eq_metric hPh hV hW hVP hVR
-  apply Complex.ext <;> simp [curvature, hre] <;> ring
+  apply Complex.ext <;> simp [curvature, hre]; ring
 
 
 /-- On the corrected tangent space, `Q` is positive definite. -/
@@ -172,13 +172,13 @@ theorem crossBlock_only_counterexample :
       P * P = P ∧ Pᴴ = P ∧ Vᴴ = V ∧ P * V * P = 0 ∧
       (Q P V V).re ≠ metric V V ∧ (Q P V V).re = 0 ∧ V ≠ 0 := by
   refine ⟨counterP, counterV, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · ext i j <;> fin_cases i <;> fin_cases j <;>
+  · ext i j; fin_cases i <;> fin_cases j <;>
       norm_num [counterP, Matrix.mul_apply, Fin.sum_univ_two]
-  · ext i j <;> fin_cases i <;> fin_cases j <;>
+  · ext i j; fin_cases i <;> fin_cases j <;>
       simp [counterP, Matrix.conjTranspose_apply]
-  · ext i j <;> fin_cases i <;> fin_cases j <;>
+  · ext i j; fin_cases i <;> fin_cases j <;>
       simp [counterV, Matrix.conjTranspose_apply]
-  · ext i j <;> fin_cases i <;> fin_cases j <;>
+  · ext i j; fin_cases i <;> fin_cases j <;>
       norm_num [counterP, counterV, Matrix.mul_apply, Fin.sum_univ_two]
   · norm_num [Q, metric, counterP, counterV, Matrix.trace_fin_two,
       Matrix.mul_apply, Fin.sum_univ_two]
@@ -194,9 +194,9 @@ theorem Q_norm_sq_le {P V W : Matrix (Fin n) (Fin n) ℂ}
     (hP : P * P = P) (hPh : Pᴴ = P) (hV : Vᴴ = V) (hW : Wᴴ = W) :
     ‖Q P V W‖ ^ 2 ≤ (Q P V V).re * (Q P W W).re := by
   have hPS := projector_posSemidef hP hPh
-  letI : SeminormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) :=
+  let : SeminormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) :=
     Matrix.toMatrixSeminormedAddCommGroup P hPS
-  letI : InnerProductSpace ℂ (Matrix (Fin n) (Fin n) ℂ) :=
+  let : InnerProductSpace ℂ (Matrix (Fin n) (Fin n) ℂ) :=
     Matrix.toMatrixInnerProductSpace P hPS
   have hinner (A B : Matrix (Fin n) (Fin n) ℂ) (hA : Aᴴ = A) :
       inner ℂ A B = Q P A B := by
@@ -224,7 +224,7 @@ theorem wirtinger_inequality {P V W : Matrix (Fin n) (Fin n) ℂ}
 
 /-- Conjugating all three matrices by a unitary preserves `Q`. -/
 theorem Q_unitary_covariant {P V W U : Matrix (Fin n) (Fin n) ℂ}
-    (hU : U * Uᴴ = 1) (hU' : Uᴴ * U = 1) :
+    (_hU : U * Uᴴ = 1) (hU' : Uᴴ * U = 1) :
     Q (U * P * Uᴴ) (U * V * Uᴴ) (U * W * Uᴴ) = Q P V W := by
   unfold Q
   calc
@@ -240,7 +240,7 @@ theorem Q_unitary_covariant {P V W U : Matrix (Fin n) (Fin n) ℂ}
 
 /-- Conjugating both tangents by a unitary preserves the metric. -/
 theorem metric_unitary_covariant {V W U : Matrix (Fin n) (Fin n) ℂ}
-    (hU : U * Uᴴ = 1) (hU' : Uᴴ * U = 1) :
+    (_hU : U * Uᴴ = 1) (hU' : Uᴴ * U = 1) :
     metric (U * V * Uᴴ) (U * W * Uᴴ) = metric V W := by
   unfold metric
   congr 2

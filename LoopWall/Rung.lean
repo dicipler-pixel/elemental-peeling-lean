@@ -73,7 +73,7 @@ theorem electrophilicity_gt_hardness_iff (I E : ℝ)
   constructor
   · intro h
     have hh := mul_lt_mul_of_pos_left h (show (0 : ℝ) < 1 / 2 by norm_num)
-    convert hh using 1 <;> ring
+    convert hh using 1; ring
   · intro h
     have hh := mul_lt_mul_of_pos_left h (show (0 : ℝ) < 2 by norm_num)
     convert hh using 1 <;> ring
@@ -87,7 +87,7 @@ theorem two_face_odds_lt_iff (x y : ℝ) :
 of the two (nonnegative) hyperbolic sines. -/
 theorem two_face_product_iff_of_nonneg (u v x y : ℝ)
     (hu : 0 ≤ u) (hv : 0 ≤ v)
-    (hx : 0 ≤ x) (hx1 : x < 1) (hy : 0 ≤ y) (hy1 : y < 1)
+    (_hx : 0 ≤ x) (hx1 : x < 1) (_hy : 0 ≤ y) (hy1 : y < 1)
     (hu2 : u ^ 2 = x / (1 - x)) (hv2 : v ^ 2 = y / (1 - y)) :
     u * v < 1 ↔ x + y < 1 := by
   have hden : 0 < (1 - x) * (1 - y) := mul_pos (by linarith) (by linarith)

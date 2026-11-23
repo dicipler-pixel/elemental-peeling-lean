@@ -66,7 +66,7 @@ theorem exists_unit_smul_gcd {W : ℕ} [NeZero W] (x : ZMod W) :
 by units exactly when they have the same gcd with `W`. -/
 theorem units_orbit_eq_setOf_gcd {W : ℕ} (hW : 0 < W) (x : ZMod W) :
     MulAction.orbit (ZMod W)ˣ x = {y | Nat.gcd y.val W = Nat.gcd x.val W} := by
-  letI : NeZero W := ⟨Nat.ne_of_gt hW⟩
+  let : NeZero W := ⟨Nat.ne_of_gt hW⟩
   ext y
   constructor
   · rintro ⟨u, rfl⟩
@@ -116,7 +116,7 @@ theorem orbit_five_zmod10 :
     MulAction.orbit (ZMod 10)ˣ (5 : ZMod 10) = {5} := by
   ext y
   rw [mem_units_orbit_iff_gcd (by norm_num : 0 < 10)]
-  simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
+  simp only [Set.mem_singleton_iff]
   change Nat.gcd (show Fin 10 from y).val 10 = 5 ↔ (show Fin 10 from y) = 5
   fin_cases y <;> decide
 
@@ -127,7 +127,7 @@ theorem orbit_zero_zmod10 :
     MulAction.orbit (ZMod 10)ˣ (0 : ZMod 10) = {0} := by
   ext y
   rw [mem_units_orbit_iff_gcd (by norm_num : 0 < 10)]
-  simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
+  simp only [Set.mem_singleton_iff]
   change Nat.gcd (show Fin 10 from y).val 10 = 10 ↔ (show Fin 10 from y) = 0
   fin_cases y <;> decide
 
@@ -157,7 +157,7 @@ corresponding Lean operation on polynomials; the substitution polynomial is
 `-X` itself, not `C (-X)`. -/
 theorem cyclotomic_ten_eq_cyclotomic_five_comp_neg :
     cyclotomic 10 ℤ = (cyclotomic 5 ℤ).comp (-X) := by
-  letI : Fact (Nat.Prime 5) := ⟨by norm_num⟩
+  let : Fact (Nat.Prime 5) := ⟨by norm_num⟩
   apply mul_right_cancel₀ (cyclotomic_ne_zero 5 ℤ)
   rw [show 10 = 5 * 2 by norm_num,
     ← cyclotomic_expand_eq_cyclotomic_mul Nat.prime_two (by norm_num)]

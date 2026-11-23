@@ -97,6 +97,7 @@ theorem fisherForm_eq_rawForm (p v : n → ℝ) :
   intro i _hi
   ring
 
+omit [Fintype n] in
 /-- Nonnegative shares make the Fisher matrix positive semidefinite. -/
 theorem fisherMatrix_posSemidef (p : n → ℝ) (hp : ∀ i, 0 ≤ p i) :
     (fisherMatrix p).PosSemidef := by
@@ -104,6 +105,7 @@ theorem fisherMatrix_posSemidef (p : n → ℝ) (hp : ∀ i, 0 ≤ p i) :
   intro i
   exact inv_nonneg.mpr (hp i)
 
+omit [Fintype n] in
 /-- Strictly positive shares make the Fisher matrix positive definite. -/
 theorem fisherMatrix_posDef (p : n → ℝ) (hp : ∀ i, 0 < p i) :
     (fisherMatrix p).PosDef := by
@@ -111,6 +113,7 @@ theorem fisherMatrix_posDef (p : n → ℝ) (hp : ∀ i, 0 < p i) :
   intro i
   exact inv_pos.mpr (hp i)
 
+omit [DecidableEq n] in
 /-- The raw form is nonnegative for positive readings. -/
 theorem rawForm_nonneg (x v : n → ℝ) (hx : ∀ i, 0 < x i) :
     0 ≤ rawForm x v := by
@@ -175,6 +178,7 @@ theorem fisherForm_nonneg (p v : n → ℝ) (hp : ∀ i, 0 < p i) :
   rw [fisherForm_eq_rawForm]
   exact rawForm_nonneg p v hp
 
+omit [DecidableEq n] in
 /-- Positive readings on a nonempty finite set have positive brightness. -/
 theorem brightness_pos [Nonempty n] (x : n → ℝ) (hx : ∀ i, 0 < x i) :
     0 < brightness x := by
@@ -183,6 +187,7 @@ theorem brightness_pos [Nonempty n] (x : n → ℝ) (hx : ∀ i, 0 < x i) :
     exact hx i
   · exact Finset.univ_nonempty
 
+omit [DecidableEq n] in
 /-- Shares form a probability vector whenever total brightness is nonzero. -/
 theorem shares_sum (x : n → ℝ) (hb : brightness x ≠ 0) :
     ∑ i, shares x i = 1 := by
@@ -190,12 +195,14 @@ theorem shares_sum (x : n → ℝ) (hb : brightness x ≠ 0) :
   rw [← Finset.sum_div]
   exact div_self hb
 
+omit [DecidableEq n] in
 /-- Positive readings have positive shares. -/
 theorem shares_pos [Nonempty n] (x : n → ℝ) (hx : ∀ i, 0 < x i) :
     ∀ i, 0 < shares x i := by
   intro i
   exact div_pos (hx i) (brightness_pos x hx)
 
+omit [DecidableEq n] in
 /-- A common nonzero brightness factor does not change the shares. -/
 theorem shares_scale (x : n → ℝ) (c : ℝ) (hc : c ≠ 0) :
     shares (c • x) = shares x := by
@@ -203,6 +210,7 @@ theorem shares_scale (x : n → ℝ) (c : ℝ) (hc : c ≠ 0) :
   simp only [shares, brightness, Pi.smul_apply, smul_eq_mul]
   rw [← Finset.mul_sum, mul_div_mul_left _ _ hc]
 
+omit [DecidableEq n] in
 /-- The raw form scales by the inverse of a common reading factor.  This also
 holds at scale zero, with Lean's total zero inverse. -/
 theorem rawForm_scale (x v : n → ℝ) (c : ℝ) :

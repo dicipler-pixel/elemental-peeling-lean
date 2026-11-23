@@ -84,6 +84,10 @@ Every push runs [the proof check](.github/workflows/build.yml) on GitHub:
    nonnegativity of the Hall incremental form at `σ = 1`, `c = 3`, and four loop-wall controls
    (nitrogen's core opening called outside, carbon's inside, `Γ²` flipped in sign under reversal,
    and a wrong count of the eight outside steps).
+5. **No warnings**: every library module also elaborates with warnings promoted to errors,
+   `LEAN_PATH=.:$LEAN_PATH lean -DwarningAsError=true <module>.lean`, so an unused hypothesis, a
+   `simp` argument that does nothing or a tactic that never runs fails the check instead of
+   accumulating. The nine control files are excluded, since their whole purpose is to fail.
 
 ```bash
 lake exe cache get

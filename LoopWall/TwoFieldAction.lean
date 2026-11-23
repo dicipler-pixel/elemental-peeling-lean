@@ -88,7 +88,7 @@ theorem hasDerivAt_variedLd (m μ lam g : ℝ) (K : ℝ → ℝ) (j δ : Jet)
     simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.Φ').const_add j.Φ'
   have hKcomp : HasDerivAt (fun ε : ℝ => K (j.ψ + ε * δ.ψ))
       (deriv K j.ψ * δ.ψ) 0 := by
-    convert hK.hasDerivAt.comp_of_eq 0 hψ (by simp) using 1 <;> rfl
+    convert hK.hasDerivAt.comp_of_eq 0 hψ (by simp) using 1; rfl
   have h := (((((hvψ.pow 2).const_mul (1/2 : ℝ)).sub
       (((hψ.pow 2).const_mul (m^2)).const_mul (1/2 : ℝ))).sub
       ((hψ.pow 4).const_mul (lam/4))).add
@@ -134,8 +134,8 @@ resulting equations by `-1` does not change their zero locus. -/
 theorem firstVariation_sub_residual_eq_deriv (m μ lam g : ℝ) (K : ℝ → ℝ)
     (ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ)
     (hK : Differentiable ℝ K)
-    (hψ : Differentiable ℝ ψ) (hψ' : Differentiable ℝ (deriv ψ))
-    (hΦ : Differentiable ℝ Φ) (hΦ' : Differentiable ℝ (deriv Φ))
+    (_hψ : Differentiable ℝ ψ) (hψ' : Differentiable ℝ (deriv ψ))
+    (_hΦ : Differentiable ℝ Φ) (hΦ' : Differentiable ℝ (deriv Φ))
     (hδψ : Differentiable ℝ δψ) (hδΦ : Differentiable ℝ δΦ) :
     firstVariation m μ lam g K (jetOf ψ Φ τ) (jetOf δψ δΦ τ) +
         elResidual m μ lam g K ψ Φ δψ δΦ τ =
@@ -267,7 +267,7 @@ total `τ`-derivative of `F ∘ ψ`. -/
 theorem hasDerivAt_F_comp (F ψ : ℝ → ℝ) (τ : ℝ)
     (hF : Differentiable ℝ F) (hψ : Differentiable ℝ ψ) :
     HasDerivAt (fun t => F (ψ t)) (deriv F (ψ τ) * deriv ψ τ) τ := by
-  convert (hF (ψ τ)).hasDerivAt.comp τ (hψ τ).hasDerivAt using 1 <;> rfl
+  convert (hF (ψ τ)).hasDerivAt.comp τ (hψ τ).hasDerivAt using 1; rfl
 
 /-- Gateaux derivative of a total-derivative density. -/
 theorem hasDerivAt_variedTotalDerivative (F : ℝ → ℝ) (j δ : Jet)
@@ -280,7 +280,7 @@ theorem hasDerivAt_variedTotalDerivative (F : ℝ → ℝ) (j δ : Jet)
     simpa using ((hasDerivAt_id (0 : ℝ)).mul_const δ.ψ').const_add j.ψ'
   have hcomp : HasDerivAt (fun ε : ℝ => deriv F (j.ψ + ε * δ.ψ))
       (deriv (deriv F) j.ψ * δ.ψ) 0 := by
-    convert hF'.hasDerivAt.comp_of_eq 0 hψ (by simp) using 1 <;> rfl
+    convert hF'.hasDerivAt.comp_of_eq 0 hψ (by simp) using 1; rfl
   have H := hcomp.mul hvψ
   convert H using 1
   · funext ε
@@ -298,7 +298,7 @@ theorem gateauxVariation_totalDerivativeDensity (F : ℝ → ℝ) (j δ : Jet)
 variation is precisely the derivative of `F'(ψ) δψ`, with no remaining bulk
 term. -/
 theorem gateaux_totalDerivative_eq_deriv (F ψ Φ δψ δΦ : ℝ → ℝ) (τ : ℝ)
-    (hF : Differentiable ℝ F) (hF' : Differentiable ℝ (deriv F))
+    (_hF : Differentiable ℝ F) (hF' : Differentiable ℝ (deriv F))
     (hψ : Differentiable ℝ ψ) (hδψ : Differentiable ℝ δψ) :
     gateauxVariation (totalDerivativeDensity F)
         (jetOf ψ Φ τ) (jetOf δψ δΦ τ) =
@@ -306,7 +306,7 @@ theorem gateaux_totalDerivative_eq_deriv (F ψ Φ δψ δΦ : ℝ → ℝ) (τ :
   rw [gateauxVariation_totalDerivativeDensity _ _ _ (hF' (ψ τ))]
   have hc : HasDerivAt (fun t => deriv F (ψ t))
       (deriv (deriv F) (ψ τ) * deriv ψ τ) τ := by
-    convert (hF' (ψ τ)).hasDerivAt.comp τ (hψ τ).hasDerivAt using 1 <;> rfl
+    convert (hF' (ψ τ)).hasDerivAt.comp τ (hψ τ).hasDerivAt using 1; rfl
   have hb := hc.mul (hδψ τ).hasDerivAt
   have hbval : deriv (fun t => deriv F (ψ t) * δψ t) τ =
       deriv (deriv F) (ψ τ) * deriv ψ τ * δψ τ + deriv F (ψ τ) * deriv δψ τ :=

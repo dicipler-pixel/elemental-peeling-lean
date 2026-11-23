@@ -167,7 +167,7 @@ def weightList : List V := [w 0, w 1, w 2, -w 0, -w 1, -w 2]
 
 theorem w_sum : ∑ i, w i = 0 := by
   funext j
-  simp only [Fin.sum_univ_three, Finset.sum_apply, Pi.add_apply, Pi.zero_apply]
+  simp only [Fin.sum_univ_three, Finset.sum_apply, Pi.zero_apply]
   fin_cases j <;> norm_num [w_apply]
 
 theorem w_injective : Function.Injective w := by
@@ -192,7 +192,7 @@ theorem neg_w_ne_w (i j : Fin 3) : -w i ≠ w j := by
   exact w_ne_neg_w i j (by simpa only [neg_neg] using congrArg Neg.neg h)
 
 theorem weightList_nodup : weightList.Nodup := by
-  simp [weightList, List.nodup_cons, w_injective.eq_iff, w_ne_neg_w, neg_w_ne_w]
+  simp [weightList, List.nodup_cons, w_injective.eq_iff, w_ne_neg_w]
 
 theorem weightList_length : weightList.length = 6 := by rfl
 
@@ -200,7 +200,7 @@ theorem mem_weightList_iff (x : V) :
     x ∈ weightList ↔ ∃ i : Fin 3, x = w i ∨ x = -w i := by
   constructor
   · intro hx
-    simp only [weightList, List.mem_cons, List.mem_singleton, List.not_mem_nil,
+    simp only [weightList, List.mem_cons, List.not_mem_nil,
       or_false] at hx
     rcases hx with rfl | rfl | rfl | rfl | rfl | rfl
     · exact ⟨0, Or.inl rfl⟩
@@ -226,7 +226,7 @@ theorem r_ne_zero {i j : Fin 3} (hij : i ≠ j) : r i j ≠ 0 := by
   intro h
   have hh := congrFun h i
   have hji : j ≠ i := Ne.symm hij
-  simp [r, e, hij, hji] at hh
+  simp [r, e, hji] at hh
 
 theorem r_normSq {i j : Fin 3} (hij : i ≠ j) : normSq (r i j) = 2 := by
   fin_cases i <;> fin_cases j <;>
