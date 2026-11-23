@@ -34,6 +34,19 @@ One paper is read and cited, and it is a source, not an authorship claim:
   name. That is the theorem `mod9_is_mod3`, and it is the true relation between the 9 and the 3.
   Nothing else in the record comes from that paper.
 
+  **Her authorship of that paper is real and is not in question.** He had her open a GitHub
+  account so that she would receive the credit she was due on it, and its code home is the
+  `EJ-base-prime-pattern` repository. That co-authored paper is a separate work. What was wrong
+  was carrying its co-authorship across into this repository's licence, `CITATION.cff` and
+  bylines, where none of it is used.
+
+## What "worked with her" means
+
+After that paper — through *Colour Selects the Leader* and the two or three papers that followed
+it — the work was his reading hers and helping her find flaws. His own work then steered away
+from hers. Reviewing an author's paper, and finding flaws in it, is not co-authorship in either
+direction, and neither is being the one whose paper gets reviewed.
+
 ## The other "he"s in the record
 
 `He` is helium throughout: the single exception in the group rule (`89 of 90, He the convention`) and one

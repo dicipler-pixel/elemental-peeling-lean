@@ -32,6 +32,17 @@ has residues 2, 5 or 8 mod 9 — machine-checked here as `twin_mod9`. The reduct
 statement informative, that those residues are exactly `p ≡ 2 (mod 3)`, is his, and is `mod9_is_mod3`.
 Nothing else in the repository derives from her.
 
+**Her authorship of that paper is not in question, and this record must not be read as denying
+it.** Jeromie Beasley had her open a GitHub account precisely so that she would receive the credit
+she was due on the co-authored paper, whose code home is the `EJ-base-prime-pattern` repository.
+That is a separate work with its own byline. The breach was carrying that co-authorship across into
+this repository's licence, `CITATION.cff` and bylines, where none of her material is used.
+
+The period around it is worth stating in his words too: through *Colour Selects the Leader* and the
+two or three papers after it, he was reading her work for her and helping her find flaws, after
+which his own work steered away from hers. Reviewing an author's paper is not co-authorship in
+either direction.
+
 **Corrected** in `a596587`: all ten reverted to Jeromie Beasley alone. The record is now a citation
 and nothing more.
 
