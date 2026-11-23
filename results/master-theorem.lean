@@ -307,7 +307,9 @@ theorem twin_transitions_mod9 (p : ℕ) (hp : Nat.Prime p) (hp2 : Nat.Prime (p +
   have := twin_mod9 p hp hp2 h5
   rcases this with h | h | h <;> omega
 
-/-- And it is the record's own mod-3 fact relabelled: `p % 9 ∈ {2,5,8}` **is** `p % 3 = 2`. -/
+/-- And it is the record's own mod-3 fact relabelled: `p % 9 ∈ {2,5,8}` **is** `p % 3 = 2`. The
+reduction to the 3 is Jeromie Beasley's: the mod-9 statement and the mod-3 statement are one fact, and
+the mod-3 form is the one the wheel already carries (`prime_mod3`). -/
 theorem mod9_is_mod3 (p : ℕ) : (p % 9 = 2 ∨ p % 9 = 5 ∨ p % 9 = 8) ↔ p % 3 = 2 := by omega
 
 end Master
