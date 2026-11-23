@@ -81,7 +81,7 @@ physics the paper reads into them.
 
 | Claim | Status |
 | :--- | :--- |
-| A compressed linear observer exists iff `R` vanishes on `ker R` | proved: `Observer.observer_iff` |
+| A compressed linear observer exists iff `ker R` is invariant under `L` | proved: `Observer.observer_iff` |
 | `N_∞ = ker O_d` stabilizes at `finrank − 1` | **refuted as first stated**: `Observer.rawKer_not_antitone`, `rawKer_map_direction_false`, `rawKer_intersection_false`; corrected for the cumulative kernels in `Observer.iInf_rawKer_eq` and `Observer.iInf_obsKer_eq` |
 | `J†A²J − (J†AJ)² = (QAJ)†(QAJ)`, positive, vanishing iff `QAJ = 0` | proved: `CompressionVariance.compression_variance_identity`, `compressionVariance_isPositive`, `compressionVariance_eq_zero_iff` |
 | The two-state falsifier (compressed `σ₁` is 0, compressed `σ₁²` is 1) | proved: `CompressionVariance.real_pauliX_variance_eq_one`, `real_pauliX_variance_ne_zero` |

@@ -74,6 +74,19 @@ the corrected statement:
 * `LoopWall/Quaternions.lean`: the norm-one quaternions in `ℤ⁴` number **8** (the Hamilton units),
   not 24. The 24 is the unit group of the Hurwitz order, with half-integer coordinates, which is
   not formalized here.
+* `LoopWall/Positivity.lean`: "positive semidefinite together with `0 < a`" does not give positive
+  definite; the criterion is `H_posDef_iff` (`0 < a ∧ ω² < 4(ac − b²)`), and
+  `psd_and_positive_a_do_not_imply_posDef` is the counterexample, with
+  `positive_reduced_determinant_alone_does_not_imply_posDef` for the weaker guess.
+* `LoopWall/SpacingLaw.lean`: two multiplicative laws are proportional only under the nondegeneracy
+  hypothesis of `multiplicative_laws_proportional_of_nondegenerate`;
+  `proportionality_fails_without_nondegeneracy` is the witness when it is dropped.
+* `LoopWall/Oscillator.lean`: `v ≠ c` is not a non-null condition; `nonnull_claim_as_written_false`
+  is the refutation.
+* `LoopWall/QuantumGeometricTensor.lean`: the real part of `Q` is the metric only together with the
+  complementary-block hypothesis of `Q_re_eq_metric`; `crossBlock_only_counterexample` is the
+  witness without it, and `peel_rate_counterexample_without_nonnegative_metric` is the corresponding
+  witness for the peel-rate bound, which needs `0 ≤ g`.
 
 ## The phase bridge
 
