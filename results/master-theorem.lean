@@ -279,8 +279,8 @@ theorem wheel_has_eight_classes : Nat.totient 30 = 8 := by decide
 
 /-- **Every twin start above 5 is `2, 5` or `8` mod 9.** Primes above 3 avoid `0, 3, 6` mod 9, and so
 does the partner; the six admissible residues pair up as `2 → 4`, `5 → 7`, `8 → 1`, and the other three
-send `p + 2` to a multiple of 3. This is Theorem 10.2 of E. Johnson's *Base Prime Model and Twin Prime
-Counterflow* (Zenodo 23484151), machine-checked here. -/
+send `p + 2` to a multiple of 3. This is Theorem 10.2 of E. Johnson's *EJ's Alternate Base Prime
+Number Pattern and the Twin Prime Counterflow Model* (Zenodo 23484151), machine-checked here. -/
 theorem twin_mod9 (p : ℕ) (hp : Nat.Prime p) (hp2 : Nat.Prime (p + 2)) (h5 : 5 < p) :
     p % 9 = 2 ∨ p % 9 = 5 ∨ p % 9 = 8 := by
   have h3 : ¬ (3 ∣ p) := by

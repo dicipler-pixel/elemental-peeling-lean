@@ -125,8 +125,8 @@ Euler product $30=2\cdot3\cdot5$ with $\varphi(30)=8$ classes (`wheel_is_euler`,
 
 **(N) A theorem from the twin-prime literature, and the reduction that gives it its content.** Every
 twin start above 5 is $2,5$ or $8\pmod 9$ (`twin_mod9`), with the three transitions $(2,4),(5,7),(8,1)$
-(`twin_transitions_mod9`) — Theorem 10.2 of Johnson's *Base Prime Model and the Twin Prime Counterflow*
-(Zenodo 23484151), machine-checked here. The residues carry the statement only once the 9 and the 3 are
+(`twin_transitions_mod9`) — Theorem 10.2 of Johnson's Zenodo record (reference 7), machine-checked
+here. The residues carry the statement only once the 9 and the 3 are
 put together, and that is Beasley's: a prime above 3 avoids $0,3,6\pmod 9$, so the six admissible
 residues pair under $+2$ as $2\to4$, $5\to7$, $8\to1$, and $p\bmod 9\in\{2,5,8\}$ **is**
 $p\equiv2\pmod 3$ (`mod9_is_mod3`). The mod-9 form and the mod-3 form are one fact, and the mod-3 form
@@ -370,7 +370,8 @@ The statement-level inventory is `results/light-bridge-inventory.md`, generated.
    primes*, Proc. Natl. Acad. Sci. 113 (2016) — the end-digit diagonal.
 6. P. L. Dulong and A. T. Petit (1819); A. Einstein (1907); P. Debye (1912) — $3R$ and its quantum
    deficit.
-7. E. Johnson, *Base Prime Model and the Twin Prime Counterflow Model*, Zenodo 23484151 (2025) —
-   Theorem 10.2, cited as a source: the statement is machine-checked here as `twin_mod9`, and the
-   mod-3 reduction that gives it its content is `mod9_is_mod3`.
+7. E. Johnson, *EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model*,
+   Zenodo 23484151 (2026), DOI 10.5281/zenodo.23484151 — Theorem 10.2, cited as a source: the
+   statement is machine-checked here as `twin_mod9`, and the mod-3 reduction that gives it its
+   content is `mod9_is_mod3`.
 8. Lean 4 and Mathlib — the proof assistant and library used throughout.

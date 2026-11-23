@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Checks on E. Johnson, *EJ's Base Prime Model and the Twin Prime Counterflow Model*
+"""Checks on E. Johnson, *EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model*
 (Zenodo 23484151): the two theorems, the counterexample to Conjecture 4.3, and the mod-9 split."""
 import collections
 import sympy

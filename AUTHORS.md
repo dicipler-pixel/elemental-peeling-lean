@@ -13,7 +13,8 @@ README byline and the licence attribution are his alone.
 
 One paper is read and cited, and it is a source, not an authorship claim:
 
-* E. Johnson, *Base Prime Model and the Twin Prime Counterflow Model*, Zenodo 23484151 (2025),
+* E. Johnson, *EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model*,
+  Zenodo 23484151 (2026), DOI 10.5281/zenodo.23484151,
   read in full and reviewed in [`results/ej-review.md`](results/ej-review.md). It is reference 7
   of the Light Bridge paper. One of its statements enters the machine-checked record: its
   Theorem 10.2, that a twin pair above 5 has residues `2, 5, 8` mod 9, which is
