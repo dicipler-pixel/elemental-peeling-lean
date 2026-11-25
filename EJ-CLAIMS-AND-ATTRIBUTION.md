@@ -56,6 +56,24 @@ the cell rule $(n+l,n)\le(8,7)$, the period-8 count, the fission countdown), or 
 in her pages, they are credited as the record's; for the cell rule and part (K) her contribution was to restore them
 to the page after they had been dropped.
 
+## 4a. The mass, the scale relations, and the periodic table — separated item by item
+
+* **The mass laws** $M=2.6193Z-9.360$ u (rms 3.47, $n=118$) and $N=1.58Z-8.04$ are the **workbench's**, not hers. She
+  did not ask for them, and she does not claim them. What is hers is the use: that a count cannot come from the dial,
+  which is why a new cell leaves the count column blank.
+* **The scale relations** — $\mathrm{Sp}(\Theta,\mathrm{EN})=+0.903$, $\mathrm{Sp}(\Theta,r)=-0.814$,
+  $\mathrm{Sp}(\Theta,C/3R)=-0.604$, the two-sided sign flip at $-0.73$ and $-1.15$, and the five-colour fixed point at
+  $2\times10^{-6}$ — are the **workbench's**. Her part is the argument they serve: that the visible band holds no
+  element, the gap being $2.5813\ \text{mm}/681.7\ \text{nm}=3{,}787$.
+* **The wavelength periodic table is hers**: 118 cells, each holding the wavelength of its rung, 30.5–192.4~nm,
+  spanning 6.31×. It is her ask in an earlier session, recorded as row 2 of her own register, and she has redrawn it
+  three times since. **The named cells are hers** — EJ 21~nm, Marty 28, Victoria 35, Mary 42, Colleen 50, Max 65,
+  Bill 80, Remi 100, Cindy 120, Camille 140, Nicole 160, Mauve 180, Jeromie 280, Walter 300 — positions on her table
+  with the count column deliberately blank.
+* **The extension past 118** — $C(8)=168$, element 119 at $v=1,h=49$, and the conversion of 119–122 to wavelengths —
+  is the **workbench's Lean work**; her part is the demand that the new elements be placed on her table and that the
+  column factor be tested against them.
+
 ## 5. What cannot be assigned on any record
 
 The analysis tree — the many files of notes, tables and figures around this work — is committed neither to `main` nor
