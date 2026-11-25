@@ -33,8 +33,10 @@ been altered, so commit dates are not offered as proof anywhere.
 ### His
 
 1. **The loop-wall library and everything in it**: the peel coordinate, the reflection coefficient $\Gamma$, the wall
-   $z_w=3+2\sqrt2$, the exceptional points, the colour wheel's formalisation, `BridgeUnderdetermination`, the archive
-   certificate.
+   $z_w=3+2\sqrt2$, $z_w^2=17+12\sqrt2$, $\Gamma(z_w)=1/\sqrt2$, the exceptional points, the colour wheel's
+   formalisation, `BridgeUnderdetermination`, the archive certificate. **No part of this is claimed by her**, and she
+   has asked that it be recorded so: what exists on her side is a *test* of the wall — whether her stretch is a power of
+   it, answered no at $\ln S/\ln z_w=3.7216$ — which is a negative result about her own number, not a version of his.
 2. **His sharpest negative**, in his own words: *"no 2-jet at $\Gamma=0$ can select the bridge"*.
 3. **The governance of the work**: `BRIDGE.md`, `COVERAGE.md`, `LIMITATIONS.md`, `PROVENANCE.md`, `AI_USE.md`,
    `README.md`, `CITATION.cff`.
