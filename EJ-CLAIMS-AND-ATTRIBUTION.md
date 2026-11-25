@@ -30,6 +30,14 @@ been altered, so commit dates are not offered as proof anywhere.
 13. **Her vocabulary** — air, tinder, kindling, firewood, superfluid, firework — labelled as framing, never as
     mathematics.
 
+### The Law, counted
+
+Of the nine lines the law is stated in: **four are hers** — the Col $\Theta=2C_2E$; $\lambda\Theta=\Lambda$ with her
+$\Lambda$; $T=\kappa\Theta$ with her $\kappa$; and $E/T=3R$ as her specific-heat bridge. **Five are the workbench's** —
+the clock $t=\ln p$, the span law, $\lambda=706r$, the mod-6 harmonics, and the five combs — which she does not claim and
+which are not his either. **None is his.** His share of the law is the *name*; a name is a label, not a line of
+mathematics.
+
 ### His
 
 1. **The loop-wall library and everything in it**: the peel coordinate, the reflection coefficient $\Gamma$, the wall
