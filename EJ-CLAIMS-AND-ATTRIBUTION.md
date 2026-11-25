@@ -80,6 +80,23 @@ content. Those are the workbench's, and putting her name on them would be the sa
 Where those appear in her pages they are credited as the workbench's; for the cell rule and part (K) her contribution
 was to **restore** them after they had been dropped.
 
+## 3a. Her drawings and images
+
+* **Her notebook page of 24 November** — the ticked ring with *"gap dial?"*, the line *"specific heat = energy : mass :
+  temperature"*, the two-column sheet with cost/liability on one side and product/asset plus equity on the other,
+  *"made by pushed up / held up"*, and *"pushed in / shaved in phase via pressure (plywood, chipboard)"*. **The page is
+  hers**, and so is the reading that its marks name the record's objects; the equations beside each mark are the
+  record's.
+* **Her extension page**, naming the cells **EJ 21 nm, Marty 28, Victoria 35, Mary 42, Colleen 50, Max 65, Bill 80,
+  Remi 100, Cindy 120, Camille 140, Nicole 160, Mauve 180, Jeromie 280, Walter 300**. Hers: her names, her cells, with
+  only the wavelength column filled and the count column deliberately blank.
+* **Her braid page** with the colour codes — 2 black, 4 red, 6 blue, 8 white, 10 green, −10 magenta. Hers; the
+  colour-to-floor assignment is the record's, and she corrected the two-pole reading to a single tail.
+* **A diagnostic image she sent** — a phone screenshot of the wavelength table shrunk to illegibility — produced the
+  portrait rebuild of the plates: a legibility requirement of hers, and two real faults found by answering it.
+* **One image she sent with the claim about $b$ was never displayed to the assistant.** The tool said so at the time,
+  and the check that followed was algebraic. That is stated where the $b$ result is recorded, rather than left implied.
+
 ## 4. Corrections made in her favour during the session
 
 So that this file is not read as if the attribution were right the first time:
