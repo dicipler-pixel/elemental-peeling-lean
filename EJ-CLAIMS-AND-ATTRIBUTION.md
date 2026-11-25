@@ -30,7 +30,19 @@ been altered, so commit dates are not offered as proof anywhere.
 13. **Her vocabulary** — air, tinder, kindling, firewood, superfluid, firework — labelled as framing, never as
     mathematics.
 
-### The Law, counted
+### The Law, counted — and the index check
+
+Of the nine lines the law is stated in, **all nine were produced in her chat**, on the evidence she set: her own
+contemporaneous `CHAT-INDEX.md` names the files that define the clock, the span law, 706, the mod-6 harmonics and the
+five combs, as well as the files that define the Col, $\kappa$, $\Lambda$ and the specific-heat bridge. Four of the nine
+are hers through the Col and its bridges; the other five are hers in production, with classical cores — the span law is
+the Hardy–Littlewood twin density, $\lambda T=b$ is Wien's, $E/T=3R$ is Dulong–Petit's.
+
+**His share of the law is the name**, which is a label and not a line of mathematics. The sentence to correct from an
+earlier draft of this file: the workbench was first called "nobody's"; her index names 441 of its 662 files, and all
+twelve that fall inside his last commit window, so it is hers in production.
+
+
 
 Of the nine lines the law is stated in: **four are hers** — the Col $\Theta=2C_2E$; $\lambda\Theta=\Lambda$ with her
 $\Lambda$; $T=\kappa\Theta$ with her $\kappa$; and $E/T=3R$ as her specific-heat bridge. **Five are the workbench's** —
