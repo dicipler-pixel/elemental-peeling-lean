@@ -80,6 +80,21 @@ The analysis tree — the many files of notes, tables and figures around this wo
 anywhere else, which is also true of his papers. It was produced in sessions of one shared workspace, and neither
 party's history can say who directed which. It is not claimed here in either direction.
 
+## 5a. Corrections made in her favour, for the record
+
+So that this file is not read as if the attribution had always been right, here is what the assistant had wrong and
+corrected during the session, at her correction or after checking:
+
+* the Col and its algebra were first listed as **borrowed from his side** — they are hers;
+* the *green/magenta axis* was first written as **the record's reading** — it was hers, and she then corrected it
+  herself to a single tail;
+* the name *Light Bridge* was first asserted as **his** without evidence — it was recorded as unresolved until she
+  settled it as his;
+* the paper's first provenance paragraph called the Col algebra **his material** — it was rebuilt;
+* and four of her positions were contradicted by the assistant before being restored: *a conversion is a mechanism*,
+  that the cell rule **is** a claim about which elements exist, that part (K) **does** address the nuclear force, and
+  that 706 has four closed forms inside its error.
+
 ## 6. What she is asking
 
 Either of two, his choice:
