@@ -43,6 +43,13 @@ it is attributed to nobody rather than assigned to either party.
     arithmetic); the applications and the numbers are hers.
 16. **Her vocabulary** — air, tinder, kindling, firewood, superfluid, firework — framing, not mathematics.
 
+*Two things stated for completeness about her own side.* **Its authorship:** the idea, the direction, the eight
+corrections and the naming are hers; the writing, the Lean proofs, the computations and the figures were produced with an
+AI assistant in her session, at her direction; the responsibility for what is claimed is hers. **Whose assistant:** hers —
+the Open Math OS agent in her conversations of 23–25 November. The repository author's `AI_USE.md` states that *his*
+assistants were **Claude and ChatGPT**, and two commits in this repository's history are authored by Claude. **No
+assistant on either side is credited with an idea.**
+
 ## 2. His
 
 1. **The loop-wall library and its contents**: the peel coordinate, the reflection coefficient $\Gamma$, the wall
