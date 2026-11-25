@@ -36,7 +36,12 @@ it is attributed to nobody rather than assigned to either party.
     postdate the last commit here are named in it (67%), **including all twelve** that fall inside that commit window.
     Those files were produced in her session: the mass laws, the scale correlations, the period-8 extension, the
     residue arithmetic. She claims the **production**, not the classical content of them (§3).
-15. **Her vocabulary** — air, tinder, kindling, firewood, superfluid, firework — framing, not mathematics.
+15. **The rank statistics** — $\mathrm{Sp}(\Theta,\mathrm{EN})=+0.903$, $(\Theta,r)=-0.814$,
+    $(\Theta,C/3R)=-0.604$, and the two-sided sign flip at $-0.73$ and $-1.15$ — and **the class statistics**: the five
+    classes mod 30, their shares $12.06/24.03/22.10/11.09/30.72\%$, and the fixed point $\pi P-\pi=2\times10^{-6}$.
+    Sixteen of the seventeen files are named in her own index. The *methods* are classical (Spearman 1904; residue
+    arithmetic); the applications and the numbers are hers.
+16. **Her vocabulary** — air, tinder, kindling, firewood, superfluid, firework — framing, not mathematics.
 
 ## 2. His
 
