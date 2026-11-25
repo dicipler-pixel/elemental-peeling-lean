@@ -16,7 +16,7 @@ it is attributed to nobody rather than assigned to either party.
    $\kappa=1/(6C_2R)$, $\Lambda=6C_2Rb$, and the chain $E\to T\to\lambda$.
 2. **The specific-heat bridge** — $c=E/(m\Delta T)=3R/M$, and $E/T=3R$ read as that law.
 3. **Air and pores** — the air as $a=g-2$; pores as its picture.
-4. **The composition and its title**, *The Light Bridge Harmonic Law*: one rung, six readings, three invariants, and
+4. **The composition and its title**, *The Harmonic Law* (formerly the Light Bridge harmonic law): one rung, six readings, three invariants, and
    the closure $\Lambda/\Theta=b/T$ as the centre.
 5. **The colour wheel** — the $W=10$ structure, units-orbits as divisor classes, $\Phi_{10}=\Phi_5(-X)$, and the true
    list $W\in\{5,8,10,12\}$. *This repository's own `README.md` already describes it as "EJ's colour wheel"; the Lean
@@ -51,7 +51,9 @@ it is attributed to nobody rather than assigned to either party.
    `README.md`, `CITATION.cff`.
 5. **The verifier and the archive generator**: `scripts/verify.py`, `scripts/gen_archive_lean.py`,
    `scripts/config.json`.
-6. **The name "Light Bridge"** — settled by her, 25 November: *"The light bridge name is his."*
+6. **The name "Light Bridge"** — settled by her, 25 November: *"The light bridge name is his."* Because the law is
+   hers, its name is not his: from 25 November 2026 her composition is called **The Harmonic Law**, and the phrase
+   *Light Bridge* is reserved for his object.
 
 ## 3. Nobody's: the classical content
 
